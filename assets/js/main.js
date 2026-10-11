@@ -1,6 +1,7 @@
 /* =========================================================
    DOS FLORES · JavaScript (vanilla, sin dependencias)
    Contenido:
+   0. Modo claro / oscuro
    1. Menú móvil accesible
    2. Carrusel de destacados
    3. Año automático del footer
@@ -8,6 +9,46 @@
 
 (function () {
   'use strict';
+
+
+  /* ---------------------------------------------------------
+     0. MODO CLARO / OSCURO
+     - Sin elección guardada: se sigue el tema del dispositivo.
+     - Al pulsar el botón se pone data-theme="light" o "dark" en <html>
+       (el CSS cambia colores y fotos de velas) y se guarda la elección.
+     - Un pequeño script en el <head> del HTML la aplica antes de pintar.
+     --------------------------------------------------------- */
+  var THEME_KEY = 'dosflores-tema';
+  var root = document.documentElement;
+  var themeBtn = document.querySelector('.theme-toggle');
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+  // Tema activo ahora mismo: el elegido con el botón o, si no hay, el del sistema
+  function currentTheme() {
+    var set = root.getAttribute('data-theme');
+    if (set === 'dark' || set === 'light') return set;
+    return darkQuery.matches ? 'dark' : 'light';
+  }
+
+  // Actualiza el texto accesible del botón según el tema
+  function updateThemeButton() {
+    if (!themeBtn) return;
+    var label = currentTheme() === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro';
+    themeBtn.setAttribute('aria-label', label);
+    themeBtn.setAttribute('title', label);
+  }
+
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function () {
+      var next = currentTheme() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* sin almacenamiento: vale igual */ }
+      updateThemeButton();
+    });
+    // Si el sistema cambia de tema y la persona no eligió nada, se actualiza el botón
+    darkQuery.addEventListener('change', updateThemeButton);
+    updateThemeButton();
+  }
 
 
   /* ---------------------------------------------------------

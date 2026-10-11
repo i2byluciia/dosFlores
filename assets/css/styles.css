@@ -1,7 +1,8 @@
 /* =========================================================
    DOS FLORES · Hoja de estilos
    Orden del archivo:
-   1. Variables  2. Base  3. Utilidades  4. Header/Nav
+   1. Variables (paleta, modo claro y modo oscuro)
+   2. Base  3. Utilidades  4. Header/Nav (translúcido)
    5. Hero  6. Carrusel  7. Narrativa  8. Catálogo
    9. Footer  10. Responsive (tablet y escritorio)
    Enfoque "mobile first": los estilos base son para móvil
@@ -11,32 +12,136 @@
 
 /* ---------- 1. VARIABLES ---------- */
 :root {
-  /* Colores oficiales */
+  /* --- Paleta oficial (colores fijos de la marca) --- */
   --color-fondo: #FAF9F6;
   --color-morado-oscuro: #312A44;
   --color-morado: #88708E;      /* Solo títulos grandes y detalles (contraste ~4,2:1) */
-  --color-lavanda: #DAD4DF;     /* Solo fondos y adornos, nunca texto */
+  --color-lavanda: #DAD4DF;
   --color-texto: #181818;
   --color-borde: #D7C5D6;
-  --color-acento: #BAB0C8;      /* Solo fondos y adornos, nunca texto */
+  --color-acento: #BAB0C8;
 
-  /* Tipografías */
+  /* --- Tonos para el modo oscuro (derivados del morado oscuro de la marca) --- */
+  --noche-0: #0E0B14;           /* footer */
+  --noche: #15121D;             /* fondo principal */
+  --noche-2: #1F1A2B;           /* secciones alternas */
+  --noche-3: #2A2338;           /* detrás de las fotos, chips */
+  --noche-borde: #3D3450;
+  --texto-claro: #EDE9F2;
+
+  /* --- Tipografías --- */
   --fuente-marca: "Allura", cursive;                 /* Solo marca y ornamentos */
   --fuente-titulos: "Cormorant Garamond", serif;
   --fuente-texto: "Montserrat", sans-serif;
 
-  /* Espaciados */
+  /* --- Espaciados --- */
   --espacio-xs: 0.5rem;
   --espacio-s: 1rem;
   --espacio-m: 2rem;
   --espacio-l: 4rem;
   --espacio-xl: 6rem;
 
-  /* Otros */
+  /* --- Otros --- */
   --ancho-max: 72rem;
   --radio: 0.5rem;
   --transicion: 0.2s ease;
   --altura-header: 4.5rem;
+
+  /* --- TEMA CLARO (por defecto) ---
+     Los componentes usan SOLO estos nombres, nunca la paleta directamente.
+     Así el modo oscuro solo tiene que redefinir esta lista. */
+  --bg: var(--color-fondo);
+  --bg-alt: var(--color-lavanda);              /* secciones alternas */
+  --surface: var(--color-fondo);               /* tarjetas */
+  --surface-media: var(--color-lavanda);       /* detrás de las fotos */
+  --text: var(--color-texto);
+  --heading: var(--color-morado-oscuro);       /* títulos, enlaces e iconos */
+  --muted-accent: var(--color-morado);
+  --border: var(--color-borde);
+  --accent: var(--color-acento);
+  --hover-bg: var(--color-acento);
+  --btn-bg: var(--color-morado-oscuro);
+  --btn-text: var(--color-fondo);
+  --footer-bg: var(--color-morado-oscuro);
+  --footer-text: var(--color-fondo);
+  --footer-hover: var(--color-lavanda);
+  --glass: color-mix(in srgb, var(--color-fondo) 60%, transparent);          /* barra translúcida */
+  --glass-border: color-mix(in srgb, var(--color-borde) 80%, transparent);
+  --chip-bg: color-mix(in srgb, var(--color-fondo) 80%, transparent);        /* botones del nav */
+  --chip-border: var(--color-borde);
+  --menu-bg: color-mix(in srgb, var(--color-fondo) 95%, transparent);        /* menú móvil */
+  --veil: var(--color-morado-oscuro);                                        /* velo sobre la foto del hero */
+  --vela-apagada: 1;                           /* foto de vela apagada visible */
+  --vela-encendida: 0;                         /* foto de vela encendida oculta */
+  --show-sun: none;                            /* icono sol (visible en oscuro) */
+  --show-moon: block;                          /* icono luna (visible en claro) */
+  color-scheme: light;
+}
+
+/* --- TEMA OSCURO ---
+   Se activa de dos formas:
+   1) Automático: si el móvil/ordenador está en modo oscuro y la persona
+      no ha elegido nada con el botón (:not([data-theme="light"])).
+   2) Manual: el botón del nav pone data-theme="dark" en <html>.
+   Las dos listas son idénticas: si cambias una, cambia la otra. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--noche);
+    --bg-alt: var(--noche-2);
+    --surface: var(--noche);
+    --surface-media: var(--noche-3);
+    --text: var(--texto-claro);
+    --heading: var(--color-lavanda);
+    --muted-accent: var(--color-acento);
+    --border: var(--noche-borde);
+    --accent: var(--color-acento);
+    --hover-bg: var(--noche-borde);
+    --btn-bg: var(--color-lavanda);
+    --btn-text: var(--color-morado-oscuro);
+    --footer-bg: var(--noche-0);
+    --footer-text: var(--texto-claro);
+    --footer-hover: var(--color-acento);
+    --glass: color-mix(in srgb, var(--noche) 55%, transparent);
+    --glass-border: color-mix(in srgb, var(--noche-borde) 80%, transparent);
+    --chip-bg: color-mix(in srgb, var(--noche-3) 75%, transparent);
+    --chip-border: var(--noche-borde);
+    --menu-bg: color-mix(in srgb, var(--noche) 95%, transparent);
+    --veil: var(--noche);
+    --vela-apagada: 0;
+    --vela-encendida: 1;
+    --show-sun: block;
+    --show-moon: none;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: var(--noche);
+  --bg-alt: var(--noche-2);
+  --surface: var(--noche);
+  --surface-media: var(--noche-3);
+  --text: var(--texto-claro);
+  --heading: var(--color-lavanda);
+  --muted-accent: var(--color-acento);
+  --border: var(--noche-borde);
+  --accent: var(--color-acento);
+  --hover-bg: var(--noche-borde);
+  --btn-bg: var(--color-lavanda);
+  --btn-text: var(--color-morado-oscuro);
+  --footer-bg: var(--noche-0);
+  --footer-text: var(--texto-claro);
+  --footer-hover: var(--color-acento);
+  --glass: color-mix(in srgb, var(--noche) 55%, transparent);
+  --glass-border: color-mix(in srgb, var(--noche-borde) 80%, transparent);
+  --chip-bg: color-mix(in srgb, var(--noche-3) 75%, transparent);
+  --chip-border: var(--noche-borde);
+  --menu-bg: color-mix(in srgb, var(--noche) 95%, transparent);
+  --veil: var(--noche);
+  --vela-apagada: 0;
+  --vela-encendida: 1;
+  --show-sun: block;
+  --show-moon: none;
+  color-scheme: dark;
 }
 
 
@@ -55,11 +160,12 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-fondo);
-  color: var(--color-texto);
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--fuente-texto);
   font-size: 1rem;
   line-height: 1.7;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img {
@@ -73,7 +179,7 @@ h1, h2, h3 {
   font-family: var(--fuente-titulos);
   font-weight: 500;
   line-height: 1.2;
-  color: var(--color-morado-oscuro);
+  color: var(--heading);
 }
 
 p { margin: 0 0 var(--espacio-s); }
@@ -81,13 +187,13 @@ p { margin: 0 0 var(--espacio-s); }
 ul { margin: 0; padding: 0; list-style: none; }
 
 a {
-  color: var(--color-morado-oscuro);
+  color: var(--heading);
   text-underline-offset: 0.2em;
 }
 
 /* Foco visible para quien navega con teclado */
 :focus-visible {
-  outline: 3px solid var(--color-morado-oscuro);
+  outline: 3px solid var(--heading);
   outline-offset: 3px;
 }
 
@@ -95,9 +201,9 @@ a {
 .btn {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  background: var(--color-morado-oscuro);
-  color: var(--color-fondo);
-  border: 1px solid var(--color-morado-oscuro);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--btn-bg);
   border-radius: var(--radio);
   font-family: var(--fuente-texto);
   font-size: 0.9rem;
@@ -106,10 +212,10 @@ a {
   text-decoration: none;
   transition: background var(--transicion), color var(--transicion);
 }
-.btn:hover { background: var(--color-fondo); color: var(--color-morado-oscuro); }
+.btn:hover { background: var(--bg); color: var(--heading); }
 
-.btn--outline { background: transparent; color: var(--color-morado-oscuro); }
-.btn--outline:hover { background: var(--color-morado-oscuro); color: var(--color-fondo); }
+.btn--outline { background: transparent; color: var(--heading); }
+.btn--outline:hover { background: var(--btn-bg); color: var(--btn-text); }
 
 /* Título de sección */
 .section-title {
@@ -119,6 +225,9 @@ a {
 
 
 /* ---------- 3. UTILIDADES ---------- */
+
+/* Garantiza que el atributo hidden oculte siempre (lo usa el JS del carrusel) */
+[hidden] { display: none !important; }
 
 /* Oculto visualmente pero legible para lectores de pantalla */
 .visually-hidden {
@@ -140,20 +249,39 @@ a {
   left: var(--espacio-s);
   z-index: 100;
   padding: 0.5rem 1rem;
-  background: var(--color-morado-oscuro);
-  color: var(--color-fondo);
+  background: var(--btn-bg);
+  color: var(--btn-text);
   border-radius: var(--radio);
 }
 .skip-link:focus { top: var(--espacio-s); }
 
 
-/* ---------- 4. HEADER / NAV ---------- */
+/* ---------- 4. HEADER / NAV (translúcido) ----------
+   El header flota sobre el contenido y deja ver lo que hay detrás
+   (la foto del hero). El margin-bottom negativo hace que el hero
+   empiece en la parte de arriba de la pantalla, por debajo del nav.
+   El cristal está en ::before para que el menú móvil no herede el desenfoque. */
 .site-header {
   position: sticky;
-  top: 0;
+  top: env(safe-area-inset-top, 0px);
   z-index: 50;
-  background: var(--color-fondo);
-  border-bottom: 1px solid var(--color-borde);
+  margin-bottom: calc(var(--altura-header) * -1);
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--glass);
+  border-bottom: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
+}
+
+/* Si el navegador no sabe desenfocar, la barra se vuelve casi opaca para leerse bien */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header::before { background: var(--menu-bg); }
 }
 
 .nav-container {
@@ -177,10 +305,10 @@ a {
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: none;
-  border: 1px solid var(--color-borde);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
   border-radius: var(--radio);
-  color: var(--color-morado-oscuro);
+  color: var(--heading);
   cursor: pointer;
 }
 .nav-toggle__icon,
@@ -198,7 +326,7 @@ a {
 .nav-toggle__icon::after  { position: absolute; top: 6px; }
 
 /* Menú móvil: desplegable bajo el header.
-   La Fase 4 (JS) añade/quita la clase .is-open */
+   El JS añade/quita la clase .is-open */
 .main-nav {
   display: none;
   position: absolute;
@@ -206,8 +334,8 @@ a {
   left: 0;
   right: 0;
   padding: var(--espacio-s);
-  background: var(--color-fondo);
-  border-bottom: 1px solid var(--color-borde);
+  background: var(--menu-bg);
+  border-bottom: 1px solid var(--glass-border);
 }
 .main-nav.is-open { display: block; }
 
@@ -219,33 +347,43 @@ a {
   font-size: 1.25rem;
   text-decoration: none;
 }
-.main-nav a:hover { color: var(--color-morado); }
+.main-nav a:hover { color: var(--muted-accent); }
 
 /* Iconos de la derecha */
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
   margin-left: auto;
 }
 
+/* Botones redondos: tienen su propio fondo para destacar sobre la foto */
 .icon-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: none;
-  border: 0;
+  padding: 0;
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
   border-radius: 50%;
-  color: var(--color-morado-oscuro);
+  color: var(--heading);
+  transition: background var(--transicion);
 }
+.icon-btn:not([aria-disabled="true"]) { cursor: pointer; }
+.icon-btn:not([aria-disabled="true"]):hover { background: var(--hover-bg); }
 
 /* Botones inactivos (búsqueda, usuario, carrito) */
 .icon-btn[aria-disabled="true"] {
-  opacity: 0.5;
+  opacity: 0.55;
   cursor: not-allowed;
 }
+
+/* Interruptor de tema: muestra la luna en claro y el sol en oscuro
+   (las variables --show-sun / --show-moon cambian con el tema) */
+.theme-toggle .icon-sun  { display: var(--show-sun); }
+.theme-toggle .icon-moon { display: var(--show-moon); }
 
 /* Carrito: tooltip "Próximamente" */
 .cart-wrap { position: relative; }
@@ -254,8 +392,8 @@ a {
   top: calc(100% + 0.25rem);
   right: 0;
   padding: 0.25rem 0.75rem;
-  background: var(--color-morado-oscuro);
-  color: var(--color-fondo);
+  background: var(--btn-bg);
+  color: var(--btn-text);
   border-radius: var(--radio);
   font-size: 0.8rem;
   white-space: nowrap;
@@ -272,9 +410,49 @@ a {
 
 
 /* ---------- 5. HERO ---------- */
+
+/* Portada a pantalla completa. Empieza detrás del nav translúcido,
+   por eso el padding superior suma la altura del header.
+   100svh evita saltos en móvil cuando se ocultan las barras del navegador. */
 .hero {
-  padding: var(--espacio-xl) var(--espacio-s) var(--espacio-l);
-  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;                                   /* respaldo para navegadores antiguos */
+  min-height: 100svh;
+  padding: calc(var(--altura-header) + var(--espacio-m)) var(--espacio-s) var(--espacio-l);
+  background: var(--color-morado-oscuro);              /* se ve si la imagen aún no existe */
+  color: var(--color-fondo);
+  overflow: hidden;
+}
+
+/* Imagen de fondo: cubre todo el hero sin deformarse */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Velo sobre la imagen para que el texto se lea (más oscuro en modo oscuro).
+   En móvil cubre todo; desde tablet se aclara hacia la derecha. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--veil) 55%, transparent);
+}
+
+/* Texto a la izquierda, por encima de la imagen y del velo.
+   Usa colores fijos claros porque el velo siempre es oscuro. */
+.hero__content {
+  position: relative;
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  text-align: left;
 }
 
 /* Allura: solo para el nombre de marca */
@@ -284,41 +462,63 @@ a {
   font-size: clamp(4rem, 15vw, 7.5rem);
   font-weight: 400;
   line-height: 1.1;
-  color: var(--color-morado-oscuro);
+  color: var(--color-fondo);
 }
 
-/* Ornamento: línea · punto · línea */
+/* Ornamento: línea · punto · línea, alineado a la izquierda */
 .ornament {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.75rem;
-  margin: 0 auto var(--espacio-m);
+  margin: 0 0 var(--espacio-m);
 }
 .ornament__line {
   width: 3.5rem;
   height: 1px;
-  background: var(--color-acento);
+  background: var(--color-lavanda);
 }
 .ornament__dot {
   width: 7px;
   height: 7px;
-  background: var(--color-morado);
+  background: var(--color-lavanda);
   border-radius: 50%;
 }
 
 .hero__welcome {
-  max-width: 34rem;
-  margin: 0 auto;
+  max-width: 28rem;
+  margin: 0;
   font-family: var(--fuente-titulos);
   font-size: 1.4rem;
 }
 
 
+/* ---------- FOTOS DE VELAS: apagada (claro) / encendida (oscuro) ----------
+   Cada vela lleva DOS fotos apiladas. El tema decide cuál se ve
+   (--vela-apagada y --vela-encendida) y se funden con un cambio suave. */
+.candle-photo {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-width: 100%;
+  background: var(--surface-media);
+  overflow: hidden;
+}
+.candle-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.6s ease;
+}
+.candle-photo .vela--apagada   { opacity: var(--vela-apagada); }
+.candle-photo .vela--encendida { opacity: var(--vela-encendida); }
+
+
 /* ---------- 6. CARRUSEL / DESTACADOS ---------- */
 .featured {
   padding: var(--espacio-l) var(--espacio-s);
-  background: var(--color-lavanda);
+  background: var(--bg-alt);
 }
 
 .carousel {
@@ -337,12 +537,9 @@ a {
 }
 
 .slide__media {
-  background: var(--color-fondo);
-  border: 1px solid var(--color-borde);
+  border: 1px solid var(--border);
   border-radius: var(--radio);
-  overflow: hidden;
 }
-.slide__media img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 
 .slide__tag {
   margin-bottom: var(--espacio-xs);
@@ -350,7 +547,7 @@ a {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-morado-oscuro);
+  color: var(--heading);
 }
 .slide__title { font-size: clamp(2rem, 6vw, 3rem); }
 
@@ -361,16 +558,16 @@ a {
   z-index: 2;
   width: 44px;
   height: 44px;
-  background: var(--color-fondo);
-  border: 1px solid var(--color-borde);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 50%;
-  color: var(--color-morado-oscuro);
+  color: var(--heading);
   font-size: 1.6rem;
   line-height: 1;
   cursor: pointer;
   transition: background var(--transicion);
 }
-.carousel__btn:hover { background: var(--color-acento); }
+.carousel__btn:hover { background: var(--hover-bg); }
 .carousel__btn--prev { left: 0.5rem; }
 .carousel__btn--next { right: 0.5rem; }
 
@@ -389,11 +586,11 @@ a {
   height: 12px;
   padding: 0;
   background: transparent;
-  border: 2px solid var(--color-morado-oscuro);
+  border: 2px solid var(--heading);
   border-radius: 50%;
   cursor: pointer;
 }
-.carousel__dot.is-active { background: var(--color-morado-oscuro); }
+.carousel__dot.is-active { background: var(--heading); }
 
 
 /* ---------- 7. NARRATIVA ---------- */
@@ -403,7 +600,7 @@ a {
   padding: var(--espacio-l) var(--espacio-s);
 }
 /* Alternamos fondos para separar bloques sin usar blanco puro */
-.process { background: var(--color-lavanda); }
+.process { background: var(--bg-alt); }
 
 .story__inner {
   max-width: 42rem;
@@ -426,17 +623,14 @@ a {
 .card article {
   height: 100%;
   padding: var(--espacio-s);
-  background: var(--color-fondo);
-  border: 1px solid var(--color-borde);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radio);
 }
 .card__media {
   margin-bottom: var(--espacio-s);
-  background: var(--color-lavanda);
   border-radius: var(--radio);
-  overflow: hidden;
 }
-.card__media img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 .card__title { font-size: 1.6rem; }
 .card__label { font-weight: 600; }
 .card__notes,
@@ -446,13 +640,13 @@ a {
 /* ---------- 9. FOOTER ---------- */
 .site-footer {
   padding: var(--espacio-l) var(--espacio-s) var(--espacio-m);
-  background: var(--color-morado-oscuro);
-  color: var(--color-fondo);
+  background: var(--footer-bg);
+  color: var(--footer-text);
   text-align: center;
 }
-.site-footer a { color: var(--color-fondo); }
-.site-footer a:hover { color: var(--color-lavanda); }
-.site-footer :focus-visible { outline-color: var(--color-lavanda); }
+.site-footer a { color: var(--footer-text); }
+.site-footer a:hover { color: var(--footer-hover); }
+.site-footer :focus-visible { outline-color: var(--footer-hover); }
 
 .footer-container {
   display: grid;
@@ -485,6 +679,16 @@ a {
 @media (min-width: 48rem) {
   .catalog__grid { grid-template-columns: repeat(2, 1fr); }
 
+  /* Velo degradado: más oscuro a la izquierda (donde va el texto) y más suave a la derecha */
+  .hero::before {
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--veil) 70%, transparent) 0%,
+      color-mix(in srgb, var(--veil) 35%, transparent) 60%,
+      color-mix(in srgb, var(--veil) 10%, transparent) 100%
+    );
+  }
+
   .slide.is-active { grid-template-columns: 1fr 1fr; }
   .carousel__btn { top: 45%; }
 }
@@ -502,14 +706,23 @@ a {
     background: none;
     border: 0;
   }
-  .main-nav ul { flex-direction: row; gap: var(--espacio-m); }
-  .main-nav a { padding: 0.25rem 0; font-size: 1.15rem; }
+  .main-nav ul { flex-direction: row; gap: 0.5rem; }
+
+  /* Enlaces del nav como botones tipo "píldora" para que destaquen sobre la foto */
+  .main-nav a {
+    padding: 0.4rem 1.1rem;
+    background: var(--chip-bg);
+    border: 1px solid var(--chip-border);
+    border-radius: 999px;
+    font-size: 1.1rem;
+    transition: background var(--transicion);
+  }
+  .main-nav a:hover { background: var(--hover-bg); color: var(--heading); }
 
   .nav-actions { justify-self: end; }
 
   .catalog__grid { grid-template-columns: repeat(3, 1fr); }
 
-  .hero { padding-top: calc(var(--espacio-xl) + var(--espacio-m)); }
   .carousel__btn--prev { left: -1.5rem; }
   .carousel__btn--next { right: -1.5rem; }
 }
