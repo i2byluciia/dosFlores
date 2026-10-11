@@ -75,6 +75,7 @@
   --vela-encendida: 0;                         /* foto de vela encendida oculta */
   --show-sun: none;                            /* icono sol (visible en oscuro) */
   --show-moon: block;                          /* icono luna (visible en claro) */
+  --logo-filter: none;                         /* el logo (SVG negro) se ve tal cual */
   color-scheme: light;
 }
 
@@ -111,6 +112,7 @@
     --vela-encendida: 1;
     --show-sun: block;
     --show-moon: none;
+    --logo-filter: invert(1) hue-rotate(180deg);
     color-scheme: dark;
   }
 }
@@ -141,6 +143,7 @@
   --vela-encendida: 1;
   --show-sun: block;
   --show-moon: none;
+  --logo-filter: invert(1) hue-rotate(180deg);
   color-scheme: dark;
 }
 
@@ -295,7 +298,15 @@ a {
   padding: 0 var(--espacio-s);
 }
 
-.logo img { width: 48px; height: 48px; object-fit: contain; }
+/* En modo oscuro el filtro invierte el logo: el negro pasa a blanco
+   y los demás colores mantienen su tono (hue-rotate compensa la inversión). */
+.logo img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: var(--logo-filter);
+  transition: filter 0.3s ease;
+}
 
 /* Botón hamburguesa (solo móvil) */
 .nav-toggle {
