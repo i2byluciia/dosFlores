@@ -45,7 +45,7 @@
   --ancho-max: 72rem;
   --radio: 0.5rem;
   --transicion: 0.2s ease;
-  --altura-header: 4.5rem;
+  --altura-header: 5rem;                 /* un poco más alta para el logo mayor */
 
   /* --- TEMA CLARO (por defecto) ---
      Los componentes usan SOLO estos nombres, nunca la paleta directamente.
@@ -300,9 +300,10 @@ a {
 
 /* En modo oscuro el filtro invierte el logo: el negro pasa a blanco
    y los demás colores mantienen su tono (hue-rotate compensa la inversión). */
+/* Tamaño del logo: 56 px en móvil y 64 px en escritorio (ver sección 10) */
 .logo img {
-  width: 48px;
-  height: 48px;
+  width: 3.5rem;
+  height: 3.5rem;
   object-fit: contain;
   filter: var(--logo-filter);
   transition: filter 0.3s ease;
@@ -709,6 +710,7 @@ a {
   /* Nav: logo | enlaces centrados | iconos */
   .nav-container { display: grid; grid-template-columns: 1fr auto 1fr; }
   .nav-toggle { display: none; }
+  .logo img { width: 4rem; height: 4rem; }
 
   .main-nav {
     position: static;
