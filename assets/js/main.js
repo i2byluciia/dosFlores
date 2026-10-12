@@ -4,7 +4,8 @@
    0. Modo claro / oscuro
    1. Menú móvil accesible
    2. Carrusel de destacados
-   3. Año automático del footer
+   3. Rastro de humo del ratón
+   4. Año automático del footer
    ========================================================= */
 
 (function () {
@@ -204,7 +205,116 @@
 
 
   /* ---------------------------------------------------------
-     3. AÑO AUTOMÁTICO DEL FOOTER
+     3. RASTRO DE HUMO DEL RATÓN
+     Una columna de humo suave sube desde el cursor, como el de una vela
+     recién apagada. Detalles:
+     - Solo con ratón (en móvil/tablet táctil no se activa).
+     - No se activa si la persona pidió menos movimiento en su sistema.
+     - Se adapta al modo claro/oscuro (humo morado en claro, lavanda en oscuro).
+     - El bucle de animación se detiene solo cuando no queda humo.
+     Ajustes rápidos: SMOKE (cantidad, tamaño, duración y opacidad).
+     --------------------------------------------------------- */
+  var SMOKE = {
+    max: 110,          // máximo de partículas a la vez
+    spacing: 9,        // píxeles de recorrido entre partículas (menos = más denso)
+    radius: [10, 18],  // tamaño inicial (mín, máx) en px
+    growth: 34,        // cuánto crece cada partícula mientras sube
+    life: [1100, 1900],// duración (mín, máx) en milisegundos
+    rise: [0.25, 0.6], // velocidad de subida (px por fotograma a 60 fps)
+    alpha: 0.2         // opacidad máxima (0 a 1)
+  };
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var mouseOnly = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  if (!reduceMotion.matches && mouseOnly.matches) {
+    var canvas = document.createElement('canvas');
+    canvas.className = 'smoke-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+    var puffs = [];
+    var lastX = null, lastY = null, lastTime = 0, running = false;
+
+    function sizeCanvas() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(window.innerWidth * dpr);
+      canvas.height = Math.round(window.innerHeight * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    sizeCanvas();
+    window.addEventListener('resize', sizeCanvas);
+
+    function rand(range) { return range[0] + Math.random() * (range[1] - range[0]); }
+
+    function addPuff(x, y) {
+      if (puffs.length >= SMOKE.max) puffs.shift();
+      puffs.push({
+        x: x + (Math.random() - 0.5) * 6,
+        y: y,
+        r: rand(SMOKE.radius),
+        vy: rand(SMOKE.rise),
+        wobble: Math.random() * Math.PI * 2,      // fase del vaivén lateral
+        sway: 0.2 + Math.random() * 0.4,          // intensidad del vaivén
+        age: 0,
+        life: rand(SMOKE.life)
+      });
+    }
+
+    document.addEventListener('pointermove', function (e) {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      if (lastX !== null) {
+        var dx = e.clientX - lastX, dy = e.clientY - lastY;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var steps = Math.min(8, Math.floor(dist / SMOKE.spacing));
+        for (var i = 1; i <= steps; i++) {
+          addPuff(lastX + (dx * i) / steps, lastY + (dy * i) / steps);
+        }
+        if (steps > 0) { lastX = e.clientX; lastY = e.clientY; }
+      } else {
+        lastX = e.clientX; lastY = e.clientY;
+      }
+      if (!running && puffs.length) { running = true; lastTime = performance.now(); requestAnimationFrame(frame); }
+    }, { passive: true });
+
+    // Al salir el ratón de la ventana, el rastro se corta (no salta al volver a entrar)
+    document.documentElement.addEventListener('pointerleave', function () { lastX = lastY = null; });
+
+    function frame(now) {
+      var dt = Math.min(now - lastTime, 50);
+      lastTime = now;
+      var step = dt / 16.67;                       // 1 = un fotograma a 60 fps
+      var rgb = currentTheme() === 'dark' ? '218, 212, 223' : '136, 112, 142';
+
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+      for (var i = puffs.length - 1; i >= 0; i--) {
+        var p = puffs[i];
+        p.age += dt;
+        if (p.age >= p.life) { puffs.splice(i, 1); continue; }
+        var t = p.age / p.life;                    // 0 → 1 a lo largo de su vida
+        p.y -= p.vy * step;
+        p.x += Math.sin(p.wobble + t * 5) * p.sway * step;
+        var r = p.r + SMOKE.growth * t;
+        var a = SMOKE.alpha * Math.pow(1 - t, 1.6) * Math.min(1, t * 10);
+
+        var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
+        g.addColorStop(0, 'rgba(' + rgb + ',' + a + ')');
+        g.addColorStop(1, 'rgba(' + rgb + ',0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      if (puffs.length) requestAnimationFrame(frame);
+      else { running = false; ctx.clearRect(0, 0, window.innerWidth, window.innerHeight); }
+    }
+  }
+
+
+  /* ---------------------------------------------------------
+     4. AÑO AUTOMÁTICO DEL FOOTER
      --------------------------------------------------------- */
   var year = document.getElementById('anio');
   if (year) year.textContent = new Date().getFullYear();
