@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dos Flores · Velas artesanales</title>
+  <meta name="description" content="Dos Flores: velas artesanales de cera vegetal de soja y coco, hechas a mano. [PLACEHOLDER: revisar descripción]">
+
+  <!-- Favicon con dos versiones: el navegador elige según su propio modo.
+       · favicon-claro.png  → icono OSCURO, para pestañas claras
+       · favicon-oscuro.png → icono CLARO, para pestañas oscuras
+       Guárdalos en assets/images/logo/ (cuadrados, 64x64 o 128x128 px).
+       Sigue el modo del navegador/sistema, no el botón de la web. -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon_negro.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon_blanco.svg" media="(prefers-color-scheme: dark)">
+  <!-- Icono para la pantalla de inicio del iPhone (un solo archivo, 180x180 px) -->
+  <link rel="apple-touch-icon" href="assets/images/logo/apple-touch-icon.png">
+
+  <!-- Tipografías alojadas en la propia web (assets/fonts/).
+       La precarga avisa al navegador de las que se ven en la primera pantalla.
+       La definición de cada fuente (@font-face) está al principio de styles.css. -->
+  <link rel="preload" href="assets/fonts/allura-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Tema claro/oscuro: aplica la elección guardada ANTES de pintar la página,
+       para que no haya un parpadeo del tema equivocado al cargar. -->
+  <script>
+    try {
+      var tema = localStorage.getItem('dosflores-tema');
+      if (tema === 'dark' || tema === 'light') document.documentElement.setAttribute('data-theme', tema);
+    } catch (e) { /* sin almacenamiento: se sigue el tema del sistema */ }
+  </script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+
+</html>
