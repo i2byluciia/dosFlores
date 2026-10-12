@@ -10,6 +10,73 @@
    ========================================================= */
 
 
+/* ---------- 0. TIPOGRAFÍAS (alojadas en la propia web) ----------
+   Los archivos están en assets/fonts/, así que se ven igual en cualquier
+   dispositivo y no dependen de Google. Solo se incluye el subconjunto
+   "latin" (letras, tildes, ñ, ¿ ¡ y signos habituales).
+   Licencia: SIL Open Font License; los textos están en la misma carpeta.
+   font-display: swap muestra el texto enseguida con una fuente de respaldo
+   y cambia a la definitiva cuando termina de cargar. */
+@font-face {
+  font-family: "Allura";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/allura-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/cormorant-garamond-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-latin-600-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
 /* ---------- 1. VARIABLES ---------- */
 :root {
   /* --- Paleta oficial (colores fijos de la marca) --- */
@@ -177,7 +244,7 @@ img {
   height: auto;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   margin: 0 0 var(--espacio-s);
   font-family: var(--fuente-titulos);
   font-weight: 500;
@@ -607,8 +674,7 @@ a {
 
 /* ---------- 7. NARRATIVA ---------- */
 .story,
-.process,
-.aromas {
+.process {
   padding: var(--espacio-l) var(--espacio-s);
 }
 /* Alternamos fondos para separar bloques sin usar blanco puro */
@@ -624,15 +690,49 @@ a {
 /* ---------- 8. CATÁLOGO ---------- */
 .catalog { padding: var(--espacio-l) var(--espacio-s); }
 
-.catalog__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--espacio-m);
+/* Cada grupo de colecciones (Estacionales, Limitadas) con su título */
+.catalog__group {
   max-width: var(--ancho-max);
   margin: var(--espacio-m) auto 0;
 }
+.catalog__group + .catalog__group { margin-top: var(--espacio-l); }
+
+.catalog__group-title {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+/* Pequeña línea decorativa bajo el título del grupo */
+.catalog__group-title::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 1px;
+  margin: 0.6rem auto 0;
+  background: var(--accent);
+}
+
+/* Rejilla: 1 columna en móvil, 2 en tablet y 4 en escritorio ancho
+   (así las 4 estacionales nunca dejan una tarjeta sola en una fila).
+   Las filas incompletas (p. ej. las 2 limitadas) quedan centradas.
+   Para añadir una colección solo hay que duplicar un <li class="card">.
+   Los anchos de cada tarjeta se definen más abajo, en la sección 10. */
+.catalog__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espacio-m);
+  margin: var(--espacio-m) 0 0;
+}
+.card {
+  flex: 1 1 100%;
+  max-width: 24rem;
+}
 
 .card article {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   height: 100%;
   padding: var(--espacio-s);
   background: var(--surface);
@@ -640,13 +740,28 @@ a {
   border-radius: var(--radio);
 }
 .card__media {
+  width: 100%;
   margin-bottom: var(--espacio-s);
   border-radius: var(--radio);
 }
+/* Etiqueta de las colecciones limitadas */
+.card__tag {
+  margin-bottom: var(--espacio-xs);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--heading);
+}
 .card__title { font-size: 1.6rem; }
-.card__label { font-weight: 600; }
-.card__notes,
-.card__price { font-size: 0.95rem; }
+.card__text { font-size: 0.95rem; }
+/* El botón siempre queda abajo, aunque los textos tengan distinta longitud.
+   Es algo más compacto para que el texto quepa en una sola línea. */
+.card .btn {
+  margin-top: auto;
+  padding-inline: 1rem;
+  font-size: 0.85rem;
+}
 
 
 /* ---------- 9. FOOTER ---------- */
@@ -689,7 +804,11 @@ a {
 
 /* Tablet (≥ 48rem = 768px) */
 @media (min-width: 48rem) {
-  .catalog__grid { grid-template-columns: repeat(2, 1fr); }
+  /* Colecciones: 2 por fila */
+  .card {
+    flex: 0 0 calc((100% - var(--espacio-m)) / 2);
+    max-width: none;
+  }
 
   /* Velo degradado: más oscuro a la izquierda (donde va el texto) y más suave a la derecha */
   .hero::before {
@@ -734,8 +853,17 @@ a {
 
   .nav-actions { justify-self: end; }
 
-  .catalog__grid { grid-template-columns: repeat(3, 1fr); }
+}
 
+/* Escritorio ancho (≥ 75rem = 1200px): 4 colecciones por fila */
+@media (min-width: 75rem) {
+  .card { flex: 0 0 calc((100% - 3 * var(--espacio-m)) / 4); }
+}
+
+/* Pantallas muy anchas (≥ 80rem = 1280px): las flechas del carrusel salen
+   un poco por los lados. En pantallas más estrechas se quedan dentro para
+   no provocar scroll horizontal. */
+@media (min-width: 80rem) {
   .carousel__btn--prev { left: -1.5rem; }
   .carousel__btn--next { right: -1.5rem; }
 }

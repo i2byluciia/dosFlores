@@ -11,15 +11,17 @@
        · favicon-oscuro.png → icono CLARO, para pestañas oscuras
        Guárdalos en assets/images/logo/ (cuadrados, 64x64 o 128x128 px).
        Sigue el modo del navegador/sistema, no el botón de la web. -->
-  <link rel="icon" type="image/png" href="assets/img/favicon_negro.svg" media="(prefers-color-scheme: light)">
-  <link rel="icon" type="image/png" href="assets/img/favicon_blanco.svg" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon_negro.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon_blanco.svg" media="(prefers-color-scheme: dark)">
   <!-- Icono para la pantalla de inicio del iPhone (un solo archivo, 180x180 px) -->
   <link rel="apple-touch-icon" href="assets/images/logo/apple-touch-icon.png">
 
-  <!-- Tipografías (Google Fonts): Allura solo para marca y ornamentos -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Tipografías alojadas en la propia web (assets/fonts/).
+       La precarga avisa al navegador de las que se ven en la primera pantalla.
+       La definición de cada fuente (@font-face) está al principio de styles.css. -->
+  <link rel="preload" href="assets/fonts/allura-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Tema claro/oscuro: aplica la elección guardada ANTES de pintar la página,
        para que no haya un parpadeo del tema equivocado al cargar. -->
@@ -61,7 +63,7 @@
         <ul>
           <li><a href="#colecciones">Colecciones</a></li>
           <li><a href="#historia">Nuestra Historia</a></li>
-          <li><a href="#destacados">Descubrir colección</a></li>
+          <li><a href="#destacados">Novedades</a></li>
         </ul>
       </nav>
 
@@ -131,12 +133,12 @@
          La lógica (flechas, puntos, teclado) va en la Fase 4.
          ===================================================== -->
     <section id="destacados" class="featured" aria-labelledby="destacados-titulo">
-      <h2 id="destacados-titulo" class="section-title">Descubrir colección</h2>
+      <h2 id="destacados-titulo" class="section-title">Novedades</h2>
 
       <div class="carousel" role="region" aria-roledescription="carrusel" aria-label="Velas destacadas">
 
         <!-- Controles de navegación del carrusel -->
-        <button class="carousel_btn carousel_btn--prev" type="button" aria-label="Vela anterior">
+        <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Vela anterior">
           <span aria-hidden="true">‹</span>
         </button>
 
@@ -163,7 +165,7 @@
 
         </div>
 
-        <button class="carousel_btn carousel_btn--next" type="button" aria-label="Vela siguiente">
+        <button class="carousel__btn carousel__btn--next" type="button" aria-label="Vela siguiente">
           <span aria-hidden="true">›</span>
         </button>
 
@@ -197,42 +199,107 @@
       </div>
     </section>
 
-    <!-- Aromas: sección de la página (sin enlace en el nav, según la libreta) -->
-    <section id="aromas" class="aromas" aria-labelledby="aromas-titulo">
-      <div class="story__inner">
-        <h2 id="aromas-titulo" class="section-title">Aromas</h2>
-        <p>[PLACEHOLDER: introducción a las fragancias. Primera en desarrollo: Caramelo Cremoso.]</p>
-      </div>
-    </section>
-
-
     <!-- =====================================================
-         5. CATÁLOGO (Explorar Velas)
-         Para añadir una vela: copiar un bloque <li class="card"> completo.
+         5. COLECCIONES (Explorar colecciones)
+         Dos grupos: Estacionales (las 4 estaciones) y Limitadas
+         (Halloween, Navidad…). Para añadir una colección, duplica un
+         bloque <li class="card"> dentro de su grupo. Las fotos van en
+         assets/images/colecciones/ (nombre-apagada.jpg y nombre-encendida.jpg).
          ===================================================== -->
     <section id="colecciones" class="catalog" aria-labelledby="catalogo-titulo">
-      <h2 id="catalogo-titulo" class="section-title">Explorar velas</h2>
+      <h2 id="catalogo-titulo" class="section-title">Explorar colecciones</h2>
 
-      <ul class="catalog__grid">
+      <!-- Colecciones estacionales -->
+      <div id="estacionales" class="catalog__group">
+        <h3 class="catalog__group-title">Estacionales</h3>
+        <ul class="catalog__grid">
 
-        <!-- Tarjeta de vela (plantilla) -->
         <li class="card">
           <article>
-            <!-- Dos fotos por vela: apagada (modo claro) y encendida (modo oscuro) -->
+            <!-- Foto de portada de la colección: una vela apagada (modo claro) y encendida (modo oscuro) -->
             <div class="card__media candle-photo">
-              <img class="vela--apagada" src="assets/images/velas/vela-01-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
-              <img class="vela--encendida" src="assets/images/velas/vela-01-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              <img class="vela--apagada" src="assets/images/colecciones/primavera-apagada.jpg" alt="[PLACEHOLDER: describir la vela de la colección Primavera]" width="400" height="400" loading="lazy">
+              <img class="vela--encendida" src="assets/images/colecciones/primavera-encendida.jpg" alt="" width="400" height="400" loading="lazy">
             </div>
-            <h3 class="card__title">Caramelo Cremoso</h3>
-            <p class="card_notes"><span class="card_label">Notas olfativas:</span> [PLACEHOLDER: notas confirmadas]</p>
-            <p class="card__price">[PLACEHOLDER: precio]</p>
+            <h4 class="card__title">Primavera</h4>
+            <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
+            <a class="btn btn--outline" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+          </article>
+        </li>
+        <li class="card">
+          <article>
+            <!-- Foto de portada de la colección: una vela apagada (modo claro) y encendida (modo oscuro) -->
+            <div class="card__media candle-photo">
+              <img class="vela--apagada" src="assets/images/colecciones/verano-apagada.jpg" alt="[PLACEHOLDER: describir la vela de la colección Verano]" width="400" height="400" loading="lazy">
+              <img class="vela--encendida" src="assets/images/colecciones/verano-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+            </div>
+            <h4 class="card__title">Verano</h4>
+            <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
+            <a class="btn btn--outline" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+          </article>
+        </li>
+        <li class="card">
+          <article>
+            <!-- Foto de portada de la colección: una vela apagada (modo claro) y encendida (modo oscuro) -->
+            <div class="card__media candle-photo">
+              <img class="vela--apagada" src="assets/images/colecciones/otono-apagada.jpg" alt="[PLACEHOLDER: describir la vela de la colección Otoño]" width="400" height="400" loading="lazy">
+              <img class="vela--encendida" src="assets/images/colecciones/otono-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+            </div>
+            <h4 class="card__title">Otoño</h4>
+            <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
+            <a class="btn btn--outline" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+          </article>
+        </li>
+        <li class="card">
+          <article>
+            <!-- Foto de portada de la colección: una vela apagada (modo claro) y encendida (modo oscuro) -->
+            <div class="card__media candle-photo">
+              <img class="vela--apagada" src="assets/images/colecciones/invierno-apagada.jpg" alt="[PLACEHOLDER: describir la vela de la colección Invierno]" width="400" height="400" loading="lazy">
+              <img class="vela--encendida" src="assets/images/colecciones/invierno-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+            </div>
+            <h4 class="card__title">Invierno</h4>
+            <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
             <a class="btn btn--outline" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
           </article>
         </li>
 
-        <!-- Más tarjetas: duplicar el bloque <li class="card"> de arriba -->
+        </ul>
+      </div>
 
-      </ul>
+      <!-- Colecciones limitadas: se pueden añadir más (San Valentín, Pascua…) -->
+      <div id="limitadas" class="catalog__group">
+        <h3 class="catalog__group-title">Limitadas</h3>
+        <ul class="catalog__grid">
+
+        <li class="card">
+          <article>
+            <!-- Foto de portada de la colección: una vela apagada (modo claro) y encendida (modo oscuro) -->
+            <div class="card__media candle-photo">
+              <img class="vela--apagada" src="assets/images/colecciones/halloween-apagada.jpg" alt="[PLACEHOLDER: describir la vela de la colección Halloween]" width="400" height="400" loading="lazy">
+              <img class="vela--encendida" src="assets/images/colecciones/halloween-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+            </div>
+            <p class="card__tag">Edición limitada</p>
+            <h4 class="card__title">Halloween</h4>
+            <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
+            <a class="btn btn--outline" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+          </article>
+        </li>
+        <li class="card">
+          <article>
+            <!-- Foto de portada de la colección: una vela apagada (modo claro) y encendida (modo oscuro) -->
+            <div class="card__media candle-photo">
+              <img class="vela--apagada" src="assets/images/colecciones/navidad-apagada.jpg" alt="[PLACEHOLDER: describir la vela de la colección Navidad]" width="400" height="400" loading="lazy">
+              <img class="vela--encendida" src="assets/images/colecciones/navidad-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+            </div>
+            <p class="card__tag">Edición limitada</p>
+            <h4 class="card__title">Navidad</h4>
+            <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
+            <a class="btn btn--outline" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+          </article>
+        </li>
+
+        </ul>
+      </div>
     </section>
 
   </main>
