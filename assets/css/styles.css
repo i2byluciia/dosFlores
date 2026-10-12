@@ -79,6 +79,10 @@
 
 /* ---------- 1. VARIABLES ---------- */
 :root {
+  /* Opacidad de las tarjetas de velas (baja el % para hacerlas más transparentes).
+     Usa --bg, así se adapta solo al modo claro y oscuro. */
+  --card-glass: color-mix(in srgb, var(--bg) 28%, transparent);
+
   /* --- Paleta oficial (colores fijos de la marca) --- */
   --color-fondo: #FAF9F6;
   --color-morado-oscuro: #312A44;
@@ -137,7 +141,11 @@
   --chip-bg: color-mix(in srgb, var(--color-fondo) 80%, transparent);        /* botones del nav */
   --chip-border: var(--color-borde);
   --menu-bg: color-mix(in srgb, var(--color-fondo) 95%, transparent);        /* menú móvil */
-  --veil: var(--color-morado-oscuro);                                        /* velo sobre la foto del hero */
+  --veil: var(--color-fondo);                  /* velo claro sobre la foto del hero */
+  --hero-claro: 1;                             /* foto del hero para modo claro: visible */
+  --hero-oscuro: 0;                            /* foto del hero para modo oscuro: oculta */
+  --hero-text: var(--color-morado-oscuro);     /* título y texto del hero */
+  --hero-line: var(--color-morado-oscuro);     /* ornamento del hero */
   --vela-apagada: 1;                           /* foto de vela apagada visible */
   --vela-encendida: 0;                         /* foto de vela encendida oculta */
   --show-sun: none;                            /* icono sol (visible en oscuro) */
@@ -175,6 +183,10 @@
     --chip-border: var(--noche-borde);
     --menu-bg: color-mix(in srgb, var(--noche) 95%, transparent);
     --veil: var(--noche);
+    --hero-claro: 0;
+    --hero-oscuro: 1;
+    --hero-text: var(--color-fondo);
+    --hero-line: var(--color-lavanda);
     --vela-apagada: 0;
     --vela-encendida: 1;
     --show-sun: block;
@@ -206,6 +218,10 @@
   --chip-border: var(--noche-borde);
   --menu-bg: color-mix(in srgb, var(--noche) 95%, transparent);
   --veil: var(--noche);
+  --hero-claro: 0;
+  --hero-oscuro: 1;
+  --hero-text: var(--color-fondo);
+  --hero-line: var(--color-lavanda);
   --vela-apagada: 0;
   --vela-encendida: 1;
   --show-sun: block;
@@ -492,7 +508,8 @@ a {
 
 /* Portada a pantalla completa. Empieza detrás del nav translúcido,
    por eso el padding superior suma la altura del header.
-   100svh evita saltos en móvil cuando se ocultan las barras del navegador. */
+   100svh evita saltos en móvil cuando se ocultan las barras del navegador.
+   Los colores del texto cambian con el tema (--hero-text, --hero-line). */
 .hero {
   position: relative;
   display: flex;
@@ -500,12 +517,12 @@ a {
   min-height: 100vh;                                   /* respaldo para navegadores antiguos */
   min-height: 100svh;
   padding: calc(var(--altura-header) + var(--espacio-m)) var(--espacio-s) var(--espacio-l);
-  background: var(--color-morado-oscuro);              /* se ve si la imagen aún no existe */
-  color: var(--color-fondo);
+  background: var(--bg-alt);                           /* se ve si las imágenes aún no existen */
+  color: var(--hero-text);
   overflow: hidden;
 }
 
-/* Imagen de fondo: cubre todo el hero sin deformarse */
+/* Dos imágenes de fondo apiladas: el tema decide cuál se ve (se funden suavemente) */
 .hero__bg {
   position: absolute;
   inset: 0;
@@ -513,10 +530,14 @@ a {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  transition: opacity 0.6s ease;
 }
+.hero__bg--claro  { opacity: var(--hero-claro); }
+.hero__bg--oscuro { opacity: var(--hero-oscuro); }
 
-/* Velo sobre la imagen para que el texto se lea (más oscuro en modo oscuro).
-   En móvil cubre todo; desde tablet se aclara hacia la derecha. */
+/* Velo sobre la imagen para que el texto se lea: claro en modo claro y
+   oscuro en modo oscuro (variable --veil). En móvil cubre todo;
+   desde tablet se aclara hacia la derecha. */
 .hero::before {
   content: "";
   position: absolute;
@@ -524,8 +545,7 @@ a {
   background: color-mix(in srgb, var(--veil) 55%, transparent);
 }
 
-/* Texto a la izquierda, por encima de la imagen y del velo.
-   Usa colores fijos claros porque el velo siempre es oscuro. */
+/* Texto a la izquierda, por encima de la imagen y del velo */
 .hero__content {
   position: relative;
   width: 100%;
@@ -541,7 +561,7 @@ a {
   font-size: clamp(4rem, 15vw, 7.5rem);
   font-weight: 400;
   line-height: 1.1;
-  color: var(--color-fondo);
+  color: var(--hero-text);
 }
 
 /* Ornamento: línea · punto · línea, alineado a la izquierda */
@@ -555,12 +575,12 @@ a {
 .ornament__line {
   width: 3.5rem;
   height: 1px;
-  background: var(--color-lavanda);
+  background: var(--hero-line);
 }
 .ornament__dot {
   width: 7px;
   height: 7px;
-  background: var(--color-lavanda);
+  background: var(--hero-line);
   border-radius: 50%;
 }
 
@@ -569,6 +589,7 @@ a {
   margin: 0;
   font-family: var(--fuente-titulos);
   font-size: 1.4rem;
+  color: var(--hero-text);
 }
 
 
@@ -594,82 +615,151 @@ a {
 .candle-photo .vela--encendida { opacity: var(--vela-encendida); }
 
 
-/* ---------- 6. CARRUSEL / DESTACADOS ---------- */
+/* ---------- 6. CARRUSEL / NOVEDADES ----------
+   Pista horizontal con "scroll-snap": se desliza con el dedo o el ratón
+   y las flechas la mueven de tarjeta en tarjeta.
+   1 tarjeta en móvil, 2 en tablet y 3 en escritorio. */
 .featured {
   padding: var(--espacio-l) var(--espacio-s);
   background: var(--bg-alt);
 }
 
 .carousel {
-  position: relative;
   max-width: var(--ancho-max);
   margin: var(--espacio-m) auto 0;
-  padding: 0 0 var(--espacio-l);
 }
 
-/* Solo se muestra la diapositiva activa */
-.slide { display: none; }
-.slide.is-active {
-  display: grid;
+.carousel__viewport {
+  overflow-x: auto;
+  padding-block: 0.5rem;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;              /* sin barra de scroll (Firefox) */
+}
+.carousel__viewport::-webkit-scrollbar { display: none; }   /* sin barra (Chrome/Safari) */
+
+.carousel__track {
+  display: flex;
   gap: var(--espacio-m);
-  align-items: center;
+}
+
+/* Tarjeta translúcida (mismo cristal que el header) */
+.slide {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--espacio-s);
+  background: var(--card-glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radio);
+  scroll-snap-align: start;
+}
+
+/* Cristal esmerilado compartido por las tarjetas de novedades y de colecciones */
+.slide,
+.card article {
+  background-image: linear-gradient(135deg,
+    color-mix(in srgb, var(--color-fondo) 28%, transparent) 0%,
+    transparent 55%);                                  /* reflejo de cristal */
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--color-morado-oscuro) 12%, transparent),
+              inset 0 1px 0 color-mix(in srgb, var(--color-fondo) 45%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
+}
+.slide .candle-photo,
+.card article .candle-photo { background: transparent; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .slide,
+  .card article { background: var(--menu-bg); }
 }
 
 .slide__media {
-  border: 1px solid var(--border);
+  margin-bottom: var(--espacio-s);
   border-radius: var(--radio);
 }
-
+.slide__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .slide__tag {
   margin-bottom: var(--espacio-xs);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--heading);
 }
-.slide__title { font-size: clamp(2rem, 6vw, 3rem); }
+.slide__title { font-size: 1.6rem; }
+.slide__text { font-size: 0.95rem; }
+/* El botón siempre queda abajo, aunque los textos midan distinto */
+.slide .btn {
+  margin-top: auto;
+  padding-inline: 1rem;
+  font-size: 0.85rem;
+}
 
-/* Flechas */
+/* Controles: flecha · puntos · flecha */
+.carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacio-s);
+  margin-top: var(--espacio-m);
+}
+
+/* Flechas: botones de cristal, redondos, con un pequeño efecto al pasar el ratón */
 .carousel__btn {
-  position: absolute;
-  top: 40%;
-  z-index: 2;
-  width: 44px;
-  height: 44px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  background: var(--glass);
+  border: 1px solid var(--chip-border);
   border-radius: 50%;
   color: var(--heading);
-  font-size: 1.6rem;
-  line-height: 1;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--color-morado-oscuro) 18%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
   cursor: pointer;
-  transition: background var(--transicion);
+  transition: background var(--transicion), color var(--transicion), transform var(--transicion), opacity var(--transicion);
 }
-.carousel__btn:hover { background: var(--hover-bg); }
-.carousel__btn--prev { left: 0.5rem; }
-.carousel__btn--next { right: 0.5rem; }
+.carousel__btn:hover:not(:disabled) {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  transform: scale(1.08);
+}
+.carousel__btn:active:not(:disabled) { transform: scale(0.96); }
+.carousel__btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+  box-shadow: none;
+}
 
-/* Puntos indicadores */
+/* Puntos: el activo se alarga como una píldora */
 .carousel__dots {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
 }
 .carousel__dot {
-  width: 12px;
-  height: 12px;
+  width: 0.6rem;
+  height: 0.6rem;
   padding: 0;
   background: transparent;
-  border: 2px solid var(--heading);
-  border-radius: 50%;
+  border: 1.5px solid var(--heading);
+  border-radius: 999px;
   cursor: pointer;
+  transition: width var(--transicion), background var(--transicion);
 }
-.carousel__dot.is-active { background: var(--heading); }
+.carousel__dot.is-active {
+  width: 1.6rem;
+  background: var(--heading);
+}
 
 
 /* ---------- 7. NARRATIVA ---------- */
@@ -735,8 +825,8 @@ a {
   align-items: flex-start;
   height: 100%;
   padding: var(--espacio-s);
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--card-glass);            /* más translúcida que el header */
+  border: 1px solid var(--glass-border);
   border-radius: var(--radio);
 }
 .card__media {
@@ -788,6 +878,24 @@ a {
   font-size: 2.6rem;
   line-height: 1.2;
 }
+/* Contacto: icono de Instagram + correo */
+.footer__contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacio-s);
+}
+.footer__social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  transition: color var(--transicion);
+}
 .footer__legal {
   display: flex;
   flex-wrap: wrap;
@@ -820,8 +928,8 @@ a {
     );
   }
 
-  .slide.is-active { grid-template-columns: 1fr 1fr; }
-  .carousel__btn { top: 45%; }
+  /* Novedades: 2 tarjetas visibles */
+  .slide { flex-basis: calc((100% - var(--espacio-m)) / 2); }
 }
 
 /* Escritorio (≥ 64rem = 1024px) */
@@ -860,12 +968,9 @@ a {
   .card { flex: 0 0 calc((100% - 3 * var(--espacio-m)) / 4); }
 }
 
-/* Pantallas muy anchas (≥ 80rem = 1280px): las flechas del carrusel salen
-   un poco por los lados. En pantallas más estrechas se quedan dentro para
-   no provocar scroll horizontal. */
-@media (min-width: 80rem) {
-  .carousel__btn--prev { left: -1.5rem; }
-  .carousel__btn--next { right: -1.5rem; }
+/* Escritorio (≥ 64rem): 3 tarjetas de novedades visibles */
+@media (min-width: 64rem) {
+  .slide { flex-basis: calc((100% - 2 * var(--espacio-m)) / 3); }
 }
 
 /* Respeta a quien prefiere menos movimiento */

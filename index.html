@@ -61,8 +61,8 @@
       <!-- Navegación principal: solo los enlaces marcados "nav" en el boceto -->
       <nav id="menu-principal" class="main-nav" aria-label="Navegación principal">
         <ul>
-          <li><a href="#colecciones">Colecciones</a></li>
-          <li><a href="#historia">Nuestra Historia</a></li>
+          <li><a href="colecciones.html">Colecciones</a></li>
+          <li><a href="historia.html">Nuestra Historia</a></li>
         </ul>
       </nav>
 
@@ -75,17 +75,18 @@
           <svg class="icon-sun" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
         </button>
 
-        <!-- Búsqueda y usuario: solo visuales por ahora -->
-        <button class="icon-btn" type="button" aria-label="Buscar (próximamente)" aria-disabled="true">
+        <!-- Búsqueda, usuario y carrito: OCULTOS de momento con el atributo "hidden".
+             Para volver a mostrarlos, borra la palabra hidden de cada uno. -->
+        <button class="icon-btn" type="button" aria-label="Buscar (próximamente)" aria-disabled="true" hidden>
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>
         </button>
-        <button class="icon-btn" type="button" aria-label="Cuenta de usuario (próximamente)" aria-disabled="true">
+        <button class="icon-btn" type="button" aria-label="Cuenta de usuario (próximamente)" aria-disabled="true" hidden>
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
         </button>
 
         <!-- Carrito: implementado a nivel visual pero DESHABILITADO.
              Las ventas iniciales son directas por Instagram. -->
-        <span class="cart-wrap">
+        <span class="cart-wrap" hidden>
           <button class="icon-btn icon-btn--cart" type="button" aria-disabled="true" aria-describedby="cart-tip">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 4h2.5l2 11h10l2-8H7"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>
             <span class="visually-hidden">Carrito</span>
@@ -108,7 +109,10 @@
            Para cambiarla: guarda tu foto como assets/images/hero/hero.jpg
            (o cambia el nombre en el src). Es decorativa, por eso alt="".
            Recomendado: horizontal, unos 1920 px de ancho, menos de 400 KB. -->
-      <img class="hero__bg" src="assets/images/hero/hero.jpg" alt="" width="1920" height="1080" fetchpriority="high">
+      <!-- DOS FOTOS: hero_claro.jpg se ve en modo claro y hero_oscuro.jpg en modo oscuro.
+           Se guardan en assets/img/hero/. Las dos son decorativas (alt=""). -->
+      <img class="hero__bg hero__bg--claro" src="assets/img/hero/hero_claro.jpg" alt="" width="1920" height="1080" fetchpriority="high">
+      <img class="hero__bg hero__bg--oscuro" src="assets/img/hero/hero_oscuro.jpg" alt="" width="1920" height="1080" fetchpriority="high">
 
       <div class="hero__content">
         <!-- Allura: solo para el nombre de marca -->
@@ -136,41 +140,76 @@
 
       <div class="carousel" role="region" aria-roledescription="carrusel" aria-label="Velas destacadas">
 
-        <!-- Controles de navegación del carrusel -->
-        <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Vela anterior">
-          <span aria-hidden="true">‹</span>
-        </button>
+        <!-- Desliza con el dedo, con el ratón o con las flechas de abajo.
+             Para añadir otra vela, copia un bloque <article class="slide"> (y actualiza el "n de N").
+             Los puntos y las flechas se ajustan solos. En móvil se ve 1 tarjeta, en tablet 2 y en escritorio 3. -->
+        <div class="carousel__viewport" tabindex="0">
+          <div class="carousel__track">
 
-        <!-- Diapositivas: copiar un bloque <article> para añadir otra vela destacada -->
-        <div class="carousel__track">
-
-          <!-- Diapositiva 1: vela destacada -->
-          <article class="slide is-active" role="group" aria-roledescription="diapositiva" aria-label="1 de 1">
-            <!-- DOS FOTOS por vela, guardadas en assets/images/velas/:
-                 · "-apagada": se ve en modo claro
-                 · "-encendida": se ve en modo oscuro
-                 La primera lleva la descripción (alt); la segunda es la misma vela, por eso alt="". -->
+          <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="1 de 4">
             <div class="slide__media candle-photo">
-              <img class="vela--apagada" src="assets/images/velas/caramelo-cremoso-apagada.jpg" alt="[PLACEHOLDER: describir la vela Caramelo Cremoso]" width="600" height="600">
-              <img class="vela--encendida" src="assets/images/velas/caramelo-cremoso-encendida.jpg" alt="" width="600" height="600">
+              <img class="vela--apagada" src="assets/images/velas/caramelo-cremoso-apagada.jpg" alt="[PLACEHOLDER: describir la vela Caramelo Cremoso]" width="600" height="600" loading="lazy">
+              <img class="vela--encendida" src="assets/images/velas/caramelo-cremoso-encendida.jpg" alt="" width="600" height="600" loading="lazy">
             </div>
             <div class="slide__body">
               <p class="slide__tag">Próximo lanzamiento</p>
               <h3 class="slide__title">Caramelo Cremoso</h3>
-              <p class="slide__text">[PLACEHOLDER: descripción de la vela y su aroma. Fragancia en desarrollo.]</p>
-              <a class="btn" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+              <p class="slide__text">[PLACEHOLDER: descripción de la vela y su aroma.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
             </div>
           </article>
 
+          <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 4">
+            <div class="slide__media candle-photo">
+              <img class="vela--apagada" src="assets/images/velas/vela-2-apagada.jpg" alt="[PLACEHOLDER: describir la vela 2]" width="600" height="600" loading="lazy">
+              <img class="vela--encendida" src="assets/images/velas/vela-2-encendida.jpg" alt="" width="600" height="600" loading="lazy">
+            </div>
+            <div class="slide__body">
+              <p class="slide__tag">Novedad</p>
+              <h3 class="slide__title">[PLACEHOLDER: nombre vela 2]</h3>
+              <p class="slide__text">[PLACEHOLDER: descripción de la vela y su aroma.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </div>
+          </article>
+
+          <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 4">
+            <div class="slide__media candle-photo">
+              <img class="vela--apagada" src="assets/images/velas/vela-3-apagada.jpg" alt="[PLACEHOLDER: describir la vela 3]" width="600" height="600" loading="lazy">
+              <img class="vela--encendida" src="assets/images/velas/vela-3-encendida.jpg" alt="" width="600" height="600" loading="lazy">
+            </div>
+            <div class="slide__body">
+              <p class="slide__tag">Novedad</p>
+              <h3 class="slide__title">[PLACEHOLDER: nombre vela 3]</h3>
+              <p class="slide__text">[PLACEHOLDER: descripción de la vela y su aroma.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </div>
+          </article>
+
+          <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="4 de 4">
+            <div class="slide__media candle-photo">
+              <img class="vela--apagada" src="assets/images/velas/vela-4-apagada.jpg" alt="[PLACEHOLDER: describir la vela 4]" width="600" height="600" loading="lazy">
+              <img class="vela--encendida" src="assets/images/velas/vela-4-encendida.jpg" alt="" width="600" height="600" loading="lazy">
+            </div>
+            <div class="slide__body">
+              <p class="slide__tag">Novedad</p>
+              <h3 class="slide__title">[PLACEHOLDER: nombre vela 4]</h3>
+              <p class="slide__text">[PLACEHOLDER: descripción de la vela y su aroma.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </div>
+          </article>
+
+          </div>
         </div>
 
-        <button class="carousel__btn carousel__btn--next" type="button" aria-label="Vela siguiente">
-          <span aria-hidden="true">›</span>
-        </button>
-
-        <!-- Puntos indicadores (se generan/activan con JS en la Fase 4) -->
-        <div class="carousel__dots" role="group" aria-label="Elegir vela destacada">
-          <button class="carousel__dot is-active" type="button" aria-label="Ir a la vela 1" aria-current="true"></button>
+        <!-- Controles: flecha · puntos · flecha -->
+        <div class="carousel__controls">
+          <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Velas anteriores">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.5L8 12l6.5 6.5"/></svg>
+          </button>
+          <div class="carousel__dots" role="group" aria-label="Elegir posición del carrusel"></div>
+          <button class="carousel__btn carousel__btn--next" type="button" aria-label="Velas siguientes">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 5.5L16 12l-6.5 6.5"/></svg>
+          </button>
         </div>
       </div>
     </section>
@@ -201,8 +240,9 @@
     <!-- =====================================================
          5. COLECCIONES (Explorar colecciones)
          Dos grupos: Estacionales (las 4 estaciones) y Limitadas
-         (Halloween, Navidad…). Para añadir una colección, duplica un
-         bloque <li class="card"> dentro de su grupo. Las fotos van en
+         (Halloween, Navidad…). Cada botón "Ver colección" lleva a colecciones.html#id
+         (primavera, verano, otono, invierno, halloween, navidad): ese id debe existir en colecciones.html.
+         Para añadir una colección, duplica un bloque <li class="card"> dentro de su grupo. Las fotos van en
          assets/images/colecciones/ (nombre-apagada.jpg y nombre-encendida.jpg).
          ===================================================== -->
     <section id="colecciones" class="catalog" aria-labelledby="catalogo-titulo">
@@ -222,7 +262,7 @@
             </div>
             <h4 class="card__title">Primavera</h4>
             <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
-            <a class="btn btn--outline" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            <a class="btn btn--outline" href="colecciones.html#primavera">Ver colección<span class="visually-hidden"> Primavera</span></a>
           </article>
         </li>
         <li class="card">
@@ -234,7 +274,7 @@
             </div>
             <h4 class="card__title">Verano</h4>
             <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
-            <a class="btn btn--outline" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            <a class="btn btn--outline" href="colecciones.html#verano">Ver colección<span class="visually-hidden"> Verano</span></a>
           </article>
         </li>
         <li class="card">
@@ -246,7 +286,7 @@
             </div>
             <h4 class="card__title">Otoño</h4>
             <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
-            <a class="btn btn--outline" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            <a class="btn btn--outline" href="colecciones.html#otono">Ver colección<span class="visually-hidden"> Otoño</span></a>
           </article>
         </li>
         <li class="card">
@@ -258,7 +298,7 @@
             </div>
             <h4 class="card__title">Invierno</h4>
             <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
-            <a class="btn btn--outline" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            <a class="btn btn--outline" href="colecciones.html#invierno">Ver colección<span class="visually-hidden"> Invierno</span></a>
           </article>
         </li>
 
@@ -280,7 +320,7 @@
             <p class="card__tag">Edición limitada</p>
             <h4 class="card__title">Halloween</h4>
             <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
-            <a class="btn btn--outline" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            <a class="btn btn--outline" href="colecciones.html#halloween">Ver colección<span class="visually-hidden"> Halloween</span></a>
           </article>
         </li>
         <li class="card">
@@ -293,7 +333,7 @@
             <p class="card__tag">Edición limitada</p>
             <h4 class="card__title">Navidad</h4>
             <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
-            <a class="btn btn--outline" href="https://www.instagram.com/[PLACEHOLDER-USUARIO]/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            <a class="btn btn--outline" href="colecciones.html#navidad">Ver colección<span class="visually-hidden"> Navidad</span></a>
           </article>
         </li>
 
@@ -312,6 +352,17 @@
 
       <p class="footer__brand">Dos Flores</p>
 
+      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas.
+           Cambia [PLACEHOLDER-CORREO] por la dirección real en el mailto. -->
+      <div class="footer__contact">
+        <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="footer__social footer__mail" href="mailto:[PLACEHOLDER-CORREO]" aria-label="Escribir un correo a Dos Flores">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg>
+        </a>
+      </div>
+
       <nav aria-label="Enlaces legales">
         <ul class="footer__legal">
           <li><a href="#">Política de Privacidad</a></li>
@@ -319,8 +370,6 @@
           <li><a href="#">Aviso Legal</a></li>
         </ul>
       </nav>
-
-      <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Instagram</a>
 
       <p class="footer__credits">© <span id="anio">2026</span> Dos Flores · [PLACEHOLDER: créditos de diseño y desarrollo]</p>
     </div>

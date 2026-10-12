@@ -99,85 +99,107 @@
 
 
   /* ---------------------------------------------------------
-     2. CARRUSEL DE DESTACADOS
-     Para añadir una vela destacada, duplica un <article class="slide">
-     en el HTML. Los puntos y los números "1 de N" se generan solos.
-     - Flechas, puntos, teclado (← →) y deslizar con el dedo.
+     2. CARRUSEL DE NOVEDADES
+     Para añadir una vela, duplica un <article class="slide"> en el HTML.
+     Los puntos se generan solos según cuántas tarjetas se vean a la vez
+     (1 en móvil, 2 en tablet, 3 en escritorio).
+     - Se desliza con el dedo / ratón (scroll-snap en el CSS).
+     - Flechas, puntos y teclado (← →) mueven la pista tarjeta a tarjeta.
      - Sin reproducción automática (más accesible y más tranquilo).
-     - Con una sola diapositiva, se ocultan flechas y puntos.
+     - Si todas las tarjetas caben, los controles se ocultan.
      --------------------------------------------------------- */
   var carousel = document.querySelector('.carousel');
 
   if (carousel) {
+    var viewport = carousel.querySelector('.carousel__viewport');
     var slides = Array.prototype.slice.call(carousel.querySelectorAll('.slide'));
     var btnPrev = carousel.querySelector('.carousel__btn--prev');
     var btnNext = carousel.querySelector('.carousel__btn--next');
     var dotsBox = carousel.querySelector('.carousel__dots');
-    var track = carousel.querySelector('.carousel__track');
-    var current = 0;
+    var controls = carousel.querySelector('.carousel__controls');
+    var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     var dots = [];
+    var ticking = false;
 
-    // Crea un punto por cada diapositiva
-    if (dotsBox) {
-      dotsBox.innerHTML = '';
-      slides.forEach(function (slide, i) {
-        var dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'carousel__dot';
-        dot.setAttribute('aria-label', 'Ir a la vela ' + (i + 1));
-        dot.addEventListener('click', function () { goTo(i); });
-        dotsBox.appendChild(dot);
-        dots.push(dot);
-      });
+    // Ancho de un paso (tarjeta + hueco)
+    function stepSize() {
+      return slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : viewport.clientWidth;
     }
 
-    // Muestra la diapositiva indicada
+    // Cuántas tarjetas se ven a la vez ahora mismo
+    function perView() {
+      var step = stepSize();
+      var gap = step - slides[0].offsetWidth;
+      return Math.max(1, Math.round((viewport.clientWidth + gap) / step));
+    }
+
+    // Última posición a la que se puede llegar (0 = primera tarjeta)
+    function maxIndex() {
+      return Math.max(0, slides.length - perView());
+    }
+
+    // Posición actual según el scroll
+    function currentIndex() {
+      return Math.min(maxIndex(), Math.max(0, Math.round(viewport.scrollLeft / stepSize())));
+    }
+
     function goTo(index) {
-      current = (index + slides.length) % slides.length; // da la vuelta al llegar al final
-      slides.forEach(function (slide, i) {
-        var active = i === current;
-        slide.classList.toggle('is-active', active);
-        slide.setAttribute('aria-label', (i + 1) + ' de ' + slides.length);
-        slide.setAttribute('aria-hidden', String(!active));
-      });
+      var i = Math.min(maxIndex(), Math.max(0, index));
+      viewport.scrollTo({ left: i * stepSize(), behavior: motionQuery.matches ? 'auto' : 'smooth' });
+    }
+
+    // Reconstruye los puntos si cambia el número de posiciones (al redimensionar)
+    function buildDots() {
+      var total = maxIndex() + 1;
+      if (dots.length === total) return;
+      dotsBox.innerHTML = '';
+      dots = [];
+      for (var i = 0; i < total; i++) {
+        (function (n) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'carousel__dot';
+          dot.setAttribute('aria-label', 'Ir a la posición ' + (n + 1));
+          dot.addEventListener('click', function () { goTo(n); });
+          dotsBox.appendChild(dot);
+          dots.push(dot);
+        })(i);
+      }
+    }
+
+    // Actualiza puntos, flechas y visibilidad de los controles
+    function update() {
+      buildDots();
+      var idx = currentIndex();
+      var max = maxIndex();
       dots.forEach(function (dot, i) {
-        var active = i === current;
-        dot.classList.toggle('is-active', active);
-        if (active) dot.setAttribute('aria-current', 'true');
+        dot.classList.toggle('is-active', i === idx);
+        if (i === idx) dot.setAttribute('aria-current', 'true');
         else dot.removeAttribute('aria-current');
       });
+      if (btnPrev) btnPrev.disabled = idx <= 0;
+      if (btnNext) btnNext.disabled = idx >= max;
+      if (controls) controls.hidden = max < 1;
     }
 
-    if (btnPrev) btnPrev.addEventListener('click', function () { goTo(current - 1); });
-    if (btnNext) btnNext.addEventListener('click', function () { goTo(current + 1); });
+    if (btnPrev) btnPrev.addEventListener('click', function () { goTo(currentIndex() - 1); });
+    if (btnNext) btnNext.addEventListener('click', function () { goTo(currentIndex() + 1); });
 
     // Teclado: flechas izquierda y derecha cuando el foco está dentro del carrusel
     carousel.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowLeft') { goTo(current - 1); e.preventDefault(); }
-      if (e.key === 'ArrowRight') { goTo(current + 1); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { goTo(currentIndex() - 1); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { goTo(currentIndex() + 1); e.preventDefault(); }
     });
 
-    // Deslizar con el dedo (móvil)
-    var startX = null;
-    if (track) {
-      track.addEventListener('touchstart', function (e) {
-        startX = e.changedTouches[0].clientX;
-      }, { passive: true });
-      track.addEventListener('touchend', function (e) {
-        if (startX === null) return;
-        var diff = e.changedTouches[0].clientX - startX;
-        if (Math.abs(diff) > 50) goTo(diff < 0 ? current + 1 : current - 1);
-        startX = null;
-      }, { passive: true });
-    }
+    // Al deslizar, actualiza los controles (una vez por fotograma)
+    viewport.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () { update(); ticking = false; });
+    }, { passive: true });
 
-    // Con una sola diapositiva no hace falta navegación
-    var single = slides.length < 2;
-    [btnPrev, btnNext, dotsBox].forEach(function (el) {
-      if (el) el.hidden = single;
-    });
-
-    if (slides.length) goTo(0);
+    window.addEventListener('resize', update);
+    if (slides.length) update();
   }
 
 
