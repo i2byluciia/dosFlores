@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
+  <!-- base: las rutas (assets/, index.html…) se leen desde la raíz del dominio, aunque el servidor muestre esta página en cualquier URL. Si la web NO está en la raíz del dominio, cambia href="/" por la carpeta. -->
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página no encontrada · Dos Flores</title>
+  <meta name="description" content="Página no encontrada.">
+
+  <!-- Favicon con dos versiones: el navegador elige según su propio modo.
+       · favicon-claro.png  → icono OSCURO, para pestañas claras
+       · favicon-oscuro.png → icono CLARO, para pestañas oscuras
+       Guárdalos en assets/images/logo/ (cuadrados, 64x64 o 128x128 px).
+       Sigue el modo del navegador/sistema, no el botón de la web. -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon_negro.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon_blanco.svg" media="(prefers-color-scheme: dark)">
+  <!-- Icono para la pantalla de inicio del iPhone (un solo archivo, 180x180 px) -->
+  <link rel="apple-touch-icon" href="assets/images/logo/apple-touch-icon.png">
+
+  <!-- Tipografías alojadas en la propia web (assets/fonts/).
+       La precarga avisa al navegador de las que se ven en la primera pantalla.
+       La definición de cada fuente (@font-face) está al principio de styles.css. -->
+  <link rel="preload" href="assets/fonts/allura-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Tema claro/oscuro: aplica la elección guardada ANTES de pintar la página,
+       para que no haya un parpadeo del tema equivocado al cargar. -->
+  <script>
+    try {
+      var tema = localStorage.getItem('dosflores-tema');
+      if (tema === 'dark' || tema === 'light') document.documentElement.setAttribute('data-theme', tema);
+    } catch (e) { /* sin almacenamiento: se sigue el tema del sistema */ }
+  </script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav-container">
+
+      <!-- Logo: sustituir por el logo real en la Fase 5 -->
+      <a class="logo" href="index.html" aria-label="Dos Flores, ir al inicio">
+        <img src="assets/img/logo.svg" alt="Logotipo de Dos Flores" width="64" height="64">
+      </a>
+
+      <!-- Botón del menú móvil (la lógica se añade en la Fase 4) -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span class="visually-hidden">Abrir menú</span>
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+      </button>
+
+      <!-- Navegación principal: solo los enlaces marcados "nav" en el boceto -->
+      <nav id="menu-principal" class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="colecciones.html">Colecciones</a></li>
+          <li><a href="historia.html">Nuestra Historia</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de la derecha -->
+      <div class="nav-actions">
+        <!-- Interruptor de modo claro/oscuro (único botón del nav que funciona ya).
+             El texto del aria-label lo actualiza main.js según el tema activo. -->
+        <button class="icon-btn theme-toggle" type="button" aria-label="Activar modo oscuro">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+        </button>
+
+        <!-- Búsqueda, usuario y carrito: OCULTOS de momento con el atributo "hidden".
+             Para volver a mostrarlos, borra la palabra hidden de cada uno. -->
+        <button class="icon-btn" type="button" aria-label="Buscar (próximamente)" aria-disabled="true" hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>
+        </button>
+        <button class="icon-btn" type="button" aria-label="Cuenta de usuario (próximamente)" aria-disabled="true" hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </button>
+
+        <!-- Carrito: implementado a nivel visual pero DESHABILITADO.
+             Las ventas iniciales son directas por Instagram. -->
+        <span class="cart-wrap" hidden>
+          <button class="icon-btn icon-btn--cart" type="button" aria-disabled="true" aria-describedby="cart-tip">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 4h2.5l2 11h10l2-8H7"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>
+            <span class="visually-hidden">Carrito</span>
+          </button>
+          <span id="cart-tip" class="cart-tip" role="tooltip">Próximamente</span>
+        </span>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="error-page" aria-labelledby="error-titulo">
+      <p class="error-page__code" aria-hidden="true">404</p>
+      <h1 id="error-titulo" class="section-title">Esta vela se ha apagado</h1>
+      <p>La página que buscas no existe o ha cambiado de sitio. [PLACEHOLDER: revisar texto]</p>
+      <div class="error-page__actions">
+        <a class="btn" href="index.html">Volver al inicio</a>
+        <a class="btn btn--outline" href="colecciones.html">Ver colecciones</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+
+      <p class="footer__brand">Dos Flores</p>
+
+      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas.
+           Cambia [PLACEHOLDER-CORREO] por la dirección real en el mailto. -->
+      <div class="footer__contact">
+        <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="footer__social footer__mail" href="mailto:[PLACEHOLDER-CORREO]" aria-label="Escribir un correo a Dos Flores">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg>
+        </a>
+      </div>
+
+      <nav aria-label="Enlaces legales">
+        <ul class="footer__legal">
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Política de Cookies</a></li>
+          <li><a href="#">Aviso Legal</a></li>
+        </ul>
+      </nav>
+
+      <p class="footer__credits">© <span id="anio">2026</span> Dos Flores · [PLACEHOLDER: créditos de diseño y desarrollo]</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

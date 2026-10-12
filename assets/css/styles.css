@@ -10,84 +10,69 @@
    ========================================================= */
 
 
-/* =========================================================
-   0. TIPOGRAFÍAS · DOS FLORES
-   Fuentes alojadas en assets/fonts/
-   Este CSS está dentro de assets/css/styles.css,
-   por eso las rutas comienzan por ../fonts/
-   ========================================================= */
-
-/* Allura · Nombre de marca y ornamentos */
+/* ---------- 0. TIPOGRAFÍAS (alojadas en la propia web) ----------
+   Los archivos están en assets/fonts/, así que se ven igual en cualquier
+   dispositivo y no dependen de Google. Solo se incluye el subconjunto
+   "latin" (letras, tildes, ñ, ¿ ¡ y signos habituales).
+   Licencia: SIL Open Font License; los textos están en la misma carpeta.
+   font-display: swap muestra el texto enseguida con una fuente de respaldo
+   y cambia a la definitiva cuando termina de cargar. */
 @font-face {
   font-family: "Allura";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/allura-latin-400-normal.woff2") format("woff2");
+  src: url("assets/fonts/allura-latin-400-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Cormorant Garamond · Títulos */
-
-/* Regular 400 */
 @font-face {
   font-family: "Cormorant Garamond";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/cormorant-garamond-latin-400-normal.woff2") format("woff2");
+  src: url("assets/fonts/cormorant-garamond-latin-400-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
-/* Medium 500 */
 @font-face {
   font-family: "Cormorant Garamond";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2");
+  src: url("assets/fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
-/* SemiBold 600 */
 @font-face {
   font-family: "Cormorant Garamond";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2");
+  src: url("assets/fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Montserrat · Texto general */
-
-/* Regular 400 */
 @font-face {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/montserrat-latin-400-normal.woff2") format("woff2");
+  src: url("assets/fonts/montserrat-latin-400-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
-/* Medium 500 */
 @font-face {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../fonts/montserrat-latin-500-normal.woff2") format("woff2");
+  src: url("assets/fonts/montserrat-latin-500-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
-/* SemiBold 600 */
 @font-face {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../fonts/montserrat-latin-600-normal.woff2") format("woff2");
+  src: url("assets/fonts/montserrat-latin-600-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -879,6 +864,91 @@ a {
   z-index: 40;
   pointer-events: none;
 }
+
+/* ---------- PÁGINAS INTERIORES (colecciones, historia, 404) ---------- */
+.page-hero {
+  padding: var(--espacio-l) var(--espacio-s) var(--espacio-m);
+  text-align: center;
+}
+.page-hero p {
+  max-width: 38rem;
+  margin: 0.75rem auto 0;
+}
+
+/* Enlace de la página actual en el menú */
+.main-nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 0.4em;
+}
+
+/* Accesos rápidos a cada colección */
+.collection-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: var(--espacio-m) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.chip-link {
+  display: inline-block;
+  padding: 0.45rem 1.1rem;
+  border: 1px solid var(--chip-border);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--heading);
+  text-decoration: none;
+  transition: background var(--transicion), color var(--transicion);
+}
+.chip-link:hover {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+}
+
+/* Cada colección: las alternas cambian de fondo. scroll-margin deja sitio al header al llegar por #enlace */
+.collection {
+  padding: var(--espacio-l) var(--espacio-s);
+  scroll-margin-top: var(--altura-header);
+}
+.collection--alt { background: var(--bg-alt); }
+.collection__inner {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  text-align: center;
+}
+.collection__intro {
+  max-width: 38rem;
+  margin: 0.75rem auto 0;
+}
+.collection .catalog__grid { text-align: left; }
+
+/* Página 404 */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: var(--espacio-l) var(--espacio-s);
+  text-align: center;
+}
+.error-page__code {
+  margin: 0;
+  font-family: var(--fuente-marca);
+  font-size: clamp(6rem, 25vw, 11rem);
+  line-height: 1;
+  color: var(--heading);
+}
+.error-page p { max-width: 30rem; }
+.error-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espacio-s);
+  margin-top: var(--espacio-m);
+}
+
 
 /* ---------- 9. FOOTER ---------- */
 .site-footer {

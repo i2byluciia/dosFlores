@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dos Flores · Velas artesanales</title>
-  <meta name="description" content="Dos Flores: velas artesanales de cera vegetal de soja y coco, hechas a mano. [PLACEHOLDER: revisar descripción]">
+  <title>Nuestra historia · Dos Flores</title>
+  <meta name="description" content="Conoce la historia de Dos Flores y cómo hacemos nuestras velas a mano. [PLACEHOLDER: revisar descripción]">
 
   <!-- Favicon con dos versiones: el navegador elige según su propio modo.
        · favicon-claro.png  → icono OSCURO, para pestañas claras
@@ -33,7 +33,125 @@
   </script>
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
+<body>
 
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="nav-container">
+
+      <!-- Logo: sustituir por el logo real en la Fase 5 -->
+      <a class="logo" href="index.html" aria-label="Dos Flores, ir al inicio">
+        <img src="assets/img/logo.svg" alt="Logotipo de Dos Flores" width="64" height="64">
+      </a>
+
+      <!-- Botón del menú móvil (la lógica se añade en la Fase 4) -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span class="visually-hidden">Abrir menú</span>
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+      </button>
+
+      <!-- Navegación principal: solo los enlaces marcados "nav" en el boceto -->
+      <nav id="menu-principal" class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="colecciones.html">Colecciones</a></li>
+          <li><a href="historia.html" aria-current="page">Nuestra Historia</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de la derecha -->
+      <div class="nav-actions">
+        <!-- Interruptor de modo claro/oscuro (único botón del nav que funciona ya).
+             El texto del aria-label lo actualiza main.js según el tema activo. -->
+        <button class="icon-btn theme-toggle" type="button" aria-label="Activar modo oscuro">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+        </button>
+
+        <!-- Búsqueda, usuario y carrito: OCULTOS de momento con el atributo "hidden".
+             Para volver a mostrarlos, borra la palabra hidden de cada uno. -->
+        <button class="icon-btn" type="button" aria-label="Buscar (próximamente)" aria-disabled="true" hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>
+        </button>
+        <button class="icon-btn" type="button" aria-label="Cuenta de usuario (próximamente)" aria-disabled="true" hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </button>
+
+        <!-- Carrito: implementado a nivel visual pero DESHABILITADO.
+             Las ventas iniciales son directas por Instagram. -->
+        <span class="cart-wrap" hidden>
+          <button class="icon-btn icon-btn--cart" type="button" aria-disabled="true" aria-describedby="cart-tip">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 4h2.5l2 11h10l2-8H7"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>
+            <span class="visually-hidden">Carrito</span>
+          </button>
+          <span id="cart-tip" class="cart-tip" role="tooltip">Próximamente</span>
+        </span>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="page-hero" aria-labelledby="historia-titulo">
+      <h1 id="historia-titulo" class="section-title">Nuestra historia</h1>
+      <p>[PLACEHOLDER: frase de introducción.]</p>
+    </section>
+
+    <section class="story" aria-labelledby="conocenos-titulo">
+      <div class="story__inner">
+        <h2 id="conocenos-titulo" class="section-title">Conócenos</h2>
+        <p>[PLACEHOLDER: historia familiar de Dos Flores y propósito de la marca.]</p>
+        <!-- [PLACEHOLDER: foto opcional de las fundadoras] -->
+      </div>
+    </section>
+
+    <section class="process" aria-labelledby="hecho-titulo">
+      <div class="story__inner">
+        <h2 id="hecho-titulo" class="section-title">Hecho a mano</h2>
+        <p>Trabajamos con cera vegetal de soja y coco, colorantes sólidos y técnicas marmoleadas.</p>
+        <p>[PLACEHOLDER: describir el proceso artesanal paso a paso, sin añadir datos no confirmados.]</p>
+      </div>
+    </section>
+
+    <section class="story" aria-labelledby="cta-titulo">
+      <div class="story__inner">
+        <h2 id="cta-titulo" class="section-title">Encuentra tu vela</h2>
+        <p>[PLACEHOLDER: invitación a descubrir las colecciones.]</p>
+        <a class="btn" href="colecciones.html">Ver colecciones</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+
+      <p class="footer__brand">Dos Flores</p>
+
+      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas.
+           Cambia [PLACEHOLDER-CORREO] por la dirección real en el mailto. -->
+      <div class="footer__contact">
+        <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="footer__social footer__mail" href="mailto:[PLACEHOLDER-CORREO]" aria-label="Escribir un correo a Dos Flores">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg>
+        </a>
+      </div>
+
+      <nav aria-label="Enlaces legales">
+        <ul class="footer__legal">
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Política de Cookies</a></li>
+          <li><a href="#">Aviso Legal</a></li>
+        </ul>
+      </nav>
+
+      <p class="footer__credits">© <span id="anio">2026</span> Dos Flores · [PLACEHOLDER: créditos de diseño y desarrollo]</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
 </html>

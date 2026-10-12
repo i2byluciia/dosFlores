@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dos Flores · Velas artesanales</title>
-  <meta name="description" content="Dos Flores: velas artesanales de cera vegetal de soja y coco, hechas a mano. [PLACEHOLDER: revisar descripción]">
+  <title>Colecciones · Dos Flores</title>
+  <meta name="description" content="Colecciones de velas artesanales Dos Flores: estacionales y ediciones limitadas. [PLACEHOLDER: revisar descripción]">
 
   <!-- Favicon con dos versiones: el navegador elige según su propio modo.
        · favicon-claro.png  → icono OSCURO, para pestañas claras
@@ -33,8 +33,375 @@
   </script>
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
+<body>
 
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
+  <header class="site-header">
+    <div class="nav-container">
+
+      <!-- Logo: sustituir por el logo real en la Fase 5 -->
+      <a class="logo" href="index.html" aria-label="Dos Flores, ir al inicio">
+        <img src="assets/img/logo.svg" alt="Logotipo de Dos Flores" width="64" height="64">
+      </a>
+
+      <!-- Botón del menú móvil (la lógica se añade en la Fase 4) -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span class="visually-hidden">Abrir menú</span>
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+      </button>
+
+      <!-- Navegación principal: solo los enlaces marcados "nav" en el boceto -->
+      <nav id="menu-principal" class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="colecciones.html" aria-current="page">Colecciones</a></li>
+          <li><a href="historia.html">Nuestra Historia</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de la derecha -->
+      <div class="nav-actions">
+        <!-- Interruptor de modo claro/oscuro (único botón del nav que funciona ya).
+             El texto del aria-label lo actualiza main.js según el tema activo. -->
+        <button class="icon-btn theme-toggle" type="button" aria-label="Activar modo oscuro">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+        </button>
+
+        <!-- Búsqueda, usuario y carrito: OCULTOS de momento con el atributo "hidden".
+             Para volver a mostrarlos, borra la palabra hidden de cada uno. -->
+        <button class="icon-btn" type="button" aria-label="Buscar (próximamente)" aria-disabled="true" hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>
+        </button>
+        <button class="icon-btn" type="button" aria-label="Cuenta de usuario (próximamente)" aria-disabled="true" hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </button>
+
+        <!-- Carrito: implementado a nivel visual pero DESHABILITADO.
+             Las ventas iniciales son directas por Instagram. -->
+        <span class="cart-wrap" hidden>
+          <button class="icon-btn icon-btn--cart" type="button" aria-disabled="true" aria-describedby="cart-tip">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 4h2.5l2 11h10l2-8H7"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>
+            <span class="visually-hidden">Carrito</span>
+          </button>
+          <span id="cart-tip" class="cart-tip" role="tooltip">Próximamente</span>
+        </span>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="page-hero" aria-labelledby="colecciones-titulo">
+      <h1 id="colecciones-titulo" class="section-title">Colecciones</h1>
+      <p>[PLACEHOLDER: frase de introducción a las colecciones de Dos Flores.]</p>
+      <nav class="collection-nav" aria-label="Ir a una colección">
+        <ul><li><a class="chip-link" href="#primavera">Primavera</a></li><li><a class="chip-link" href="#verano">Verano</a></li><li><a class="chip-link" href="#otono">Otoño</a></li><li><a class="chip-link" href="#invierno">Invierno</a></li><li><a class="chip-link" href="#halloween">Halloween</a></li><li><a class="chip-link" href="#navidad">Navidad</a></li></ul>
+      </nav>
+    </section>
+
+    <!-- Primavera: el id (#primavera) es el destino de los botones "Ver colección" del inicio.
+         Para añadir una vela, duplica un <li class="card">. Fotos en assets/images/colecciones/ -->
+    <section id="primavera" class="collection" aria-labelledby="primavera-titulo">
+      <div class="collection__inner">
+        <h2 id="primavera-titulo" class="section-title">Primavera</h2>
+        <p class="collection__intro">[PLACEHOLDER: descripción de la colección Primavera.]</p>
+        <ul class="catalog__grid">
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/primavera-1-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/primavera-1-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/primavera-2-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/primavera-2-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/primavera-3-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/primavera-3-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Verano: el id (#verano) es el destino de los botones "Ver colección" del inicio.
+         Para añadir una vela, duplica un <li class="card">. Fotos en assets/images/colecciones/ -->
+    <section id="verano" class="collection collection--alt" aria-labelledby="verano-titulo">
+      <div class="collection__inner">
+        <h2 id="verano-titulo" class="section-title">Verano</h2>
+        <p class="collection__intro">[PLACEHOLDER: descripción de la colección Verano.]</p>
+        <ul class="catalog__grid">
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/verano-1-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/verano-1-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/verano-2-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/verano-2-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/verano-3-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/verano-3-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Otoño: el id (#otono) es el destino de los botones "Ver colección" del inicio.
+         Para añadir una vela, duplica un <li class="card">. Fotos en assets/images/colecciones/ -->
+    <section id="otono" class="collection" aria-labelledby="otono-titulo">
+      <div class="collection__inner">
+        <h2 id="otono-titulo" class="section-title">Otoño</h2>
+        <p class="collection__intro">[PLACEHOLDER: descripción de la colección Otoño.]</p>
+        <ul class="catalog__grid">
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/otono-1-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/otono-1-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/otono-2-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/otono-2-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/otono-3-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/otono-3-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Invierno: el id (#invierno) es el destino de los botones "Ver colección" del inicio.
+         Para añadir una vela, duplica un <li class="card">. Fotos en assets/images/colecciones/ -->
+    <section id="invierno" class="collection collection--alt" aria-labelledby="invierno-titulo">
+      <div class="collection__inner">
+        <h2 id="invierno-titulo" class="section-title">Invierno</h2>
+        <p class="collection__intro">[PLACEHOLDER: descripción de la colección Invierno.]</p>
+        <ul class="catalog__grid">
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/invierno-1-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/invierno-1-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/invierno-2-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/invierno-2-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/invierno-3-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/invierno-3-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Halloween: el id (#halloween) es el destino de los botones "Ver colección" del inicio.
+         Para añadir una vela, duplica un <li class="card">. Fotos en assets/images/colecciones/ -->
+    <section id="halloween" class="collection" aria-labelledby="halloween-titulo">
+      <div class="collection__inner">
+        <h2 id="halloween-titulo" class="section-title">Halloween</h2>
+        <p class="collection__intro">[PLACEHOLDER: descripción de la colección Halloween.]</p>
+        <ul class="catalog__grid">
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/halloween-1-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/halloween-1-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <p class="card__tag">Edición limitada</p>
+            <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/halloween-2-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/halloween-2-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <p class="card__tag">Edición limitada</p>
+            <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/halloween-3-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/halloween-3-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <p class="card__tag">Edición limitada</p>
+            <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Navidad: el id (#navidad) es el destino de los botones "Ver colección" del inicio.
+         Para añadir una vela, duplica un <li class="card">. Fotos en assets/images/colecciones/ -->
+    <section id="navidad" class="collection collection--alt" aria-labelledby="navidad-titulo">
+      <div class="collection__inner">
+        <h2 id="navidad-titulo" class="section-title">Navidad</h2>
+        <p class="collection__intro">[PLACEHOLDER: descripción de la colección Navidad.]</p>
+        <ul class="catalog__grid">
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/navidad-1-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/navidad-1-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <p class="card__tag">Edición limitada</p>
+            <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/navidad-2-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/navidad-2-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <p class="card__tag">Edición limitada</p>
+            <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+          <li class="card">
+            <article>
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="assets/images/colecciones/navidad-3-apagada.jpg" alt="[PLACEHOLDER: describir la vela]" width="400" height="400" loading="lazy">
+                <img class="vela--encendida" src="assets/images/colecciones/navidad-3-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+              </div>
+              <p class="card__tag">Edición limitada</p>
+            <h3 class="card__title">[PLACEHOLDER: nombre de la vela]</h3>
+              <p class="card__text">[PLACEHOLDER: aroma y descripción.]</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+
+      <p class="footer__brand">Dos Flores</p>
+
+      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas.
+           Cambia [PLACEHOLDER-CORREO] por la dirección real en el mailto. -->
+      <div class="footer__contact">
+        <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="footer__social footer__mail" href="mailto:[PLACEHOLDER-CORREO]" aria-label="Escribir un correo a Dos Flores">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg>
+        </a>
+      </div>
+
+      <nav aria-label="Enlaces legales">
+        <ul class="footer__legal">
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Política de Cookies</a></li>
+          <li><a href="#">Aviso Legal</a></li>
+        </ul>
+      </nav>
+
+      <p class="footer__credits">© <span id="anio">2026</span> Dos Flores · [PLACEHOLDER: créditos de diseño y desarrollo]</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
 </html>
