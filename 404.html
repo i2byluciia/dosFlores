@@ -37,6 +37,34 @@
 
   <!-- Estilos -->
   <link rel="stylesheet" href="assets/css/styles.css">
+  <!-- Estilos propios de la página 404 (usan las variables de styles.css, por eso van después) -->
+  <style>
+    /* Página 404 */
+    .error-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+      padding: var(--espacio-l) var(--espacio-s);
+      text-align: center;
+    }
+    .error-page__code {
+      margin: 0;
+      font-family: var(--fuente-marca);
+      font-size: clamp(6rem, 25vw, 11rem);
+      line-height: 1;
+      color: var(--heading);
+    }
+    .error-page p { max-width: 30rem; }
+    .error-page__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--espacio-s);
+      margin-top: var(--espacio-m);
+    }
+  </style>
 </head>
 <body>
 
