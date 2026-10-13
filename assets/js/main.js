@@ -5,7 +5,8 @@
    1. Menú móvil accesible
    2. Carrusel de destacados
    3. Rastro de humo del ratón
-   4. Año automático del footer
+   4. Menú de colecciones (resalta la que se ve)
+   5. Año automático del footer
    ========================================================= */
 
 (function () {
@@ -314,7 +315,38 @@
 
 
   /* ---------------------------------------------------------
-     4. AÑO AUTOMÁTICO DEL FOOTER
+     4. MENÚ DE COLECCIONES (pages/coleccion.html)
+     Marca con aria-current="location" el enlace de la colección que
+     se está viendo; el CSS lo pinta relleno. Una colección cuenta como
+     "vista" cuando cruza una franja horizontal en la parte alta de la
+     pantalla (rootMargin). Si el navegador no tiene IntersectionObserver,
+     el menú sigue funcionando, solo que sin resaltar.
+     --------------------------------------------------------- */
+  var collectionLinks = Array.prototype.slice.call(document.querySelectorAll('.collection-nav a[href^="#"]'));
+
+  if (collectionLinks.length && 'IntersectionObserver' in window) {
+    var markCollection = function (id) {
+      collectionLinks.forEach(function (link) {
+        if (link.getAttribute('href') === '#' + id) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    };
+
+    var collectionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) markCollection(entry.target.id);
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+
+    collectionLinks.forEach(function (link) {
+      var section = document.getElementById(link.getAttribute('href').slice(1));
+      if (section) collectionObserver.observe(section);
+    });
+  }
+
+
+  /* ---------------------------------------------------------
+     5. AÑO AUTOMÁTICO DEL FOOTER
      --------------------------------------------------------- */
   var year = document.getElementById('anio');
   if (year) year.textContent = new Date().getFullYear();

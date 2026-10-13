@@ -1,0 +1,8 @@
+# Archivos del sistema (macOS / Windows)
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Configuración local de herramientas (no forma parte de la web)
+.claude/
+.vscode/

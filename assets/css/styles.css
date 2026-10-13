@@ -22,7 +22,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("assets/fonts/allura-latin-400-normal.woff2") format("woff2");
+  src: url("../fonts/allura-latin-400-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -31,7 +31,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("assets/fonts/cormorant-garamond-latin-400-normal.woff2") format("woff2");
+  src: url("../fonts/cormorant-garamond-latin-400-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -39,7 +39,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("assets/fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2");
+  src: url("../fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -47,7 +47,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("assets/fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2");
+  src: url("../fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -56,7 +56,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("assets/fonts/montserrat-latin-400-normal.woff2") format("woff2");
+  src: url("../fonts/montserrat-latin-400-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -64,7 +64,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("assets/fonts/montserrat-latin-500-normal.woff2") format("woff2");
+  src: url("../fonts/montserrat-latin-500-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -72,7 +72,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("assets/fonts/montserrat-latin-600-normal.woff2") format("woff2");
+  src: url("../fonts/montserrat-latin-600-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -513,7 +513,7 @@ a {
 .hero {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;              /* móvil: texto abajo, para no tapar la vela (ver sección 10) */
   min-height: 100vh;                                   /* respaldo para navegadores antiguos */
   min-height: 100svh;
   padding: calc(var(--altura-header) + var(--espacio-m)) var(--espacio-s) var(--espacio-l);
@@ -529,7 +529,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: 78% center;        /* móvil: encuadra la vela (está a la derecha de la foto) */
   transition: opacity 0.6s ease;
 }
 .hero__bg--claro  { opacity: var(--hero-claro); }
@@ -613,6 +613,36 @@ a {
 }
 .candle-photo .vela--apagada   { opacity: var(--vela-apagada); }
 .candle-photo .vela--encendida { opacity: var(--vela-encendida); }
+
+/* Foto PENDIENTE: marco provisional con el logo en tenue y el texto "Fotografía próximamente".
+   Sirve para cualquier foto (velas, fundadoras…) mientras no exista la real. Al tenerla,
+   quita la clase foto-pendiente y sustituye su contenido por la(s) <img> que el HTML
+   deja preparadas en un comentario.
+   (.candle-photo.foto-pendiente sube la especificidad para ganar a ".slide .candle-photo".) */
+.foto-pendiente,
+.candle-photo.foto-pendiente {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacio-s);
+  background: color-mix(in srgb, var(--surface-media) 70%, transparent);
+  border: 1px dashed var(--border);
+}
+.foto-pendiente .foto-pendiente__marca {
+  position: static;
+  width: 40%;
+  max-width: 8rem;                  /* en marcos grandes no crece de más */
+  height: auto;
+  opacity: 0.35;
+  filter: var(--logo-filter);
+}
+.foto-pendiente__aviso {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--heading);
+}
 
 
 /* ---------- 6. CARRUSEL / NOVEDADES ----------
@@ -768,12 +798,116 @@ a {
   padding: var(--espacio-l) var(--espacio-s);
 }
 /* Alternamos fondos para separar bloques sin usar blanco puro */
-.process { background: var(--bg-alt); }
+.process,
+.story--alt { background: var(--bg-alt); }
 
 .story__inner {
   max-width: 42rem;
   margin: 0 auto;
   text-align: center;
+}
+
+/* Bloque que abre una página (pages/historia.html): lleva el h1, así que
+   deja sitio arriba para el header flotante, igual que .page-hero */
+.story--cabecera { padding-top: calc(var(--altura-header) + var(--espacio-l)); }
+.story__lead { margin-bottom: var(--espacio-m); }   /* frase bajo el título */
+
+/* Pasos de "Hecho a mano" (index.html)
+   Móvil: cada paso en una fila (foto pequeña a la izquierda, texto a la derecha).
+   Tablet: 2 por fila · Escritorio: los 4 en una fila (ver sección 10).
+   El número de cada paso (01, 02…) lo genera el contador CSS "paso". */
+.steps {
+  display: grid;
+  gap: var(--espacio-m);
+  max-width: var(--ancho-max);
+  margin: var(--espacio-m) auto 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: paso;
+}
+.step {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: var(--espacio-s);
+  align-items: center;
+  counter-increment: paso;
+}
+.step__frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radio);
+  background: var(--bg);                       /* el fondo de la sección ya es lavanda */
+}
+.step__frame img:not(.foto-pendiente__marca) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.step__frame .foto-pendiente__aviso {         /* en móvil el marco es pequeño: letra más pequeña */
+  padding-inline: 0.25rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+.step__title {
+  margin-bottom: 0.25rem;
+  font-size: 1.4rem;
+}
+.step__title::before {
+  content: counter(paso, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.15rem;
+  font-family: var(--fuente-texto);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--heading);
+}
+.step__text {
+  margin: 0;
+  font-size: 0.95rem;
+}
+.process__nota {
+  margin: var(--espacio-m) auto 0;
+  text-align: center;
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem;
+  color: var(--heading);
+}
+
+/* Fotos de las fundadoras: en pages/historia.html una de cada una (vertical, 4:5)
+   lado a lado; en el inicio, la de las dos juntas (horizontal, 3:2).
+   Las fotos van en assets/img/historia/. */
+.founders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espacio-m) var(--espacio-s);
+  margin: var(--espacio-m) 0 0;
+}
+.founders__photo { margin: 0; }
+.founders__photo--juntas { grid-column: 1 / -1; }
+/* La foto de las dos juntas va suelta en el "Conócenos" del inicio (index.html) */
+.story__photo { margin: var(--espacio-m) 0; }
+
+.founders__frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radio);
+  background: var(--surface-media);
+}
+.founders__photo--juntas .founders__frame { aspect-ratio: 3 / 2; }
+.founders__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.founders__photo figcaption {
+  margin-top: var(--espacio-xs);
+  font-family: var(--fuente-titulos);
+  font-size: 1.3rem;
+  color: var(--heading);
 }
 
 
@@ -866,8 +1000,10 @@ a {
 }
 
 /* ---------- PÁGINAS INTERIORES (colecciones, historia, 404) ---------- */
+/* El header flota sobre el contenido (ver sección 4), así que el padding superior
+   suma su altura para que no tape el título. */
 .page-hero {
-  padding: var(--espacio-l) var(--espacio-s) var(--espacio-m);
+  padding: calc(var(--altura-header) + var(--espacio-l)) var(--espacio-s) var(--espacio-m);
   text-align: center;
 }
 .page-hero p {
@@ -881,16 +1017,35 @@ a {
   text-underline-offset: 0.4em;
 }
 
-/* Accesos rápidos a cada colección */
+/* Menú de colecciones (pages/coleccion.html)
+   Móvil y tablet: barra fija bajo el header, con scroll horizontal si no caben todas.
+   Escritorio: columna a la izquierda (ver sección 10).
+   Se queda fija mientras se ve la lista de colecciones y se suelta al llegar al footer. */
+.collections-aside {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + var(--altura-header));
+  z-index: 45;                                   /* por debajo del header (50) */
+  background: var(--glass);
+  border-block: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .collections-aside { background: var(--menu-bg); }
+}
 .collection-nav ul {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  justify-content: safe center;                  /* si no caben, no corta las primeras por la izquierda */
   gap: 0.6rem;
-  margin: var(--espacio-m) 0 0;
-  padding: 0;
+  margin: 0;
+  padding: 0.6rem var(--espacio-s);
+  overflow-x: auto;
+  scrollbar-width: none;
   list-style: none;
 }
+.collection-nav ul::-webkit-scrollbar { display: none; }
+.collection-nav li { flex: none; }
 .chip-link {
   display: inline-block;
   padding: 0.45rem 1.1rem;
@@ -901,15 +1056,18 @@ a {
   text-decoration: none;
   transition: background var(--transicion), color var(--transicion);
 }
-.chip-link:hover {
+.chip-link:hover,
+.chip-link[aria-current] {                       /* colección que se está viendo (lo marca main.js) */
   background: var(--btn-bg);
   color: var(--btn-text);
 }
 
-/* Cada colección: las alternas cambian de fondo. scroll-margin deja sitio al header al llegar por #enlace */
+/* Cada colección: las alternas cambian de fondo.
+   Al llegar por #enlace, html ya deja sitio al header (scroll-padding-top);
+   en móvil scroll-margin añade el alto de la barra de colecciones. */
 .collection {
   padding: var(--espacio-l) var(--espacio-s);
-  scroll-margin-top: var(--altura-header);
+  scroll-margin-top: 4rem;                       /* alto de la barra de colecciones */
 }
 .collection--alt { background: var(--bg-alt); }
 .collection__inner {
@@ -922,6 +1080,32 @@ a {
   margin: 0.75rem auto 0;
 }
 .collection .catalog__grid { text-align: left; }
+
+/* Página 404 */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: calc(var(--altura-header) + var(--espacio-l)) var(--espacio-s) var(--espacio-l);
+  text-align: center;
+}
+.error-page__code {
+  margin: 0;
+  font-family: var(--fuente-marca);
+  font-size: clamp(6rem, 25vw, 11rem);
+  line-height: 1;
+  color: var(--heading);
+}
+.error-page p { max-width: 30rem; }
+.error-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espacio-s);
+  margin-top: var(--espacio-m);
+}
 
 
 /* ---------- 9. FOOTER ---------- */
@@ -988,6 +1172,10 @@ a {
     max-width: none;
   }
 
+  /* Hero: con pantalla ancha cabe la foto entera; el texto vuelve al centro */
+  .hero { align-items: center; }
+  .hero__bg { object-position: center; }
+
   /* Velo degradado: más oscuro a la izquierda (donde va el texto) y más suave a la derecha */
   .hero::before {
     background: linear-gradient(
@@ -1000,6 +1188,15 @@ a {
 
   /* Novedades: 2 tarjetas visibles */
   .slide { flex-basis: calc((100% - var(--espacio-m)) / 2); }
+
+  /* Hecho a mano: 2 pasos por fila, foto arriba y texto debajo, centrado */
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .step {
+    grid-template-columns: 1fr;
+    align-items: start;
+    text-align: center;
+  }
+  .step__frame .foto-pendiente__aviso { font-size: 0.75rem; letter-spacing: 0.12em; }
 }
 
 /* Escritorio (≥ 64rem = 1024px) */
@@ -1031,11 +1228,92 @@ a {
 
   .nav-actions { justify-self: end; }
 
+  /* Hecho a mano: los 4 pasos en una fila */
+  .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  /* Colecciones (pages/coleccion.html): índice a la izquierda, alineado con el logo.
+     Todo sigue la misma retícula que el header (ancho máximo centrado):
+       · El título "Colecciones" y el contenido se alinean a la izquierda.
+       · El índice va en una columna de 12rem dentro de esa retícula; las colecciones,
+         a su derecha (padding-left). Así las franjas de color siguen ocupando
+         todo el ancho de la pantalla.
+     El <aside> ocupa todo el alto de la lista (position: absolute) y el <nav> de
+     dentro se queda fijo bajo el header al hacer scroll; se suelta al llegar al footer. */
+  .page-hero--start .section-title,
+  .page-hero--start p {
+    max-width: calc(var(--ancho-max) - 2 * var(--espacio-s));
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .collections-layout { position: relative; }
+  .collections-aside {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: max(var(--espacio-s), calc((100% - var(--ancho-max)) / 2 + var(--espacio-s)));
+    width: 12rem;
+    z-index: 1;                                     /* por encima de las franjas de color */
+    background: none;
+    border-block: 0;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .collection-nav {
+    position: sticky;
+    top: calc(var(--altura-header) + var(--espacio-m));
+    padding-top: var(--espacio-l);                  /* misma altura que el título de la 1ª colección */
+  }
+  .collection-nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    overflow: visible;
+    border-left: 1px solid var(--border);          /* línea fina del índice */
+  }
+
+  /* Enlaces del índice: texto, no píldoras. La activa lleva un trazo más grueso. */
+  .collection-nav .chip-link {
+    margin-left: -1px;                              /* el trazo se monta sobre la línea fina */
+    padding: 0.35rem 0 0.35rem 1rem;
+    border: 0;
+    border-left: 2px solid transparent;
+    border-radius: 0;
+    font-family: var(--fuente-titulos);
+    font-size: 1.15rem;
+    transition: border-color var(--transicion), color var(--transicion);
+  }
+  .collection-nav .chip-link:hover {
+    background: none;
+    color: var(--heading);
+    border-left-color: var(--accent);
+  }
+  .collection-nav .chip-link[aria-current] {
+    background: none;
+    color: var(--heading);
+    font-weight: 600;
+    border-left-color: var(--heading);
+  }
+
+  /* Contenido de cada colección: a la derecha del índice y alineado a la izquierda */
+  .collections-list .collection__inner {
+    max-width: calc(var(--ancho-max) - 2 * var(--espacio-s));
+    padding-left: 14rem;                            /* 12rem del índice + 2rem de aire */
+    text-align: left;
+  }
+  .collections-list .section-title { text-align: left; }
+  .collections-list .collection__intro { margin-left: 0; }
+  .collections-list .catalog__grid { justify-content: flex-start; }
+
+  .collection { scroll-margin-top: 0; }   /* ya no hay barra encima */
+
 }
 
 /* Escritorio ancho (≥ 75rem = 1200px): 4 colecciones por fila */
 @media (min-width: 75rem) {
   .card { flex: 0 0 calc((100% - 3 * var(--espacio-m)) / 4); }
+  /* En pages/coleccion.html la columna del menú resta ancho: 3 por fila */
+  .collections-list .card { flex-basis: calc((100% - 2 * var(--espacio-m)) / 3); }
 }
 
 /* Escritorio (≥ 64rem): 3 tarjetas de novedades visibles */

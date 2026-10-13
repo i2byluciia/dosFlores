@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dos Flores · Velas artesanales</title>
-  <meta name="description" content="Dos Flores: velas artesanales de cera vegetal de soja y coco, hechas a mano. [PLACEHOLDER: revisar descripción]">
+  <meta name="description" content="Dos Flores: velas artesanales de cera vegetal de soja y coco, hechas a mano.">
 
-  <!-- Favicon con dos versiones: el navegador elige según su propio modo.
-       · favicon-claro.png  → icono OSCURO, para pestañas claras
-       · favicon-oscuro.png → icono CLARO, para pestañas oscuras
-       Guárdalos en assets/images/logo/ (cuadrados, 64x64 o 128x128 px).
+  <!-- Favicon con dos versiones (assets/img/): el navegador elige según su propio modo.
+       · favicon_negro.svg  → para pestañas claras
+       · favicon_blanco.svg → para pestañas oscuras
        Sigue el modo del navegador/sistema, no el botón de la web. -->
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon_negro.svg" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon_blanco.svg" media="(prefers-color-scheme: dark)">
-  <!-- Icono para la pantalla de inicio del iPhone (un solo archivo, 180x180 px) -->
-  <link rel="apple-touch-icon" href="assets/images/logo/apple-touch-icon.png">
+  <!-- Icono para la pantalla de inicio del iPhone (180x180 px, hecho a partir de Logo/RedesSociales_Logo.png) -->
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
   <!-- Tipografías alojadas en la propia web (assets/fonts/).
        La precarga avisa al navegador de las que se ven en la primera pantalla.
@@ -105,14 +104,22 @@
          ===================================================== -->
     <section id="inicio" class="hero" aria-labelledby="hero-titulo">
 
-      <!-- IMAGEN DE FONDO A PANTALLA COMPLETA
-           Para cambiarla: guarda tu foto como assets/images/hero/hero.jpg
-           (o cambia el nombre en el src). Es decorativa, por eso alt="".
-           Recomendado: horizontal, unos 1920 px de ancho, menos de 400 KB. -->
-      <!-- DOS FOTOS: hero_claro.jpg se ve en modo claro y hero_oscuro.jpg en modo oscuro.
-           Se guardan en assets/img/inicio/. Las dos son decorativas (alt=""). -->
-      <img class="hero__bg hero__bg--claro" src="assets/img/inicio/hero_claro.jpg" alt="" width="1920" height="1080" fetchpriority="high">
-      <img class="hero__bg hero__bg--oscuro" src="assets/img/inicio/hero_oscuro.jpg" alt="" width="1920" height="1080" fetchpriority="high">
+      <!-- DOS FOTOS DE FONDO: la "claro" se ve en modo claro y la "oscuro" en modo oscuro.
+           Son decorativas (alt=""). Están en assets/img/inicio/ en WebP y en 3 tamaños
+           (960, 1600 y 2752 px de ancho): con srcset el navegador descarga solo el que necesita.
+           sizes: en pantallas más estrechas que la foto (móvil en vertical) la foto se amplía
+           hasta ocupar el alto, así que se muestra a 179vh de ancho; si no, a 100vw.
+           Los JPG originales (hero_claro.jpg, hero_oscuro.jpg) ya no se usan en la web. -->
+      <img class="hero__bg hero__bg--claro"
+           src="assets/img/inicio/hero_claro-1600.webp"
+           srcset="assets/img/inicio/hero_claro-960.webp 960w, assets/img/inicio/hero_claro-1600.webp 1600w, assets/img/inicio/hero_claro-2752.webp 2752w"
+           sizes="(max-aspect-ratio: 43/24) 179vh, 100vw"
+           alt="" width="2752" height="1536" fetchpriority="high">
+      <img class="hero__bg hero__bg--oscuro"
+           src="assets/img/inicio/hero_oscuro-1600.webp"
+           srcset="assets/img/inicio/hero_oscuro-960.webp 960w, assets/img/inicio/hero_oscuro-1600.webp 1600w, assets/img/inicio/hero_oscuro-2752.webp 2752w"
+           sizes="(max-aspect-ratio: 43/24) 179vh, 100vw"
+           alt="" width="2752" height="1536" fetchpriority="high">
 
       <div class="hero__content">
         <!-- Allura: solo para el nombre de marca -->
@@ -131,69 +138,46 @@
 
 
     <!-- =====================================================
-         3. CARRUSEL / DESTACADOS
-         "Carrusel Nav" + "Vela destacada" del boceto.
-         La lógica (flechas, puntos, teclado) va en la Fase 4.
+         3. CARRUSEL / NOVEDADES
+         Desliza con el dedo, con el ratón o con las flechas de abajo (lógica en main.js).
          ===================================================== -->
     <section id="destacados" class="featured" aria-labelledby="destacados-titulo">
       <h2 id="destacados-titulo" class="section-title">Novedades</h2>
 
       <div class="carousel" role="region" aria-roledescription="carrusel" aria-label="Velas destacadas">
 
-        <!-- Desliza con el dedo, con el ratón o con las flechas de abajo.
-             Para añadir otra vela, copia un bloque <article class="slide"> (y actualiza el "n de N").
-             Los puntos y las flechas se ajustan solos. En móvil se ve 1 tarjeta, en tablet 2 y en escritorio 3. -->
+        <!-- Para añadir otra vela, copia un bloque <article class="slide"> y actualiza los "n de N".
+             Los puntos y las flechas se ajustan solos (si todas las tarjetas caben, se ocultan).
+             En móvil se ve 1 tarjeta, en tablet 2 y en escritorio 3. -->
         <div class="carousel__viewport" tabindex="0">
           <div class="carousel__track">
 
-          <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="1 de 4">
-            <div class="slide__media candle-photo">
-              <img class="vela--apagada" src="assets/images/velas/caramelo-cremoso-apagada.jpg" alt="[PLACEHOLDER: describir la vela Caramelo Cremoso]" width="600" height="600" loading="lazy">
-              <img class="vela--encendida" src="assets/images/velas/caramelo-cremoso-encendida.jpg" alt="" width="600" height="600" loading="lazy">
+          <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="1 de 2">
+            <!-- PENDIENTE: foto. Cuando la tengáis, quita "foto-pendiente" y cambia el contenido por:
+                 <img class="vela--apagada" src="assets/img/velas/caramelo-cremoso-apagada.webp" alt="DESCRIBIR LA VELA" width="600" height="600" loading="lazy">
+                 <img class="vela--encendida" src="assets/img/velas/caramelo-cremoso-encendida.webp" alt="" width="600" height="600" loading="lazy"> -->
+            <div class="slide__media candle-photo foto-pendiente">
+              <img class="foto-pendiente__marca" src="assets/img/logo.svg" alt="" width="64" height="64">
+              <span class="foto-pendiente__aviso">Fotografía próximamente</span>
             </div>
             <div class="slide__body">
-              <p class="slide__tag">Próximo lanzamiento</p>
+              <p class="slide__tag">Colección Otoño</p>
               <h3 class="slide__title">Caramelo Cremoso</h3>
-              <p class="slide__text">[PLACEHOLDER: descripción de la vela y su aroma.]</p>
+              <!-- PENDIENTE: <p class="slide__text">descripción del aroma</p> -->
               <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
             </div>
           </article>
 
-          <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 4">
-            <div class="slide__media candle-photo">
-              <img class="vela--apagada" src="assets/images/velas/vela-2-apagada.jpg" alt="[PLACEHOLDER: describir la vela 2]" width="600" height="600" loading="lazy">
-              <img class="vela--encendida" src="assets/images/velas/vela-2-encendida.jpg" alt="" width="600" height="600" loading="lazy">
+          <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 2">
+            <!-- PENDIENTE: foto (truco-o-trato-apagada.webp / truco-o-trato-encendida.webp en assets/img/velas/) -->
+            <div class="slide__media candle-photo foto-pendiente">
+              <img class="foto-pendiente__marca" src="assets/img/logo.svg" alt="" width="64" height="64">
+              <span class="foto-pendiente__aviso">Fotografía próximamente</span>
             </div>
             <div class="slide__body">
-              <p class="slide__tag">Novedad</p>
-              <h3 class="slide__title">[PLACEHOLDER: nombre vela 2]</h3>
-              <p class="slide__text">[PLACEHOLDER: descripción de la vela y su aroma.]</p>
-              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
-            </div>
-          </article>
-
-          <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 4">
-            <div class="slide__media candle-photo">
-              <img class="vela--apagada" src="assets/images/velas/vela-3-apagada.jpg" alt="[PLACEHOLDER: describir la vela 3]" width="600" height="600" loading="lazy">
-              <img class="vela--encendida" src="assets/images/velas/vela-3-encendida.jpg" alt="" width="600" height="600" loading="lazy">
-            </div>
-            <div class="slide__body">
-              <p class="slide__tag">Novedad</p>
-              <h3 class="slide__title">[PLACEHOLDER: nombre vela 3]</h3>
-              <p class="slide__text">[PLACEHOLDER: descripción de la vela y su aroma.]</p>
-              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
-            </div>
-          </article>
-
-          <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="4 de 4">
-            <div class="slide__media candle-photo">
-              <img class="vela--apagada" src="assets/images/velas/vela-4-apagada.jpg" alt="[PLACEHOLDER: describir la vela 4]" width="600" height="600" loading="lazy">
-              <img class="vela--encendida" src="assets/images/velas/vela-4-encendida.jpg" alt="" width="600" height="600" loading="lazy">
-            </div>
-            <div class="slide__body">
-              <p class="slide__tag">Novedad</p>
-              <h3 class="slide__title">[PLACEHOLDER: nombre vela 4]</h3>
-              <p class="slide__text">[PLACEHOLDER: descripción de la vela y su aroma.]</p>
+              <p class="slide__tag">Colección Halloween</p>
+              <h3 class="slide__title">Truco o Trato</h3>
+              <!-- PENDIENTE: <p class="slide__text">descripción del aroma</p> -->
               <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
             </div>
           </article>
@@ -219,121 +203,138 @@
          4. BLOQUE NARRATIVO
          ===================================================== -->
 
-    <!-- 4a. Conócenos (pequeña intro) -->
+    <!-- 4a. Conócenos (pequeña intro; la versión larga está en pages/historia.html) -->
     <section id="historia" class="story" aria-labelledby="historia-titulo">
       <div class="story__inner">
         <h2 id="historia-titulo" class="section-title">Conócenos</h2>
-        <p>[PLACEHOLDER: historia familiar de Dos Flores y propósito de la marca.]</p>
-        <!-- [PLACEHOLDER: foto opcional de las fundadoras] -->
+        <p>Somos Lucía y Nerea, primas unidas por el apellido de nuestro abuelo: Flores. Hacemos velas a mano, en casa, para que encuentres en su aroma ese momento que estabas buscando.</p>
+
+        <!-- FOTO DE LAS DOS JUNTAS (PENDIENTE). Guardadla en assets/img/historia/ (horizontal, 3:2, unos 1200×800 px).
+             Para ponerla: quita "foto-pendiente" del <div class="founders__frame …"> y cambia su contenido por:
+             <img src="assets/img/historia/juntas.webp" alt="DESCRIBIR LA FOTO (ej.: Lucía y Nerea haciendo velas)" width="1200" height="800" loading="lazy"> -->
+        <figure class="founders__photo founders__photo--juntas story__photo">
+          <div class="founders__frame foto-pendiente">
+            <img class="foto-pendiente__marca" src="assets/img/logo.svg" alt="" width="64" height="64">
+            <span class="foto-pendiente__aviso">Fotografía próximamente</span>
+          </div>
+          <figcaption>Lucía y Nerea</figcaption>
+        </figure>
+
+        <a class="btn btn--outline" href="pages/historia.html">Nuestra historia</a>
       </div>
     </section>
 
-    <!-- 4b. Hecho a mano / Proceso -->
+    <!-- 4b. Hecho a mano / Proceso
+         Texto a partir de lo que nos contaron Lucía y Nerea. Los números (01, 02…) los pone el CSS solos.
+         FOTOS (PENDIENTES): una por paso, en vertical (4:5, unos 800×1000 px), en assets/img/proceso/.
+         Para poner cada foto: quita "foto-pendiente" del <div class="step__frame …"> y cambia su
+         contenido por la <img> que hay en el comentario de encima. -->
     <section id="proceso" class="process" aria-labelledby="proceso-titulo">
       <div class="story__inner">
         <h2 id="proceso-titulo" class="section-title">Hecho a mano</h2>
-        <p>Trabajamos con cera vegetal de soja y coco, colorantes sólidos y técnicas marmoleadas.</p>
-        <p>[PLACEHOLDER: describir el proceso artesanal paso a paso, sin añadir datos no confirmados.]</p>
+        <p>Hacemos cada vela a mano y en tandas pequeñas, con cera de soja y coco. Así es como nace cada una:</p>
       </div>
+
+      <ol class="steps" role="list">
+        <li class="step">
+          <!-- <img src="assets/img/proceso/paso-1.webp" alt="DESCRIBIR LA FOTO" width="800" height="1000" loading="lazy"> -->
+          <div class="step__frame foto-pendiente">
+            <img class="foto-pendiente__marca" src="assets/img/logo.svg" alt="" width="64" height="64">
+            <span class="foto-pendiente__aviso">Fotografía próximamente</span>
+          </div>
+          <div class="step__body">
+            <h3 class="step__title">Lluvia de ideas</h3>
+            <p class="step__text">Todo empieza con una idea: pensamos la colección y elegimos las fragancias que mejor la cuentan.</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <!-- <img src="assets/img/proceso/paso-2.webp" alt="DESCRIBIR LA FOTO" width="800" height="1000" loading="lazy"> -->
+          <div class="step__frame foto-pendiente">
+            <img class="foto-pendiente__marca" src="assets/img/logo.svg" alt="" width="64" height="64">
+            <span class="foto-pendiente__aviso">Fotografía próximamente</span>
+          </div>
+          <div class="step__body">
+            <h3 class="step__title">Fundimos y aromatizamos</h3>
+            <p class="step__text">Fundimos la cera, le añadimos el colorante y, después, la fragancia.</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <!-- <img src="assets/img/proceso/paso-3.webp" alt="DESCRIBIR LA FOTO" width="800" height="1000" loading="lazy"> -->
+          <div class="step__frame foto-pendiente">
+            <img class="foto-pendiente__marca" src="assets/img/logo.svg" alt="" width="64" height="64">
+            <span class="foto-pendiente__aviso">Fotografía próximamente</span>
+          </div>
+          <div class="step__body">
+            <h3 class="step__title">Vertemos</h3>
+            <p class="step__text">La vertemos en su vaso de cristal, con mecha de madera en la mayoría de velas y mecha tradicional en las pequeñas.</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <!-- <img src="assets/img/proceso/paso-4.webp" alt="DESCRIBIR LA FOTO" width="800" height="1000" loading="lazy"> -->
+          <div class="step__frame foto-pendiente">
+            <img class="foto-pendiente__marca" src="assets/img/logo.svg" alt="" width="64" height="64">
+            <span class="foto-pendiente__aviso">Fotografía próximamente</span>
+          </div>
+          <div class="step__body">
+            <h3 class="step__title">Dejamos curar</h3>
+            <p class="step__text">La dejamos reposar al menos una semana, para que enfríe bien y su aroma se asiente.</p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="process__nota">Y cuando se acabe, el vaso de cristal es tuyo: puedes reutilizarlo.</p>
     </section>
 
     <!-- =====================================================
          5. COLECCIONES (Explorar colecciones)
-         Dos grupos: Estacionales (las 4 estaciones) y Limitadas
-         (Halloween, Navidad…). Cada botón "Ver colección" lleva a colecciones.html#id
-         (primavera, verano, otono, invierno, halloween, navidad): ese id debe existir en colecciones.html.
-         Para añadir una colección, duplica un bloque <li class="card"> dentro de su grupo. Las fotos van en
-         assets/images/colecciones/ (nombre-apagada.jpg y nombre-encendida.jpg).
+         Dos grupos: Estacionales y Limitadas. Cada botón "Ver colección" lleva a
+         pages/coleccion.html#id, y ese id debe existir en pages/coleccion.html.
+         Para añadir una colección, duplica un bloque <li class="card"> dentro de su grupo.
+         Fotos de portada en assets/img/colecciones/ (nombre-apagada.webp y nombre-encendida.webp).
          ===================================================== -->
     <section id="colecciones" class="catalog" aria-labelledby="catalogo-titulo">
       <h2 id="catalogo-titulo" class="section-title">Explorar colecciones</h2>
 
-      <!-- Colecciones estacionales -->
+      <!-- Colecciones estacionales (primavera, verano, otoño, invierno) -->
       <div id="estacionales" class="catalog__group">
         <h3 class="catalog__group-title">Estacionales</h3>
         <ul class="catalog__grid">
 
         <li class="card">
           <article>
-            <!-- Foto de portada de la colección: una vela apagada (modo claro) y encendida (modo oscuro) -->
-            <div class="card__media candle-photo">
-              <img class="vela--apagada" src="assets/images/colecciones/primavera-apagada.jpg" alt="[PLACEHOLDER: describir la vela de la colección Primavera]" width="400" height="400" loading="lazy">
-              <img class="vela--encendida" src="assets/images/colecciones/primavera-encendida.jpg" alt="" width="400" height="400" loading="lazy">
-            </div>
-            <h4 class="card__title">Primavera</h4>
-            <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
-            <a class="btn btn--outline" href="colecciones.html#primavera">Ver colección<span class="visually-hidden"> Primavera</span></a>
-          </article>
-        </li>
-        <li class="card">
-          <article>
-            <!-- Foto de portada de la colección: una vela apagada (modo claro) y encendida (modo oscuro) -->
-            <div class="card__media candle-photo">
-              <img class="vela--apagada" src="assets/images/colecciones/verano-apagada.jpg" alt="[PLACEHOLDER: describir la vela de la colección Verano]" width="400" height="400" loading="lazy">
-              <img class="vela--encendida" src="assets/images/colecciones/verano-encendida.jpg" alt="" width="400" height="400" loading="lazy">
-            </div>
-            <h4 class="card__title">Verano</h4>
-            <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
-            <a class="btn btn--outline" href="colecciones.html#verano">Ver colección<span class="visually-hidden"> Verano</span></a>
-          </article>
-        </li>
-        <li class="card">
-          <article>
-            <!-- Foto de portada de la colección: una vela apagada (modo claro) y encendida (modo oscuro) -->
-            <div class="card__media candle-photo">
-              <img class="vela--apagada" src="assets/images/colecciones/otono-apagada.jpg" alt="[PLACEHOLDER: describir la vela de la colección Otoño]" width="400" height="400" loading="lazy">
-              <img class="vela--encendida" src="assets/images/colecciones/otono-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+            <!-- PENDIENTE: foto de portada (otono-apagada.webp / otono-encendida.webp) -->
+            <div class="card__media candle-photo foto-pendiente">
+              <img class="foto-pendiente__marca" src="assets/img/logo.svg" alt="" width="64" height="64">
+              <span class="foto-pendiente__aviso">Fotografía próximamente</span>
             </div>
             <h4 class="card__title">Otoño</h4>
-            <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
-            <a class="btn btn--outline" href="colecciones.html#otono">Ver colección<span class="visually-hidden"> Otoño</span></a>
-          </article>
-        </li>
-        <li class="card">
-          <article>
-            <!-- Foto de portada de la colección: una vela apagada (modo claro) y encendida (modo oscuro) -->
-            <div class="card__media candle-photo">
-              <img class="vela--apagada" src="assets/images/colecciones/invierno-apagada.jpg" alt="[PLACEHOLDER: describir la vela de la colección Invierno]" width="400" height="400" loading="lazy">
-              <img class="vela--encendida" src="assets/images/colecciones/invierno-encendida.jpg" alt="" width="400" height="400" loading="lazy">
-            </div>
-            <h4 class="card__title">Invierno</h4>
-            <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
-            <a class="btn btn--outline" href="colecciones.html#invierno">Ver colección<span class="visually-hidden"> Invierno</span></a>
+            <!-- PENDIENTE: <p class="card__text">descripción breve de la colección</p> -->
+            <a class="btn btn--outline" href="pages/coleccion.html#otono">Ver colección<span class="visually-hidden"> Otoño</span></a>
           </article>
         </li>
 
         </ul>
       </div>
 
-      <!-- Colecciones limitadas: se pueden añadir más (San Valentín, Pascua…) -->
+      <!-- Colecciones limitadas (Halloween, Navidad, San Valentín…) -->
       <div id="limitadas" class="catalog__group">
         <h3 class="catalog__group-title">Limitadas</h3>
         <ul class="catalog__grid">
 
         <li class="card">
           <article>
-            <!-- Foto de portada de la colección: una vela apagada (modo claro) y encendida (modo oscuro) -->
-            <div class="card__media candle-photo">
-              <img class="vela--apagada" src="assets/images/colecciones/halloween-apagada.jpg" alt="[PLACEHOLDER: describir la vela de la colección Halloween]" width="400" height="400" loading="lazy">
-              <img class="vela--encendida" src="assets/images/colecciones/halloween-encendida.jpg" alt="" width="400" height="400" loading="lazy">
+            <!-- PENDIENTE: foto de portada (halloween-apagada.webp / halloween-encendida.webp) -->
+            <div class="card__media candle-photo foto-pendiente">
+              <img class="foto-pendiente__marca" src="assets/img/logo.svg" alt="" width="64" height="64">
+              <span class="foto-pendiente__aviso">Fotografía próximamente</span>
             </div>
             <p class="card__tag">Edición limitada</p>
             <h4 class="card__title">Halloween</h4>
-            <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
-            <a class="btn btn--outline" href="colecciones.html#halloween">Ver colección<span class="visually-hidden"> Halloween</span></a>
-          </article>
-        </li>
-        <li class="card">
-          <article>
-            <!-- Foto de portada de la colección: una vela apagada (modo claro) y encendida (modo oscuro) -->
-            <div class="card__media candle-photo">
-              <img class="vela--apagada" src="assets/images/colecciones/navidad-apagada.jpg" alt="[PLACEHOLDER: describir la vela de la colección Navidad]" width="400" height="400" loading="lazy">
-              <img class="vela--encendida" src="assets/images/colecciones/navidad-encendida.jpg" alt="" width="400" height="400" loading="lazy">
-            </div>
-            <p class="card__tag">Edición limitada</p>
-            <h4 class="card__title">Navidad</h4>
-            <p class="card__text">[PLACEHOLDER: descripción breve de la colección]</p>
-            <a class="btn btn--outline" href="colecciones.html#navidad">Ver colección<span class="visually-hidden"> Navidad</span></a>
+            <!-- PENDIENTE: <p class="card__text">descripción breve de la colección</p> -->
+            <a class="btn btn--outline" href="pages/coleccion.html#halloween">Ver colección<span class="visually-hidden"> Halloween</span></a>
           </article>
         </li>
 
@@ -352,8 +353,7 @@
 
       <p class="footer__brand">Dos Flores</p>
 
-      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas.
-           Cambia [PLACEHOLDER-CORREO] por la dirección real en el mailto. -->
+      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas. -->
       <div class="footer__contact">
         <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>

@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nuestra historia · Dos Flores</title>
-  <meta name="description" content="Conoce la historia de Dos Flores y cómo hacemos nuestras velas a mano. [PLACEHOLDER: revisar descripción]">
+  <meta name="description" content="Conoce la historia de Dos Flores y cómo hacemos nuestras velas a mano.">
 
-  <!-- Favicon con dos versiones: el navegador elige según su propio modo.
-       · favicon-claro.png  → icono OSCURO, para pestañas claras
-       · favicon-oscuro.png → icono CLARO, para pestañas oscuras
-       Guárdalos en assets/images/logo/ (cuadrados, 64x64 o 128x128 px).
+  <!-- Favicon con dos versiones (assets/img/): el navegador elige según su propio modo.
+       · favicon_negro.svg  → para pestañas claras
+       · favicon_blanco.svg → para pestañas oscuras
        Sigue el modo del navegador/sistema, no el botón de la web. -->
   <link rel="icon" type="image/svg+xml" href="../assets/img/favicon_negro.svg" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/svg+xml" href="../assets/img/favicon_blanco.svg" media="(prefers-color-scheme: dark)">
-  <!-- Icono para la pantalla de inicio del iPhone (un solo archivo, 180x180 px) -->
-  <link rel="apple-touch-icon" href="../assets/images/logo/apple-touch-icon.png">
+  <!-- Icono para la pantalla de inicio del iPhone (180x180 px, hecho a partir de Logo/RedesSociales_Logo.png) -->
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 
   <!-- Tipografías alojadas en la propia web (assets/fonts/).
        La precarga avisa al navegador de las que se ven en la primera pantalla.
@@ -94,31 +93,50 @@
   </header>
 
   <main id="contenido">
-    <section class="page-hero" aria-labelledby="historia-titulo">
-      <h1 id="historia-titulo" class="section-title">Nuestra historia</h1>
-      <p>[PLACEHOLDER: frase de introducción.]</p>
-    </section>
-
-    <section class="story" aria-labelledby="conocenos-titulo">
+    <!-- Nuestra historia: título, frase y texto en una sola sección.
+         Texto a partir de lo que nos contaron Lucía y Nerea (tono cercano, de tú).
+         La versión corta está en index.html (sección 4a); si cambiáis algo aquí, revisad también esa. -->
+    <section class="story story--cabecera" aria-labelledby="historia-titulo">
       <div class="story__inner">
-        <h2 id="conocenos-titulo" class="section-title">Conócenos</h2>
-        <p>[PLACEHOLDER: historia familiar de Dos Flores y propósito de la marca.]</p>
-        <!-- [PLACEHOLDER: foto opcional de las fundadoras] -->
+        <h1 id="historia-titulo" class="section-title">Nuestra historia</h1>
+        <p class="story__lead">Dos primas y un apellido.</p>
+        <p>Somos Lucía y Nerea, primas, y compartimos apellido materno: Flores, el de nuestro abuelo.</p>
+        <p>Todo empezó con Nerea. Le encantan las velas y los aromas, y un día le propuso a Lucía crear las suyas propias. Así nació Dos Flores.</p>
+        <p>El nombre y el logo también son cosa de familia. Las dos flores somos nosotras, y las del logo son gitanillas, muy típicas de Córdoba, la tierra de nuestro abuelo.</p>
+        <p>Hacemos cada vela a mano, en casa, pensando en una sola cosa: que cuando la huelas te sientas a gusto y encuentres en su aroma ese momento que estabas buscando.</p>
+        <p>Somos un proyecto pequeño que empieza con calma. Gracias por acompañarnos desde el principio.</p>
+
+        <!-- FOTOS DE LAS FUNDADORAS (PENDIENTES). Guardadlas en assets/img/historia/.
+             Para poner cada foto: quita "foto-pendiente" del <div class="founders__frame …">
+             y cambia su contenido por la <img> que hay en el comentario de encima.
+             Recomendado: en vertical (4:5, unos 800×1000 px).
+             La foto de las dos juntas va en el inicio (index.html, sección "Conócenos"). -->
+        <div class="founders">
+          <figure class="founders__photo">
+            <!-- <img src="../assets/img/historia/lucia.webp" alt="Lucía, de Dos Flores" width="800" height="1000" loading="lazy"> -->
+            <div class="founders__frame foto-pendiente">
+              <img class="foto-pendiente__marca" src="../assets/img/logo.svg" alt="" width="64" height="64">
+              <span class="foto-pendiente__aviso">Fotografía próximamente</span>
+            </div>
+            <figcaption>Lucía</figcaption>
+          </figure>
+
+          <figure class="founders__photo">
+            <!-- <img src="../assets/img/historia/nerea.webp" alt="Nerea, de Dos Flores" width="800" height="1000" loading="lazy"> -->
+            <div class="founders__frame foto-pendiente">
+              <img class="foto-pendiente__marca" src="../assets/img/logo.svg" alt="" width="64" height="64">
+              <span class="foto-pendiente__aviso">Fotografía próximamente</span>
+            </div>
+            <figcaption>Nerea</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
-    <section class="process" aria-labelledby="hecho-titulo">
-      <div class="story__inner">
-        <h2 id="hecho-titulo" class="section-title">Hecho a mano</h2>
-        <p>Trabajamos con cera vegetal de soja y coco, colorantes sólidos y técnicas marmoleadas.</p>
-        <p>[PLACEHOLDER: describir el proceso artesanal paso a paso, sin añadir datos no confirmados.]</p>
-      </div>
-    </section>
-
-    <section class="story" aria-labelledby="cta-titulo">
+    <section class="story story--alt" aria-labelledby="cta-titulo">
       <div class="story__inner">
         <h2 id="cta-titulo" class="section-title">Encuentra tu vela</h2>
-        <p>[PLACEHOLDER: invitación a descubrir las colecciones.]</p>
+        <p>Descubre las velas de nuestras colecciones.</p>
         <a class="btn" href="../pages/coleccion.html">Ver colecciones</a>
       </div>
     </section>
@@ -129,13 +147,12 @@
 
       <p class="footer__brand">Dos Flores</p>
 
-      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas.
-           Cambia [PLACEHOLDER-CORREO] por la dirección real en el mailto. -->
+      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas. -->
       <div class="footer__contact">
         <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
         </a>
-        <a class="footer__social footer__mail" href="mailto:[PLACEHOLDER-CORREO]" aria-label="Escribir un correo a Dos Flores">
+        <a class="footer__social footer__mail" href="mailto:dosfloresaromas@gmail.com" aria-label="Escribir un correo a Dos Flores">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg>
         </a>
       </div>
@@ -148,7 +165,7 @@
         </ul>
       </nav>
 
-      <p class="footer__credits">© <span id="anio">2026</span> Dos Flores · [PLACEHOLDER: créditos de diseño y desarrollo]</p>
+      <p class="footer__credits">© <span id="anio">2026</span> Dos Flores · Diseño y desarrollo por Lucía Campos</p>
     </div>
   </footer>
 
