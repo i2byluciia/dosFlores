@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Truco o Trato · Dos Flores</title>
+  <meta name="description" content="Vela aromática Truco o Trato, de la colección Halloween (edición limitada) de Dos Flores.">
+  <!-- Dirección "oficial" de esta página para Google (cambiadla si pasáis a dominio propio) -->
+  <link rel="canonical" href="https://i2byluciia.github.io/dosFlores/pages/truco-o-trato.html">
+  <!-- Vista previa al compartir el enlace (WhatsApp, Instagram, Facebook…): protocolo Open Graph.
+       Las direcciones deben ser completas (https://…). Si cambiáis a un dominio propio, cambiad
+       "https://i2byluciia.github.io/dosFlores" por el dominio nuevo en og:url y og:image de cada página. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dos Flores">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Truco o Trato · Dos Flores">
+  <meta property="og:description" content="Vela aromática Truco o Trato, de la colección Halloween (edición limitada) de Dos Flores.">
+  <meta property="og:url" content="https://i2byluciia.github.io/dosFlores/pages/truco-o-trato.html">
+  <meta property="og:image" content="https://i2byluciia.github.io/dosFlores/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vela aromática de Dos Flores encendida en un vaso de cristal">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- EJEMPLO: noindex mientras tenga datos [PENDIENTE]. Bórralo cuando la ficha esté completa. -->
+  <meta name="robots" content="noindex">
+
+  <!-- Favicon con dos versiones (assets/img/): el navegador elige según su propio modo.
+       · favicon_negro.svg  → para pestañas claras
+       · favicon_blanco.svg → para pestañas oscuras
+       Sigue el modo del navegador/sistema, no el botón de la web. -->
+  <!-- Respaldo en PNG para navegadores que no muestran favicons SVG (p. ej. Safari).
+       Va ANTES de los SVG: los navegadores que entienden SVG usan los de abajo. -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon_negro.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon_blanco.svg" media="(prefers-color-scheme: dark)">
+  <!-- Icono para la pantalla de inicio del iPhone (180x180 px, hecho a partir de Logo/RedesSociales_Logo.png) -->
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+
+  <!-- Tipografías alojadas en la propia web (assets/fonts/).
+       La precarga avisa al navegador de las que se ven en la primera pantalla.
+       La definición de cada fuente (@font-face) está al principio de styles.css. -->
+  <link rel="preload" href="../assets/fonts/allura-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Tema claro/oscuro: aplica la elección guardada ANTES de pintar la página,
+       para que no haya un parpadeo del tema equivocado al cargar. -->
+  <script>
+    try {
+      var tema = localStorage.getItem('dosflores-tema');
+      if (tema === 'dark' || tema === 'light') document.documentElement.setAttribute('data-theme', tema);
+    } catch (e) { /* sin almacenamiento: se sigue el tema del sistema */ }
+  </script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="nav-container">
+
+      <!-- Logo: sustituir por el logo real en la Fase 5 -->
+      <a class="logo" href="../index.html" aria-label="Dos Flores, ir al inicio">
+        <img src="../assets/img/logo.svg" alt="Logotipo de Dos Flores" width="64" height="64">
+      </a>
+
+      <!-- Botón del menú móvil (la lógica se añade en la Fase 4) -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span class="visually-hidden">Abrir menú</span>
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+      </button>
+
+      <!-- Navegación principal: solo los enlaces marcados "nav" en el boceto -->
+      <nav id="menu-principal" class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="../pages/coleccion.html">Colecciones</a></li>
+          <li><a href="../pages/historia.html">Nuestra Historia</a></li>
+          <li><a href="como-pedir.html">Cómo pedir</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de la derecha -->
+      <div class="nav-actions">
+        <!-- Interruptor de modo claro/oscuro con forma de vela (apagada = claro, encendida = oscuro).
+             El texto del aria-label lo actualiza main.js según el tema activo. -->
+        <button class="icon-btn theme-toggle" type="button" aria-label="Activar modo oscuro">
+          <svg class="vela-icono" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="vela-icono__humo" d="M12 7.5c-1.2-1-1.2-2 0-3s1.2-2 0-3"/><path class="vela-icono__llama" d="M12 2.5c1.6 1.9 2.4 3.3 2.4 4.4a2.4 2.4 0 0 1-4.8 0c0-1.1.8-2.5 2.4-4.4z" fill="#E8A04B" stroke="none"/><path d="M12 11V9.3"/><rect x="7.5" y="11" width="9" height="10.5" rx="1.5"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- FICHA DE PRODUCTO (EJEMPLO / PLANTILLA)
+         Enlazada desde los botones "Ver vela" del inicio y de Colecciones. Lo que falta está marcado [PENDIENTE].
+         Para crear la ficha de otra vela: copia este archivo, cambia el nombre (ej. otra-vela.html) y los datos.
+         Fotos en assets/img/velas/ (cuadradas, unos 1200×1200 px). -->
+    <article class="producto" aria-labelledby="producto-titulo">
+
+      <nav class="migas" aria-label="Estás en">
+        <ol>
+          <li><a href="coleccion.html">Colecciones</a></li>
+          <li><a href="coleccion.html#halloween">Halloween</a></li>
+          <li aria-current="page">Truco o Trato</li>
+        </ol>
+      </nav>
+
+      <div class="producto__grid">
+
+        <!-- Galería: foto principal (vela apagada) y miniaturas (encendida, detalle, tamaño en la mano…) -->
+        <div class="producto__galeria">
+          <!-- <img class="producto__foto" src="../assets/img/velas/truco-o-trato-apagada.webp" alt="DESCRIBIR LA VELA" width="1200" height="1200"> -->
+          <div class="producto__foto foto-pendiente">
+              <img class="foto-pendiente__marca" src="../assets/img/logo.svg" alt="" width="64" height="64">
+              <span class="foto-pendiente__aviso">Fotografía próximamente</span>
+            </div>
+          <div class="producto__miniaturas">
+            <div class="producto__foto foto-pendiente">
+              <img class="foto-pendiente__marca" src="../assets/img/logo.svg" alt="" width="64" height="64">
+              <span class="foto-pendiente__aviso">Encendida</span>
+            </div>
+            <div class="producto__foto foto-pendiente">
+              <img class="foto-pendiente__marca" src="../assets/img/logo.svg" alt="" width="64" height="64">
+              <span class="foto-pendiente__aviso">Detalle</span>
+            </div>
+            <div class="producto__foto foto-pendiente">
+              <img class="foto-pendiente__marca" src="../assets/img/logo.svg" alt="" width="64" height="64">
+              <span class="foto-pendiente__aviso">Tamaño</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="producto__info">
+          <p class="card__tag">Colección Halloween · Edición limitada</p>
+          <h1 id="producto-titulo" class="producto__nombre">Truco o Trato</h1>
+          <p class="producto__precio"><span class="pendiente">[PENDIENTE: precio]</span> <small><span class="pendiente">[PENDIENTE: IVA incluido / exento]</span></small></p>
+          <p class="producto__disponible"><span class="pendiente">[PENDIENTE: disponibilidad: disponible · por encargo · agotada]</span></p>
+          <p class="producto__desc"><span class="pendiente">[PENDIENTE: descripción corta del aroma, 2-3 frases que hagan imaginar el olor]</span></p>
+
+          <div class="producto__acciones">
+            <a class="btn" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Pedir por Instagram</a>
+            <a class="btn btn--outline" href="como-pedir.html">Cómo pedir</a>
+          </div>
+
+          <h2 class="producto__subtitulo">El aroma</h2>
+          <dl class="producto__datos">
+            <dt>Familia olfativa</dt><dd><span class="pendiente">[PENDIENTE: ej.: gourmand / dulce]</span></dd>
+            <dt>Notas</dt><dd><span class="pendiente">[PENDIENTE: notas de salida, corazón y fondo, si las tenéis]</span></dd>
+          </dl>
+
+          <h2 class="producto__subtitulo">Detalles</h2>
+          <dl class="producto__datos">
+            <dt>Formato</dt><dd>Vaso de cristal reutilizable</dd>
+            <dt>Peso neto</dt><dd><span class="pendiente">[PENDIENTE: gramos de cera]</span></dd>
+            <dt>Medidas</dt><dd><span class="pendiente">[PENDIENTE: alto × diámetro del vaso]</span></dd>
+            <dt>Cera</dt><dd>Soja y coco</dd>
+            <dt>Mecha</dt><dd><span class="pendiente">[PENDIENTE: de madera o tradicional, según el tamaño]</span></dd>
+            <dt>Duración aproximada</dt><dd><span class="pendiente">[PENDIENTE: horas, medidas en vuestras pruebas]</span></dd>
+          </dl>
+
+          <h2 class="producto__subtitulo">Uso y seguridad</h2>
+          <ul class="producto__avisos">
+            <li>No la dejes encendida sin vigilancia.</li>
+            <li>Mantenla fuera del alcance de niños y mascotas.</li>
+            <li>Enciéndela sobre una superficie estable y resistente al calor.</li>
+          </ul>
+          <p class="producto__alergenos"><span class="pendiente">[PENDIENTE: alérgenos de la etiqueta CLP: «Contiene … Puede provocar una reacción alérgica.»]</span></p>
+          <p><a href="uso-y-seguridad.html">Todas las recomendaciones de uso y seguridad</a></p>
+
+          <!-- Obligatorio al vender online (Reglamento europeo de seguridad de los productos, GPSR) -->
+          <h2 class="producto__subtitulo">Fabricante</h2>
+          <p class="producto__fabricante"><span class="pendiente">[PENDIENTE: nombre de la titular]</span> · <span class="pendiente">[PENDIENTE: dirección postal]</span> · <a href="mailto:dosfloresaromas@gmail.com">dosfloresaromas@gmail.com</a></p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+
+      <p class="footer__brand">Dos Flores</p>
+
+      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas. -->
+      <div class="footer__contact">
+        <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="footer__social footer__mail" href="mailto:dosfloresaromas@gmail.com" aria-label="Escribir un correo a Dos Flores">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg>
+        </a>
+      </div>
+
+      <nav aria-label="Enlaces legales">
+        <ul class="footer__legal">
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="privacidad.html">Privacidad</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+          <li><a href="condiciones-venta.html">Condiciones de venta</a></li>
+          <li><a href="uso-y-seguridad.html">Uso y seguridad</a></li>
+        </ul>
+      </nav>
+
+      <p class="footer__credits">© <span id="anio">2026</span> Dos Flores · Diseño y desarrollo por Lucía Campos</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

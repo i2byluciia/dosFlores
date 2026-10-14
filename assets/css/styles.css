@@ -463,16 +463,10 @@ a {
   color: var(--heading);
   transition: background var(--transicion);
 }
-.icon-btn:not([aria-disabled="true"]) { cursor: pointer; }
-.icon-btn:not([aria-disabled="true"]):hover { background: var(--hover-bg); }
+.icon-btn { cursor: pointer; }
+.icon-btn:hover { background: var(--hover-bg); }
 
-/* Botones inactivos (búsqueda, usuario, carrito) */
-.icon-btn[aria-disabled="true"] {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-
-/* Interruptor de tema: muestra la luna en claro y el sol en oscuro
+/* Interruptor de tema con forma de vela: apagada (con humo) en claro y encendida en oscuro
    (la variable --llama cambia con el tema: 0 = apagada, 1 = encendida) */
 .vela-icono__llama {
   opacity: var(--llama);
@@ -483,29 +477,6 @@ a {
 .vela-icono__humo {
   opacity: calc((1 - var(--llama)) * 0.6);
   transition: opacity 0.3s ease;
-}
-
-/* Carrito: tooltip "Próximamente" */
-.cart-wrap { position: relative; }
-.cart-tip {
-  position: absolute;
-  top: calc(100% + 0.25rem);
-  right: 0;
-  padding: 0.25rem 0.75rem;
-  background: var(--btn-bg);
-  color: var(--btn-text);
-  border-radius: var(--radio);
-  font-size: 0.8rem;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--transicion);
-  pointer-events: none;
-}
-.cart-wrap:hover .cart-tip,
-.cart-wrap:focus-within .cart-tip {
-  opacity: 1;
-  visibility: visible;
 }
 
 
@@ -1086,6 +1057,121 @@ a {
 }
 .collection .catalog__grid { text-align: left; }
 
+/* Ficha de producto (pages/caramelo-cremoso.html y las que se copien de ella)
+   Móvil: galería arriba y datos debajo · Escritorio: dos columnas (ver sección 10). */
+.producto {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: calc(var(--altura-header) + var(--espacio-m)) var(--espacio-s) var(--espacio-l);
+}
+.migas ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  margin: 0 0 var(--espacio-m);
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+}
+.migas li + li::before { content: "›"; margin-right: 0.5rem; color: var(--heading); }
+.migas [aria-current] { color: var(--heading); }
+
+.producto__grid { display: grid; gap: var(--espacio-m); }
+.producto__foto {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  border-radius: var(--radio);
+  object-fit: cover;
+}
+.producto__miniaturas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espacio-xs);
+  margin-top: var(--espacio-xs);
+}
+.producto__miniaturas .foto-pendiente__aviso { font-size: 0.6rem; letter-spacing: 0.06em; }
+
+.producto__nombre { font-size: clamp(2.2rem, 6vw, 3rem); margin-bottom: var(--espacio-xs); }
+.producto__precio { font-size: 1.4rem; font-family: var(--fuente-titulos); color: var(--heading); margin-bottom: 0.25rem; }
+.producto__precio small { font-family: var(--fuente-texto); font-size: 0.8rem; }
+.producto__disponible { font-size: 0.9rem; }
+.producto__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-s);
+  margin: var(--espacio-m) 0;
+}
+.producto__subtitulo {
+  margin-top: var(--espacio-m);
+  padding-top: var(--espacio-s);
+  border-top: 1px solid var(--border);
+  font-size: 1.4rem;
+}
+/* Lista de datos: etiqueta a la izquierda, valor a la derecha */
+.producto__datos {
+  display: grid;
+  grid-template-columns: minmax(7rem, auto) 1fr;
+  gap: 0.4rem var(--espacio-s);
+  margin: 0;
+}
+.producto__datos dt { font-weight: 600; color: var(--heading); }
+.producto__datos dd { margin: 0; }
+.producto__avisos {
+  margin: 0 0 var(--espacio-s);
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+.producto__alergenos,
+.producto__fabricante { font-size: 0.9rem; }
+
+/* Cómo pedir (pages/como-pedir.html): pasos numerados con un círculo.
+   El número lo pone el contador CSS "pedido". */
+.pedido-pasos {
+  display: grid;
+  gap: var(--espacio-m);
+  margin: var(--espacio-m) 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  counter-reset: pedido;
+}
+.pedido-pasos li {
+  position: relative;
+  padding-left: 3.5rem;
+  counter-increment: pedido;
+}
+.pedido-pasos li::before {
+  content: counter(pedido);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--heading);
+  border-radius: 50%;
+  font-family: var(--fuente-texto);           /* en Cormorant el "1" parece una "I" */
+  font-size: 1rem;
+  color: var(--heading);
+}
+.pedido-pasos__titulo {
+  margin-bottom: 0.25rem;
+  font-size: 1.5rem;
+}
+.pedido-pasos p { margin: 0; }
+.pedido-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espacio-s);
+  margin-top: var(--espacio-l);
+}
+.pedido-nota {
+  margin-top: var(--espacio-m);
+  font-size: 0.9rem;
+}
+
 /* Páginas legales y de uso (pages/aviso-legal.html, privacidad, cookies, condiciones-venta, uso-y-seguridad):
    texto largo, así que va alineado a la izquierda y con un ancho cómodo de lectura. */
 .legal {
@@ -1270,6 +1356,17 @@ a {
   .main-nav a:hover { background: var(--hover-bg); color: var(--heading); }
 
   .nav-actions { justify-self: end; }
+
+  /* Ficha de producto: galería a la izquierda (se queda fija al bajar) y datos a la derecha */
+  .producto__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--espacio-l);
+    align-items: start;
+  }
+  .producto__galeria {
+    position: sticky;
+    top: calc(var(--altura-header) + var(--espacio-m));
+  }
 
   /* Hecho a mano: los 4 pasos en una fila */
   .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }

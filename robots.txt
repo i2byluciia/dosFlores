@@ -1,0 +1,8 @@
+# Indica a los buscadores qué pueden visitar y dónde está el sitemap.
+# OJO: los buscadores solo leen el robots.txt de la RAÍZ del dominio. Mientras la web esté en
+# i2byluciia.github.io/dosFlores/ este archivo no se lee; funcionará al pasar a dominio propio
+# (entonces cambiad la dirección del sitemap de abajo).
+User-agent: *
+Allow: /
+
+Sitemap: https://i2byluciia.github.io/dosFlores/sitemap.xml

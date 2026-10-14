@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cómo pedir · Dos Flores</title>
+  <meta name="description" content="Cómo hacer un pedido a Dos Flores: por Instagram o correo y pago por transferencia.">
+  <!-- Dirección "oficial" de esta página para Google (cambiadla si pasáis a dominio propio) -->
+  <link rel="canonical" href="https://i2byluciia.github.io/dosFlores/pages/como-pedir.html">
+  <!-- Vista previa al compartir el enlace (WhatsApp, Instagram, Facebook…): protocolo Open Graph.
+       Las direcciones deben ser completas (https://…). Si cambiáis a un dominio propio, cambiad
+       "https://i2byluciia.github.io/dosFlores" por el dominio nuevo en og:url y og:image de cada página. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dos Flores">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Cómo pedir · Dos Flores">
+  <meta property="og:description" content="Cómo hacer un pedido a Dos Flores: por Instagram o correo y pago por transferencia.">
+  <meta property="og:url" content="https://i2byluciia.github.io/dosFlores/pages/como-pedir.html">
+  <meta property="og:image" content="https://i2byluciia.github.io/dosFlores/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vela aromática de Dos Flores encendida en un vaso de cristal">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon con dos versiones (assets/img/): el navegador elige según su propio modo.
+       · favicon_negro.svg  → para pestañas claras
+       · favicon_blanco.svg → para pestañas oscuras
+       Sigue el modo del navegador/sistema, no el botón de la web. -->
+  <!-- Respaldo en PNG para navegadores que no muestran favicons SVG (p. ej. Safari).
+       Va ANTES de los SVG: los navegadores que entienden SVG usan los de abajo. -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon_negro.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon_blanco.svg" media="(prefers-color-scheme: dark)">
+  <!-- Icono para la pantalla de inicio del iPhone (180x180 px, hecho a partir de Logo/RedesSociales_Logo.png) -->
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+
+  <!-- Tipografías alojadas en la propia web (assets/fonts/).
+       La precarga avisa al navegador de las que se ven en la primera pantalla.
+       La definición de cada fuente (@font-face) está al principio de styles.css. -->
+  <link rel="preload" href="../assets/fonts/allura-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Tema claro/oscuro: aplica la elección guardada ANTES de pintar la página,
+       para que no haya un parpadeo del tema equivocado al cargar. -->
+  <script>
+    try {
+      var tema = localStorage.getItem('dosflores-tema');
+      if (tema === 'dark' || tema === 'light') document.documentElement.setAttribute('data-theme', tema);
+    } catch (e) { /* sin almacenamiento: se sigue el tema del sistema */ }
+  </script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="nav-container">
+
+      <!-- Logo: sustituir por el logo real en la Fase 5 -->
+      <a class="logo" href="../index.html" aria-label="Dos Flores, ir al inicio">
+        <img src="../assets/img/logo.svg" alt="Logotipo de Dos Flores" width="64" height="64">
+      </a>
+
+      <!-- Botón del menú móvil (la lógica se añade en la Fase 4) -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span class="visually-hidden">Abrir menú</span>
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+      </button>
+
+      <!-- Navegación principal: solo los enlaces marcados "nav" en el boceto -->
+      <nav id="menu-principal" class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="../pages/coleccion.html">Colecciones</a></li>
+          <li><a href="../pages/historia.html">Nuestra Historia</a></li>
+          <li><a href="como-pedir.html" aria-current="page">Cómo pedir</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de la derecha -->
+      <div class="nav-actions">
+        <!-- Interruptor de modo claro/oscuro con forma de vela (apagada = claro, encendida = oscuro).
+             El texto del aria-label lo actualiza main.js según el tema activo. -->
+        <button class="icon-btn theme-toggle" type="button" aria-label="Activar modo oscuro">
+          <svg class="vela-icono" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="vela-icono__humo" d="M12 7.5c-1.2-1-1.2-2 0-3s1.2-2 0-3"/><path class="vela-icono__llama" d="M12 2.5c1.6 1.9 2.4 3.3 2.4 4.4a2.4 2.4 0 0 1-4.8 0c0-1.1.8-2.5 2.4-4.4z" fill="#E8A04B" stroke="none"/><path d="M12 11V9.3"/><rect x="7.5" y="11" width="9" height="10.5" rx="1.5"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- Cómo pedir: proceso actual (pedidos por mensaje y pago por transferencia).
+         PENDIENTE: cuando decidáis cómo entregáis (envíos, recogida…), concretadlo en el paso 5
+         y en pages/condiciones-venta.html (apartado 4). -->
+    <section class="story story--cabecera" aria-labelledby="pedir-titulo">
+      <div class="story__inner">
+        <h1 id="pedir-titulo" class="section-title">Cómo pedir</h1>
+        <p class="story__lead">De momento hacemos los pedidos de forma directa y sencilla: por mensaje.</p>
+
+        <ol class="pedido-pasos" role="list">
+          <li>
+            <h2 class="pedido-pasos__titulo">Elige tus velas</h2>
+            <p>Echa un vistazo a nuestras <a href="coleccion.html">colecciones</a> y apunta las que te gusten.</p>
+          </li>
+          <li>
+            <h2 class="pedido-pasos__titulo">Escríbenos</h2>
+            <p>Mándanos un mensaje por <a href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Instagram</a> o un correo a <a href="mailto:dosfloresaromas@gmail.com">dosfloresaromas@gmail.com</a> diciéndonos qué quieres.</p>
+          </li>
+          <li>
+            <h2 class="pedido-pasos__titulo">Te lo confirmamos</h2>
+            <p>Te decimos si están disponibles, el precio total y cómo pagar.</p>
+          </li>
+          <li>
+            <h2 class="pedido-pasos__titulo">Paga por transferencia</h2>
+            <p>Te damos los datos de la cuenta en privado. Cuando recibimos el pago, tu pedido queda confirmado. Nunca te pediremos los datos de tu tarjeta.</p>
+          </li>
+          <li>
+            <h2 class="pedido-pasos__titulo">Recibe tu pedido</h2>
+            <p>Lo preparamos y acordamos contigo cómo y cuándo entregártelo.</p>
+          </li>
+        </ol>
+
+        <div class="pedido-acciones">
+          <a class="btn" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Escribir por Instagram</a>
+          <a class="btn btn--outline" href="mailto:dosfloresaromas@gmail.com">Enviar un correo</a>
+        </div>
+
+        <p class="pedido-nota">Antes de comprar, puedes leer nuestras <a href="condiciones-venta.html">condiciones de venta</a> y cómo usar tus velas con <a href="uso-y-seguridad.html">seguridad</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+
+      <p class="footer__brand">Dos Flores</p>
+
+      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas. -->
+      <div class="footer__contact">
+        <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="footer__social footer__mail" href="mailto:dosfloresaromas@gmail.com" aria-label="Escribir un correo a Dos Flores">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg>
+        </a>
+      </div>
+
+      <nav aria-label="Enlaces legales">
+        <ul class="footer__legal">
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="privacidad.html">Privacidad</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+          <li><a href="condiciones-venta.html">Condiciones de venta</a></li>
+          <li><a href="uso-y-seguridad.html">Uso y seguridad</a></li>
+        </ul>
+      </nav>
+
+      <p class="footer__credits">© <span id="anio">2026</span> Dos Flores · Diseño y desarrollo por Lucía Campos</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>
