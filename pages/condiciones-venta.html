@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Condiciones de venta · Dos Flores</title>
+  <meta name="description" content="Cómo comprar en Dos Flores: pedidos, pago, entrega, devoluciones y garantía.">
+  <!-- BORRADOR: noindex evita que Google la muestre mientras haya datos [PENDIENTE].
+       Cuando esté completa y revisada, borra esta línea. -->
+  <meta name="robots" content="noindex">
+
+  <!-- Favicon con dos versiones (assets/img/): el navegador elige según su propio modo.
+       · favicon_negro.svg  → para pestañas claras
+       · favicon_blanco.svg → para pestañas oscuras
+       Sigue el modo del navegador/sistema, no el botón de la web. -->
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon_negro.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon_blanco.svg" media="(prefers-color-scheme: dark)">
+  <!-- Icono para la pantalla de inicio del iPhone (180x180 px, hecho a partir de Logo/RedesSociales_Logo.png) -->
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+
+  <!-- Tipografías alojadas en la propia web (assets/fonts/).
+       La precarga avisa al navegador de las que se ven en la primera pantalla.
+       La definición de cada fuente (@font-face) está al principio de styles.css. -->
+  <link rel="preload" href="../assets/fonts/allura-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Tema claro/oscuro: aplica la elección guardada ANTES de pintar la página,
+       para que no haya un parpadeo del tema equivocado al cargar. -->
+  <script>
+    try {
+      var tema = localStorage.getItem('dosflores-tema');
+      if (tema === 'dark' || tema === 'light') document.documentElement.setAttribute('data-theme', tema);
+    } catch (e) { /* sin almacenamiento: se sigue el tema del sistema */ }
+  </script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="nav-container">
+
+      <!-- Logo: sustituir por el logo real en la Fase 5 -->
+      <a class="logo" href="../index.html" aria-label="Dos Flores, ir al inicio">
+        <img src="../assets/img/logo.svg" alt="Logotipo de Dos Flores" width="64" height="64">
+      </a>
+
+      <!-- Botón del menú móvil (la lógica se añade en la Fase 4) -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span class="visually-hidden">Abrir menú</span>
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+      </button>
+
+      <!-- Navegación principal: solo los enlaces marcados "nav" en el boceto -->
+      <nav id="menu-principal" class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="../pages/coleccion.html">Colecciones</a></li>
+          <li><a href="../pages/historia.html">Nuestra Historia</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de la derecha -->
+      <div class="nav-actions">
+        <!-- Interruptor de modo claro/oscuro (único botón del nav que funciona ya).
+             El texto del aria-label lo actualiza main.js según el tema activo. -->
+        <button class="icon-btn theme-toggle" type="button" aria-label="Activar modo oscuro">
+          <svg class="vela-icono" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="vela-icono__humo" d="M12 7.5c-1.2-1-1.2-2 0-3s1.2-2 0-3"/><path class="vela-icono__llama" d="M12 2.5c1.6 1.9 2.4 3.3 2.4 4.4a2.4 2.4 0 0 1-4.8 0c0-1.1.8-2.5 2.4-4.4z" fill="#E8A04B" stroke="none"/><path d="M12 11V9.3"/><rect x="7.5" y="11" width="9" height="10.5" rx="1.5"/></svg>
+        </button>
+
+        <!-- Búsqueda, usuario y carrito: OCULTOS de momento con el atributo "hidden".
+             Para volver a mostrarlos, borra la palabra hidden de cada uno. -->
+        <button class="icon-btn" type="button" aria-label="Buscar (próximamente)" aria-disabled="true" hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>
+        </button>
+        <button class="icon-btn" type="button" aria-label="Cuenta de usuario (próximamente)" aria-disabled="true" hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </button>
+
+        <!-- Carrito: implementado a nivel visual pero DESHABILITADO.
+             Las ventas iniciales son directas por Instagram. -->
+        <span class="cart-wrap" hidden>
+          <button class="icon-btn icon-btn--cart" type="button" aria-disabled="true" aria-describedby="cart-tip">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 4h2.5l2 11h10l2-8H7"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>
+            <span class="visually-hidden">Carrito</span>
+          </button>
+          <span id="cart-tip" class="cart-tip" role="tooltip">Próximamente</span>
+        </span>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- Texto orientativo preparado como borrador: revisadlo (y, si podéis, que lo revise una gestoría o un abogado) antes de publicarlo. -->
+    <article class="legal" aria-labelledby="legal-titulo">
+        <h1 id="legal-titulo" class="section-title">Condiciones de venta</h1>
+        <p class="legal__fecha">Última actualización: 14 de octubre de 2026</p>
+        <p>Estas condiciones se aplican a las compras que hagas a Dos Flores a través de nuestros canales (Instagram y correo electrónico). Vende: <span class="pendiente">[PENDIENTE: nombre y apellidos o razón social de quien vende]</span> (más datos en el <a href="aviso-legal.html">aviso legal</a>).</p>
+
+        <h2>1. Cómo hacer un pedido</h2>
+        <ol>
+          <li>Escríbenos por <a href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Instagram</a> o a <a href="mailto:dosfloresaromas@gmail.com">dosfloresaromas@gmail.com</a> diciendo qué productos quieres.</li>
+          <li>Te confirmamos la disponibilidad, el precio total (productos y, si los hay, gastos de envío) y cómo pagar.</li>
+          <li>Cuando recibimos el pago, el pedido queda confirmado y te enviamos un resumen por escrito.</li>
+        </ol>
+
+        <h2>2. Precios</h2>
+        <p>Los precios están en euros. <span class="pendiente">[PENDIENTE: indicar si incluyen IVA o si la actividad está exenta; depende de vuestra situación fiscal]</span>. Los gastos de envío, si los hay, te los indicamos antes de que pagues.</p>
+
+        <h2>3. Pago</h2>
+        <p>El pago se hace por transferencia bancaria. Te daremos los datos de la cuenta en privado. Nunca te pediremos datos de tu tarjeta.</p>
+
+        <h2>4. Entrega</h2>
+        <p><span class="pendiente">[PENDIENTE: formas de entrega (envío, recogida…), zonas, plazos y precio]</span>. Salvo que acordemos otra cosa, te entregaremos el pedido en un plazo máximo de 30 días desde su confirmación.</p>
+
+        <h2>5. Derecho de desistimiento (devoluciones)</h2>
+        <p>Tienes 14 días naturales desde que recibes el pedido para desistir de la compra sin dar explicaciones.</p>
+        <ul>
+          <li><strong>Cómo:</strong> comunícanoslo de forma clara a <a href="mailto:dosfloresaromas@gmail.com">dosfloresaromas@gmail.com</a>. Puedes usar el formulario de más abajo, aunque no es obligatorio.</li>
+          <li><strong>Devolución del producto:</strong> debes enviárnoslo en los 14 días siguientes a comunicarnos tu decisión. <span class="pendiente">[PENDIENTE: indicar quién paga el envío de la devolución]</span>.</li>
+          <li><strong>Reembolso:</strong> te devolveremos todo lo pagado, incluidos los gastos de envío ordinarios, en un máximo de 14 días desde que nos comuniques tu decisión, por transferencia bancaria. Podemos esperar a recibir el producto para hacerlo.</li>
+          <li><strong>Estado del producto:</strong> serás responsable de la pérdida de valor si lo has usado más allá de lo necesario para comprobarlo (por ejemplo, si has encendido la vela).</li>
+          <li><span class="pendiente">[PENDIENTE: si hacéis velas personalizadas, indicar que no admiten desistimiento (artículo 103 del TRLGDCU)]</span></li>
+        </ul>
+
+        <h2>6. Garantía</h2>
+        <p>Como establece la ley, tienes una garantía de 3 años si el producto no es conforme a lo acordado (por ejemplo, si llega defectuoso o roto). Escríbenos y buscaremos la solución que corresponda: reparación, sustitución, rebaja del precio o devolución del dinero. La garantía no cubre el consumo normal de la vela.</p>
+
+        <h2>7. Atención y reclamaciones</h2>
+        <p>Para cualquier duda o reclamación, escríbenos a <a href="mailto:dosfloresaromas@gmail.com">dosfloresaromas@gmail.com</a>. Te responderemos lo antes posible y, como máximo, en un mes.</p>
+
+        <h2>8. Legislación aplicable</h2>
+        <p>Estas condiciones se rigen por la legislación española, en particular por el Texto Refundido de la Ley General para la Defensa de los Consumidores y Usuarios (Real Decreto Legislativo 1/2007).</p>
+
+        <h2>Formulario de desistimiento</h2>
+        <div class="legal__formulario">
+          <p>A la atención de <span class="pendiente">[PENDIENTE: nombre y apellidos o razón social de quien vende]</span>, <span class="pendiente">[PENDIENTE: domicilio]</span>, <a href="mailto:dosfloresaromas@gmail.com">dosfloresaromas@gmail.com</a>:</p>
+          <p>Por la presente le comunico/comunicamos (*) que desisto de mi/desistimos de nuestro (*) contrato de venta del siguiente bien:</p>
+          <ul>
+            <li>Pedido el / recibido el (*):</li>
+            <li>Nombre del consumidor o de los consumidores:</li>
+            <li>Domicilio del consumidor o de los consumidores:</li>
+            <li>Firma del consumidor o de los consumidores (solo si el formulario se presenta en papel):</li>
+            <li>Fecha:</li>
+          </ul>
+          <p>(*) Táchese lo que no proceda.</p>
+        </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+
+      <p class="footer__brand">Dos Flores</p>
+
+      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas. -->
+      <div class="footer__contact">
+        <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="footer__social footer__mail" href="mailto:dosfloresaromas@gmail.com" aria-label="Escribir un correo a Dos Flores">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg>
+        </a>
+      </div>
+
+      <nav aria-label="Enlaces legales">
+        <ul class="footer__legal">
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="privacidad.html">Privacidad</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+          <li><a href="condiciones-venta.html">Condiciones de venta</a></li>
+          <li><a href="uso-y-seguridad.html">Uso y seguridad</a></li>
+        </ul>
+      </nav>
+
+      <p class="footer__credits">© <span id="anio">2026</span> Dos Flores · Diseño y desarrollo por Lucía Campos</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

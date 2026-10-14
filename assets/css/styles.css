@@ -148,8 +148,7 @@
   --hero-line: var(--color-morado-oscuro);     /* ornamento del hero */
   --vela-apagada: 1;                           /* foto de vela apagada visible */
   --vela-encendida: 0;                         /* foto de vela encendida oculta */
-  --show-sun: none;                            /* icono sol (visible en oscuro) */
-  --show-moon: block;                          /* icono luna (visible en claro) */
+  --llama: 0;                                  /* botón de tema: vela apagada en claro (1 = encendida) */
   --logo-filter: none;                         /* el logo (SVG negro) se ve tal cual */
   color-scheme: light;
 }
@@ -189,8 +188,7 @@
     --hero-line: var(--color-lavanda);
     --vela-apagada: 0;
     --vela-encendida: 1;
-    --show-sun: block;
-    --show-moon: none;
+    --llama: 1;
     --logo-filter: invert(1) hue-rotate(180deg);
     color-scheme: dark;
   }
@@ -224,8 +222,7 @@
   --hero-line: var(--color-lavanda);
   --vela-apagada: 0;
   --vela-encendida: 1;
-  --show-sun: block;
-  --show-moon: none;
+  --llama: 1;
   --logo-filter: invert(1) hue-rotate(180deg);
   color-scheme: dark;
 }
@@ -476,9 +473,17 @@ a {
 }
 
 /* Interruptor de tema: muestra la luna en claro y el sol en oscuro
-   (las variables --show-sun / --show-moon cambian con el tema) */
-.theme-toggle .icon-sun  { display: var(--show-sun); }
-.theme-toggle .icon-moon { display: var(--show-moon); }
+   (la variable --llama cambia con el tema: 0 = apagada, 1 = encendida) */
+.vela-icono__llama {
+  opacity: var(--llama);
+  transform: scale(var(--llama));
+  transform-origin: 12px 9px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.vela-icono__humo {
+  opacity: calc((1 - var(--llama)) * 0.6);
+  transition: opacity 0.3s ease;
+}
 
 /* Carrito: tooltip "Próximamente" */
 .cart-wrap { position: relative; }
@@ -1080,6 +1085,44 @@ a {
   margin: 0.75rem auto 0;
 }
 .collection .catalog__grid { text-align: left; }
+
+/* Páginas legales y de uso (pages/aviso-legal.html, privacidad, cookies, condiciones-venta, uso-y-seguridad):
+   texto largo, así que va alineado a la izquierda y con un ancho cómodo de lectura. */
+.legal {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: calc(var(--altura-header) + var(--espacio-l)) var(--espacio-s) var(--espacio-l);
+}
+.legal .section-title { text-align: left; }
+.legal h2 {
+  margin-top: var(--espacio-m);
+  font-size: 1.6rem;
+}
+.legal ul,
+.legal ol {
+  margin: 0 0 var(--espacio-s);
+  padding-left: 1.25rem;
+}
+.legal ul { list-style: disc; }
+.legal li { margin-bottom: 0.4rem; }
+.legal__fecha {
+  font-size: 0.85rem;
+  color: var(--heading);
+}
+.legal__formulario {
+  padding: var(--espacio-s) var(--espacio-m);
+  border: 1px solid var(--border);
+  border-radius: var(--radio);
+}
+.legal__formulario ul { list-style: none; padding-left: 0; }
+
+/* Dato que falta por rellenar: muy visible a propósito, para no publicarlo así */
+.pendiente {
+  padding: 0.05em 0.35em;
+  background: #FFE9A8;
+  color: #4A3B00;
+  border-radius: 0.25rem;
+}
 
 /* Página 404 */
 .error-page {

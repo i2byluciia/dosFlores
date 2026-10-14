@@ -35,7 +35,7 @@
   // Actualiza el texto accesible del botón según el tema
   function updateThemeButton() {
     if (!themeBtn) return;
-    var label = currentTheme() === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro';
+    var label = currentTheme() === 'dark' ? 'Apagar la vela (modo claro)' : 'Encender la vela (modo oscuro)';
     themeBtn.setAttribute('aria-label', label);
     themeBtn.setAttribute('title', label);
   }

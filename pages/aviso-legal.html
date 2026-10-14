@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aviso legal · Dos Flores</title>
+  <meta name="description" content="Aviso legal de la web de Dos Flores.">
+  <!-- BORRADOR: noindex evita que Google la muestre mientras haya datos [PENDIENTE].
+       Cuando esté completa y revisada, borra esta línea. -->
+  <meta name="robots" content="noindex">
+
+  <!-- Favicon con dos versiones (assets/img/): el navegador elige según su propio modo.
+       · favicon_negro.svg  → para pestañas claras
+       · favicon_blanco.svg → para pestañas oscuras
+       Sigue el modo del navegador/sistema, no el botón de la web. -->
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon_negro.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon_blanco.svg" media="(prefers-color-scheme: dark)">
+  <!-- Icono para la pantalla de inicio del iPhone (180x180 px, hecho a partir de Logo/RedesSociales_Logo.png) -->
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+
+  <!-- Tipografías alojadas en la propia web (assets/fonts/).
+       La precarga avisa al navegador de las que se ven en la primera pantalla.
+       La definición de cada fuente (@font-face) está al principio de styles.css. -->
+  <link rel="preload" href="../assets/fonts/allura-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Tema claro/oscuro: aplica la elección guardada ANTES de pintar la página,
+       para que no haya un parpadeo del tema equivocado al cargar. -->
+  <script>
+    try {
+      var tema = localStorage.getItem('dosflores-tema');
+      if (tema === 'dark' || tema === 'light') document.documentElement.setAttribute('data-theme', tema);
+    } catch (e) { /* sin almacenamiento: se sigue el tema del sistema */ }
+  </script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="nav-container">
+
+      <!-- Logo: sustituir por el logo real en la Fase 5 -->
+      <a class="logo" href="../index.html" aria-label="Dos Flores, ir al inicio">
+        <img src="../assets/img/logo.svg" alt="Logotipo de Dos Flores" width="64" height="64">
+      </a>
+
+      <!-- Botón del menú móvil (la lógica se añade en la Fase 4) -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span class="visually-hidden">Abrir menú</span>
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+      </button>
+
+      <!-- Navegación principal: solo los enlaces marcados "nav" en el boceto -->
+      <nav id="menu-principal" class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="../pages/coleccion.html">Colecciones</a></li>
+          <li><a href="../pages/historia.html">Nuestra Historia</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de la derecha -->
+      <div class="nav-actions">
+        <!-- Interruptor de modo claro/oscuro (único botón del nav que funciona ya).
+             El texto del aria-label lo actualiza main.js según el tema activo. -->
+        <button class="icon-btn theme-toggle" type="button" aria-label="Activar modo oscuro">
+          <svg class="vela-icono" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="vela-icono__humo" d="M12 7.5c-1.2-1-1.2-2 0-3s1.2-2 0-3"/><path class="vela-icono__llama" d="M12 2.5c1.6 1.9 2.4 3.3 2.4 4.4a2.4 2.4 0 0 1-4.8 0c0-1.1.8-2.5 2.4-4.4z" fill="#E8A04B" stroke="none"/><path d="M12 11V9.3"/><rect x="7.5" y="11" width="9" height="10.5" rx="1.5"/></svg>
+        </button>
+
+        <!-- Búsqueda, usuario y carrito: OCULTOS de momento con el atributo "hidden".
+             Para volver a mostrarlos, borra la palabra hidden de cada uno. -->
+        <button class="icon-btn" type="button" aria-label="Buscar (próximamente)" aria-disabled="true" hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>
+        </button>
+        <button class="icon-btn" type="button" aria-label="Cuenta de usuario (próximamente)" aria-disabled="true" hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </button>
+
+        <!-- Carrito: implementado a nivel visual pero DESHABILITADO.
+             Las ventas iniciales son directas por Instagram. -->
+        <span class="cart-wrap" hidden>
+          <button class="icon-btn icon-btn--cart" type="button" aria-disabled="true" aria-describedby="cart-tip">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 4h2.5l2 11h10l2-8H7"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>
+            <span class="visually-hidden">Carrito</span>
+          </button>
+          <span id="cart-tip" class="cart-tip" role="tooltip">Próximamente</span>
+        </span>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- Texto orientativo preparado como borrador: revisadlo (y, si podéis, que lo revise una gestoría o un abogado) antes de publicarlo. -->
+    <article class="legal" aria-labelledby="legal-titulo">
+        <h1 id="legal-titulo" class="section-title">Aviso legal</h1>
+        <p class="legal__fecha">Última actualización: 14 de octubre de 2026</p>
+        <p>En cumplimiento del artículo 10 de la Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), estos son los datos de quien es titular de esta web.</p>
+
+        <h2>Titular</h2>
+        <ul>
+          <li><strong>Nombre:</strong> <span class="pendiente">[PENDIENTE: nombre y apellidos o razón social de quien vende]</span></li>
+          <li><strong>NIF:</strong> <span class="pendiente">[PENDIENTE: NIF]</span></li>
+          <li><strong>Domicilio:</strong> <span class="pendiente">[PENDIENTE: dirección; la LSSI exige publicarla (consultad con la gestoría si puede ser la de un local o la fiscal)]</span></li>
+          <li><strong>Correo electrónico:</strong> <a href="mailto:dosfloresaromas@gmail.com">dosfloresaromas@gmail.com</a></li>
+          <li><strong>Instagram:</strong> <a href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">@dosfloresaromas</a></li>
+        </ul>
+
+        <h2>Objeto de la web</h2>
+        <p>Esta web presenta Dos Flores y sus productos (velas aromáticas artesanales y wax melts) y ofrece los canales para hacer consultas y pedidos.</p>
+
+        <h2>Propiedad intelectual</h2>
+        <p>Los textos, fotografías, logotipo y diseño de esta web pertenecen a Dos Flores. No está permitido reproducirlos ni utilizarlos con fines comerciales sin nuestro permiso.</p>
+        <p>Las tipografías Allura, Cormorant Garamond y Montserrat se usan bajo la licencia SIL Open Font License.</p>
+
+        <h2>Responsabilidad</h2>
+        <p>Revisamos con cuidado la información de esta web, pero puede cambiar (por ejemplo, la disponibilidad de los productos). Si ves algún error, escríbenos.</p>
+        <p>Esta web enlaza a Instagram. No somos responsables del contenido ni de las políticas de sitios de terceros.</p>
+
+        <h2>Legislación aplicable</h2>
+        <p>Este aviso legal se rige por la legislación española.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+
+      <p class="footer__brand">Dos Flores</p>
+
+      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas. -->
+      <div class="footer__contact">
+        <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="footer__social footer__mail" href="mailto:dosfloresaromas@gmail.com" aria-label="Escribir un correo a Dos Flores">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg>
+        </a>
+      </div>
+
+      <nav aria-label="Enlaces legales">
+        <ul class="footer__legal">
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="privacidad.html">Privacidad</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+          <li><a href="condiciones-venta.html">Condiciones de venta</a></li>
+          <li><a href="uso-y-seguridad.html">Uso y seguridad</a></li>
+        </ul>
+      </nav>
+
+      <p class="footer__credits">© <span id="anio">2026</span> Dos Flores · Diseño y desarrollo por Lucía Campos</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>
