@@ -180,29 +180,54 @@
   </main>
 
   <footer class="site-footer">
+    <!-- PIE: marca arriba (logo, frase y redes) y debajo tres columnas de enlaces.
+         Para añadir un enlace, copia un <li> en su columna. Mismo pie en todas las páginas:
+         si lo cambias aquí, cámbialo en las demás (las rutas cambian según la carpeta). -->
     <div class="footer-container">
 
-      <p class="footer__brand">Dos Flores</p>
-
-      <!-- Contacto: iconos de Instagram y correo, por encima de las políticas. -->
-      <div class="footer__contact">
-        <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+      <div class="footer__marca">
+        <a class="footer__logo" href="../index.html" aria-label="Dos Flores, ir al inicio">
+          <img src="../assets/img/logo.svg" alt="" width="96" height="96" loading="lazy">
         </a>
-        <a class="footer__social footer__mail" href="mailto:dosfloresaromas@gmail.com" aria-label="Escribir un correo a Dos Flores">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg>
-        </a>
+        <p class="footer__frase">Velas aromáticas hechas a mano</p>
+        <div class="footer__contact">
+          <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a class="footer__social" href="mailto:dosfloresaromas@gmail.com" aria-label="Escribir un correo a Dos Flores">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg>
+          </a>
+        </div>
       </div>
 
-      <nav aria-label="Enlaces legales">
-        <ul class="footer__legal">
+      <div class="footer__cols">
+      <nav class="footer__col" aria-labelledby="pie-comprar">
+        <h2 id="pie-comprar" class="footer__heading">Comprar</h2>
+        <ul>
+          <li><a href="coleccion.html">Colecciones</a></li>
+          <li><a href="como-pedir.html">Cómo pedir</a></li>
+          <li><a href="condiciones-venta.html#devoluciones">Devoluciones</a></li>
+          <li><a href="uso-y-seguridad.html">Uso y seguridad</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-labelledby="pie-conocenos">
+        <h2 id="pie-conocenos" class="footer__heading">Conócenos</h2>
+        <ul>
+          <li><a href="historia.html">Nuestra historia</a></li>
+          <li><a href="como-pedir.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-labelledby="pie-legal">
+        <h2 id="pie-legal" class="footer__heading">Legal</h2>
+        <ul>
           <li><a href="aviso-legal.html">Aviso legal</a></li>
           <li><a href="privacidad.html">Privacidad</a></li>
           <li><a href="cookies.html">Cookies</a></li>
           <li><a href="condiciones-venta.html">Condiciones de venta</a></li>
-          <li><a href="uso-y-seguridad.html">Uso y seguridad</a></li>
+          <li><a href="condiciones-venta.html#formulario-desistimiento">Formulario de desistimiento</a></li>
         </ul>
       </nav>
+      </div>
 
       <p class="footer__credits">© <span id="anio">2026</span> Dos Flores · Diseño y desarrollo por Lucía Campos</p>
     </div>

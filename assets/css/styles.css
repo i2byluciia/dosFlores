@@ -1083,6 +1083,70 @@ a {
   border-radius: var(--radio);
   object-fit: cover;
 }
+/* Foto principal ampliable: todo el botón es la foto; una lupa en la esquina avisa de que se puede ampliar */
+.producto__ampliar {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radio);
+  background: none;
+  cursor: pointer;                 /* mano normal al pasar por encima (sin la lupa del sistema) */
+}
+.producto__ampliar .producto__foto { display: block; overflow: hidden; }
+.producto__lupa {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--glass);
+  color: var(--heading);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: transform var(--transicion);
+}
+.producto__ampliar:hover .producto__lupa { transform: scale(1.08); }
+
+/* Visor de fotos (lo crea main.js): la foto a pantalla casi completa sobre fondo oscuro */
+.visor {
+  max-width: min(92vw, 60rem);
+  max-height: 92vh;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radio);
+  background: transparent;
+  overflow: visible;
+}
+.visor::backdrop { background: rgba(14, 11, 20, 0.88); }
+.visor__img {
+  display: block;
+  max-width: 100%;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  border-radius: var(--radio);
+}
+.visor__cerrar {
+  position: absolute;
+  top: -0.75rem;
+  right: -0.75rem;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-fondo);
+  color: var(--color-morado-oscuro);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
 .producto__miniaturas {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1237,37 +1301,47 @@ a {
 }
 
 
-/* ---------- 9. FOOTER ---------- */
+/* ---------- 9. FOOTER ----------
+   Arriba, la marca centrada (logo, frase y redes); debajo, tres columnas de enlaces
+   separadas por líneas finas; al final, los créditos. Fondo morado oscuro en los dos temas. */
 .site-footer {
   padding: var(--espacio-l) var(--espacio-s) var(--espacio-m);
   background: var(--footer-bg);
   color: var(--footer-text);
   text-align: center;
 }
-.site-footer a { color: var(--footer-text); }
-.site-footer a:hover { color: var(--footer-hover); }
+.site-footer a { color: var(--footer-text); text-decoration: none; }
+.site-footer a:hover { color: var(--footer-hover); text-decoration: underline; }
 .site-footer :focus-visible { outline-color: var(--footer-hover); }
 
 .footer-container {
-  display: grid;
-  gap: var(--espacio-s);
-  max-width: var(--ancho-max);
+  max-width: 56rem;
   margin: 0 auto;
 }
-/* Allura en el footer: ornamento de marca */
-.footer__brand {
-  margin: 0;
-  font-family: var(--fuente-marca);
-  font-size: 2.6rem;
-  line-height: 1.2;
+
+/* Marca: el logo es negro, así que en el pie (siempre oscuro) se invierte a claro */
+.footer__marca {
+  display: grid;
+  justify-items: center;
+  gap: var(--espacio-s);
 }
-/* Contacto: icono de Instagram + correo */
+.footer__logo img {
+  width: 5.5rem;
+  height: 5.5rem;
+  object-fit: contain;
+  filter: invert(1) hue-rotate(180deg);
+}
+.footer__frase {
+  margin: 0;
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
 .footer__contact {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
-  gap: var(--espacio-s);
+  gap: 0.75rem;
 }
 .footer__social {
   display: inline-flex;
@@ -1275,19 +1349,47 @@ a {
   justify-content: center;
   width: 44px;
   height: 44px;
-  border: 1px solid currentColor;
+  border: 1px solid color-mix(in srgb, var(--footer-text) 45%, transparent);
   border-radius: 50%;
-  transition: color var(--transicion);
+  transition: border-color var(--transicion), color var(--transicion);
 }
-.footer__legal {
+.site-footer .footer__social:hover { border-color: var(--footer-hover); text-decoration: none; }
+
+/* Columnas: en móvil, una debajo de otra; desde tablet, tres en fila (ver sección 10) */
+.footer__cols {
+  display: grid;
+  gap: var(--espacio-m);
+  margin-top: var(--espacio-m);
+  padding-top: var(--espacio-m);
+  border-top: 1px solid color-mix(in srgb, var(--footer-text) 20%, transparent);
+}
+/* Móvil: Comprar y Conócenos lado a lado; Legal debajo a todo el ancho, con sus enlaces en líneas */
+.footer__cols { grid-template-columns: 1fr 1fr; gap: var(--espacio-m) var(--espacio-s); }
+.footer__col:last-child { grid-column: 1 / -1; }
+.footer__col:last-child ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem var(--espacio-m);
+  gap: 0.45rem 1.25rem;
 }
+.footer__heading {
+  margin: 0 0 0.75rem;
+  font-family: var(--fuente-texto);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--footer-hover);
+}
+.footer__col ul { display: grid; gap: 0.45rem; }
+.footer__col a { font-size: 0.92rem; }
+
 .footer__credits {
-  margin: var(--espacio-s) 0 0;
-  font-size: 0.85rem;
+  margin: var(--espacio-m) 0 0;
+  padding-top: var(--espacio-s);
+  border-top: 1px solid color-mix(in srgb, var(--footer-text) 20%, transparent);
+  font-size: 0.8rem;
+  opacity: 0.8;
 }
 
 
@@ -1317,6 +1419,12 @@ a {
 
   /* Novedades: 2 tarjetas visibles */
   .slide { flex-basis: calc((100% - var(--espacio-m)) / 2); }
+
+  /* Pie: las tres columnas en fila, con una línea fina entre ellas */
+  .footer__cols { grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .footer__col:last-child { grid-column: auto; }
+  .footer__col:last-child ul { display: grid; }
+  .footer__col + .footer__col { border-left: 1px solid color-mix(in srgb, var(--footer-text) 20%, transparent); }
 
   /* Hecho a mano: 2 pasos por fila, foto arriba y texto debajo, centrado */
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }

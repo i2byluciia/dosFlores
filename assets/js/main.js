@@ -7,6 +7,7 @@
    3. Rastro de humo del ratón
    4. Menú de colecciones (resalta la que se ve)
    5. Año automático del footer
+   6. Visor de fotos (ampliar en las fichas)
    ========================================================= */
 
 (function () {
@@ -350,5 +351,42 @@
      --------------------------------------------------------- */
   var year = document.getElementById('anio');
   if (year) year.textContent = new Date().getFullYear();
+
+
+  /* ---------------------------------------------------------
+     6. VISOR DE FOTOS (fichas de producto)
+     Cualquier botón con data-ampliar abre esa foto en grande:
+       data-ampliar         → foto para el modo claro
+       data-ampliar-oscuro  → (opcional) foto para el modo oscuro
+       data-ampliar-alt     → descripción de la foto
+     Se cierra con la X, con Escape o pulsando fuera de la foto.
+     El visor (<dialog>) se crea aquí una sola vez, solo si la página lo necesita.
+     --------------------------------------------------------- */
+  var ampliables = document.querySelectorAll('[data-ampliar]');
+
+  if (ampliables.length && typeof HTMLDialogElement === 'function') {
+    var visor = document.createElement('dialog');
+    visor.className = 'visor';
+    visor.setAttribute('aria-label', 'Foto ampliada');
+    visor.innerHTML =
+      '<button class="visor__cerrar" type="button" aria-label="Cerrar">' +
+      '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
+      '</button><img class="visor__img" alt="">';
+    document.body.appendChild(visor);
+    var visorImg = visor.querySelector('.visor__img');
+
+    ampliables.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var oscuro = currentTheme() === 'dark' && btn.getAttribute('data-ampliar-oscuro');
+        visorImg.src = oscuro || btn.getAttribute('data-ampliar');
+        visorImg.alt = btn.getAttribute('data-ampliar-alt') || '';
+        visor.showModal();
+      });
+    });
+
+    visor.querySelector('.visor__cerrar').addEventListener('click', function () { visor.close(); });
+    // Pulsar fuera de la foto (en el fondo oscuro) también cierra
+    visor.addEventListener('click', function (e) { if (e.target === visor) visor.close(); });
+  }
 
 })();
