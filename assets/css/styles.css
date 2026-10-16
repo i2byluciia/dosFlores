@@ -567,6 +567,12 @@ a {
   font-size: 1.4rem;
   color: var(--hero-text);
 }
+/* Botón "Explorar velas" bajo la frase de bienvenida */
+.hero__cta {
+  margin-top: var(--espacio-m);
+  padding: 0.85rem 1.8rem;
+  font-size: 0.95rem;
+}
 
 
 /* ---------- FOTOS DE VELAS: apagada (claro) / encendida (oscuro) ----------
