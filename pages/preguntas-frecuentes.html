@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preguntas frecuentes sobre nuestras velas · Dos Flores</title>
+  <meta name="description" content="Resolvemos tus dudas sobre pedidos y pagos, de qué están hechas nuestras velas, cómo usarlas con seguridad y cómo hacer una devolución.">
+  <!-- Dirección "oficial" de esta página para Google (cambiadla si pasáis a dominio propio) -->
+  <link rel="canonical" href="https://i2byluciia.github.io/dosFlores/pages/preguntas-frecuentes.html">
+  <!-- Vista previa al compartir el enlace (WhatsApp, Instagram, Facebook…): protocolo Open Graph.
+       Las direcciones deben ser completas (https://…). Si cambiáis a un dominio propio, cambiad
+       "https://i2byluciia.github.io/dosFlores" por el dominio nuevo en og:url y og:image de cada página. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dos Flores">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Preguntas frecuentes sobre nuestras velas · Dos Flores">
+  <meta property="og:description" content="Resolvemos tus dudas sobre pedidos y pagos, de qué están hechas nuestras velas, cómo usarlas con seguridad y cómo hacer una devolución.">
+  <meta property="og:url" content="https://i2byluciia.github.io/dosFlores/pages/preguntas-frecuentes.html">
+  <meta property="og:image" content="https://i2byluciia.github.io/dosFlores/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dos Flores, velas aromáticas hechas a mano: vela encendida en un vaso de cristal">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon con dos versiones (assets/img/): el navegador elige según su propio modo.
+       · favicon_negro.svg  → para pestañas claras
+       · favicon_blanco.svg → para pestañas oscuras
+       Sigue el modo del navegador/sistema, no el botón de la web. -->
+  <!-- Respaldo en PNG para navegadores que no muestran favicons SVG (p. ej. Safari).
+       Va ANTES de los SVG: los navegadores que entienden SVG usan los de abajo. -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon_negro.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon_blanco.svg" media="(prefers-color-scheme: dark)">
+  <!-- Icono para la pantalla de inicio del iPhone (180x180 px, hecho a partir de Logo/RedesSociales_Logo.png) -->
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+
+  <!-- Tipografías alojadas en la propia web (assets/fonts/).
+       La precarga avisa al navegador de las que se ven en la primera pantalla.
+       La definición de cada fuente (@font-face) está al principio de styles.css. -->
+  <link rel="preload" href="../assets/fonts/allura-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Tema claro/oscuro: aplica la elección guardada ANTES de pintar la página,
+       para que no haya un parpadeo del tema equivocado al cargar. -->
+  <script>
+    try {
+      var tema = localStorage.getItem('dosflores-tema');
+      if (tema === 'dark' || tema === 'light') document.documentElement.setAttribute('data-theme', tema);
+    } catch (e) { /* sin almacenamiento: se sigue el tema del sistema */ }
+  </script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="nav-container">
+
+      <!-- Logo: sustituir por el logo real en la Fase 5 -->
+      <a class="logo" href="../index.html" aria-label="Dos Flores, ir al inicio">
+        <img src="../assets/img/logo.svg" alt="Logotipo de Dos Flores" width="64" height="64">
+      </a>
+
+      <!-- Botón del menú móvil (la lógica se añade en la Fase 4) -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span class="visually-hidden">Abrir menú</span>
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+      </button>
+
+      <!-- Navegación principal: solo los enlaces marcados "nav" en el boceto -->
+      <nav id="menu-principal" class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="../pages/coleccion.html">Colecciones</a></li>
+          <li><a href="../pages/historia.html">Nuestra historia</a></li>
+          <li><a href="como-pedir.html">Cómo pedir</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de la derecha -->
+      <div class="nav-actions">
+        <!-- Interruptor de modo claro/oscuro con forma de vela (apagada = claro, encendida = oscuro).
+             El texto del aria-label lo actualiza main.js según el tema activo. -->
+        <button class="icon-btn theme-toggle" type="button" aria-label="Activar modo oscuro">
+          <svg class="vela-icono" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="vela-icono__humo" d="M12 7.5c-1.2-1-1.2-2 0-3s1.2-2 0-3"/><path class="vela-icono__llama" d="M12 2.5c1.6 1.9 2.4 3.3 2.4 4.4a2.4 2.4 0 0 1-4.8 0c0-1.1.8-2.5 2.4-4.4z" fill="#E8A04B" stroke="none"/><path d="M12 11V9.3"/><rect x="7.5" y="11" width="9" height="10.5" rx="1.5"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- PREGUNTAS FRECUENTES: cada pregunta es un <details> (se abre y se cierra sin JavaScript).
+         Para añadir una, copia un bloque <details class="faq__item"> dentro de su grupo.
+         Solo se publican respuestas con datos confirmados; las que faltan están en comentarios PENDIENTE. -->
+    <section class="story story--cabecera" aria-labelledby="faq-titulo">
+      <div class="story__inner faq">
+        <h1 id="faq-titulo" class="section-title">Preguntas frecuentes</h1>
+        <p class="story__lead">¿Tienes otra duda? Escríbenos por <a href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Instagram</a> o a <a href="mailto:dosfloresaromas@gmail.com">dosfloresaromas@gmail.com</a>.</p>
+
+        <h2 class="faq__grupo">Pedidos y pagos</h2>
+        <details class="faq__item">
+          <summary>¿Cómo hago un pedido?</summary>
+          <div class="faq__respuesta">
+            <p>Escríbenos por <a href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer">Instagram</a> o por correo diciéndonos qué velas quieres. Te confirmamos si están disponibles, el precio total y cómo pagar. Tienes todos los pasos en <a href="como-pedir.html">Cómo pedir</a>.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Cómo se paga?</summary>
+          <div class="faq__respuesta">
+            <p>Por transferencia bancaria. Te damos los datos de la cuenta en privado y, cuando recibimos el pago, tu pedido queda confirmado. Nunca te pediremos los datos de tu tarjeta.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Cómo recibo mi pedido?</summary>
+          <div class="faq__respuesta">
+            <p>Cuando tu pedido está confirmado, acordamos contigo cómo y cuándo entregártelo.</p>
+          </div>
+        </details>
+        <!-- PENDIENTE: «¿Hacéis envíos? ¿Cuánto cuestan y cuánto tardan?» cuando decidáis cómo hacéis los envíos -->
+        <!-- PENDIENTE: «¿Hacéis velas personalizadas o por encargo?» si las vais a ofrecer -->
+
+        <h2 class="faq__grupo">Nuestras velas</h2>
+        <details class="faq__item">
+          <summary>¿De qué están hechas?</summary>
+          <div class="faq__respuesta">
+            <p>De cera de soja y coco, con colorante y una fragancia elegida para cada colección. La mayoría llevan mecha de madera; las pequeñas, mecha tradicional. Todas van en un vaso de cristal.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Cómo las hacéis?</summary>
+          <div class="faq__respuesta">
+            <p>A mano y en tandas pequeñas. Fundimos la cera, añadimos el colorante y la fragancia, la vertemos en su vaso y la dejamos curar al menos una semana antes de que esté lista.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Qué son los wax melts?</summary>
+          <div class="faq__respuesta">
+            <p>Porciones de cera aromática sin mecha que se derriten en un quemador adecuado para perfumar la estancia. Los nuestros llegarán pronto: si quieres que te avisemos, escríbenos.</p>
+          </div>
+        </details>
+        <!-- PENDIENTE: «¿Cuánto dura una vela?» con las horas medidas en vuestras pruebas -->
+        <!-- NO RESPONDER todavía «¿Son veganas / naturales / ecológicas?» sin la documentación del proveedor (ver PENDIENTES.md) -->
+
+        <h2 class="faq__grupo">Uso y cuidados</h2>
+        <details class="faq__item">
+          <summary>¿Cómo enciendo la vela la primera vez?</summary>
+          <div class="faq__respuesta">
+            <p>Déjala encendida hasta que la cera se derrita en toda la superficie. Así se consume de forma uniforme y no se forma un túnel.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Es normal que la mecha de madera crepite?</summary>
+          <div class="faq__respuesta">
+            <p>Sí. Las mechas de madera hacen un crepitar suave al arder, parecido al de una chimenea.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Qué hago con el vaso cuando se acabe?</summary>
+          <div class="faq__respuesta">
+            <p>Cuando esté frío, retira los restos de cera, lávalo y reutilízalo como quieras.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Qué precauciones debo tener?</summary>
+          <div class="faq__respuesta">
+            <p>No la dejes nunca encendida sin vigilancia, mantenla lejos de niños, mascotas y cosas que puedan arder, y enciéndela sobre una superficie estable. Tienes todas las recomendaciones en <a href="uso-y-seguridad.html">Uso y seguridad</a>.</p>
+          </div>
+        </details>
+        <!-- PENDIENTE: «¿Cada cuánto y cuánto recorto la mecha?» (madera y tradicional) -->
+
+        <h2 class="faq__grupo">Devoluciones</h2>
+        <details class="faq__item">
+          <summary>¿Puedo devolver una vela?</summary>
+          <div class="faq__respuesta">
+            <p>Sí. Tienes 14 días naturales desde que la recibes para desistir de la compra sin dar explicaciones. Te lo contamos en detalle en las <a href="condiciones-venta.html#devoluciones">condiciones de venta</a>.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Y si me llega rota o con algún defecto?</summary>
+          <div class="faq__respuesta">
+            <p>Escríbenos a <a href="mailto:dosfloresaromas@gmail.com">dosfloresaromas@gmail.com</a> y buscaremos la solución que corresponda. Tus velas tienen la garantía legal de 3 años.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <!-- PIE: marca arriba (logo, frase y redes) y debajo tres columnas de enlaces.
+         Para añadir un enlace, copia un <li> en su columna. Mismo pie en todas las páginas:
+         si lo cambias aquí, cámbialo en las demás (las rutas cambian según la carpeta). -->
+    <div class="footer-container">
+
+      <div class="footer__marca">
+        <a class="footer__logo" href="../index.html" aria-label="Dos Flores, ir al inicio">
+          <img src="../assets/img/logo.svg" alt="" width="96" height="96" loading="lazy">
+        </a>
+        <p class="footer__frase">Velas aromáticas hechas a mano</p>
+        <div class="footer__contact">
+          <a class="footer__social" href="https://www.instagram.com/dosfloresaromas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dos Flores (se abre en una pestaña nueva)">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a class="footer__social" href="mailto:dosfloresaromas@gmail.com" aria-label="Escribir un correo a Dos Flores">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__cols">
+      <nav class="footer__col" aria-labelledby="pie-comprar">
+        <h2 id="pie-comprar" class="footer__heading">Comprar</h2>
+        <ul>
+          <li><a href="coleccion.html">Colecciones</a></li>
+          <li><a href="como-pedir.html">Cómo pedir</a></li>
+          <li><a href="preguntas-frecuentes.html">Preguntas frecuentes</a></li>
+          <li><a href="condiciones-venta.html#devoluciones">Devoluciones</a></li>
+          <li><a href="uso-y-seguridad.html">Uso y seguridad</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-labelledby="pie-conocenos">
+        <h2 id="pie-conocenos" class="footer__heading">Conócenos</h2>
+        <ul>
+          <li><a href="historia.html">Nuestra historia</a></li>
+          <li><a href="como-pedir.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-labelledby="pie-legal">
+        <h2 id="pie-legal" class="footer__heading">Legal</h2>
+        <ul>
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="privacidad.html">Privacidad</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+          <li><a href="condiciones-venta.html">Condiciones de venta</a></li>
+          <li><a href="condiciones-venta.html#formulario-desistimiento">Formulario de desistimiento</a></li>
+        </ul>
+      </nav>
+      </div>
+
+      <p class="footer__credits">© <span id="anio">2026</span> Dos Flores · Diseño y desarrollo por Lucía Campos</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

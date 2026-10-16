@@ -1194,6 +1194,43 @@ a {
 .producto__alergenos,
 .producto__fabricante { font-size: 0.9rem; }
 
+/* Preguntas frecuentes (pages/preguntas-frecuentes.html)
+   Cada pregunta es un <details>: se abre y se cierra al pulsarla, sin JavaScript.
+   El signo + gira a × cuando está abierta. */
+.faq__grupo {
+  margin: var(--espacio-l) 0 var(--espacio-s);
+  font-size: 1.6rem;
+}
+.faq__item {
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.faq__item summary {
+  position: relative;
+  padding: 1rem 2.5rem 1rem 0;
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem;
+  color: var(--heading);
+  cursor: pointer;
+  list-style: none;
+}
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 0.25rem;
+  font-family: var(--fuente-texto);
+  font-size: 1.4rem;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition: transform var(--transicion);
+}
+.faq__item[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq__item summary:hover { color: var(--muted-accent); }
+.faq__respuesta { padding: 0 0 1rem; }
+.faq__respuesta p { margin: 0; }
+
 /* Cómo pedir (pages/como-pedir.html): pasos numerados con un círculo.
    El número lo pone el contador CSS "pedido". */
 .pedido-pasos {
