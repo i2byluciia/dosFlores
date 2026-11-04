@@ -8,6 +8,7 @@
    4. Menú de colecciones (resalta la que se ve)
    5. Año automático del footer
    6. Visor de fotos (ampliar en las fichas)
+   7. Enlaces a mensaje directo de Instagram
    ========================================================= */
 
 (function () {
@@ -387,6 +388,18 @@
     visor.querySelector('.visor__cerrar').addEventListener('click', function () { visor.close(); });
     // Pulsar fuera de la foto (en el fondo oscuro) también cierra
     visor.addEventListener('click', function (e) { if (e.target === visor) visor.close(); });
+  }
+
+  /* ---------------------------------------------------------
+     7. ENLACES A MENSAJE DIRECTO DE INSTAGRAM
+     En el HTML los enlaces con data-ig-dm van al perfil, que funciona siempre.
+     En el móvil se cambian por ig.me, que abre el chat en la app.
+     En el ordenador no: ig.me da «Esta página no está disponible».
+     --------------------------------------------------------- */
+  if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+    document.querySelectorAll('[data-ig-dm]').forEach(function (enlace) {
+      enlace.href = 'https://ig.me/m/dosfloresaromas';
+    });
   }
 
 })();
