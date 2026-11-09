@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Colecciones de velas aromáticas artesanales · Dos Flores</title>
-  <meta name="description" content="Descubre las colecciones de Dos Flores: velas aromáticas artesanales de temporada, ediciones limitadas y, próximamente, wax melts.">
+  <meta name="description" content="Descubre las colecciones de Dos Flores: velas aromáticas artesanales de temporada, ediciones limitadas y, próximamente, velas decorativas y wax melts.">
   <!-- Dirección "oficial" de esta página para Google (cambiadla si pasáis a dominio propio) -->
   <link rel="canonical" href="https://i2byluciia.github.io/dosFlores/pages/coleccion.html">
   <!-- Vista previa al compartir el enlace (WhatsApp, Instagram, Facebook…): protocolo Open Graph.
@@ -14,7 +14,7 @@
   <meta property="og:site_name" content="Dos Flores">
   <meta property="og:locale" content="es_ES">
   <meta property="og:title" content="Colecciones de velas aromáticas artesanales · Dos Flores">
-  <meta property="og:description" content="Descubre las colecciones de Dos Flores: velas aromáticas artesanales de temporada, ediciones limitadas y, próximamente, wax melts.">
+  <meta property="og:description" content="Descubre las colecciones de Dos Flores: velas aromáticas artesanales de temporada, ediciones limitadas y, próximamente, velas decorativas y wax melts.">
   <meta property="og:url" content="https://i2byluciia.github.io/dosFlores/pages/coleccion.html">
   <meta property="og:image" content="https://i2byluciia.github.io/dosFlores/assets/img/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -96,6 +96,8 @@
     <section class="page-hero page-hero--start" aria-labelledby="colecciones-titulo">
       <h1 id="colecciones-titulo" class="section-title">Colecciones</h1>
       <!-- PENDIENTE: <p>frase de introducción a las colecciones de Dos Flores.</p> -->
+      <!-- Filtro por tipo de producto: lo rellena main.js solo si hay productos de 2 tipos o más -->
+      <div class="tipo-filtro" data-tipo-filtro hidden></div>
     </section>
 
     <!-- Menú de colecciones + lista de colecciones.
@@ -105,32 +107,57 @@
     <div class="collections-layout">
 
     <aside class="collections-aside">
-      <!-- Accesos rápidos: añade aquí un <li> por cada colección nueva (el href es el id de su <section>) -->
+      <!-- Accesos rápidos: añade un <li> por cada colección nueva dentro de su grupo
+           (el href es el id de su <section>). Los <li class="collection-nav__grupo"> son
+           los títulos de grupo: solo se ven en escritorio. Pon solo colecciones que tengan productos. -->
       <nav class="collection-nav" aria-label="Ir a una colección">
         <ul>
+          <li class="collection-nav__grupo">De temporada</li>
           <li><a class="chip-link" href="#otono">Otoño</a></li>
-          <li><a class="chip-link" href="#halloween">Halloween</a></li>
-          <li><a class="chip-link" href="#wax-melts">Wax melts</a></li>
+          <li class="collection-nav__grupo">Especiales</li>
+          <li><a class="chip-link" href="#navidad">Navidad</a></li>
+          <!-- Cuando haya productos que no son de temporada (p. ej. lavanda y vainilla), poned
+               solo las secciones que tengan productos:
+          <li class="collection-nav__grupo">Esenciales</li>
+          <li><a class="chip-link" href="#esenciales-tarro">Velas en tarro</a></li>
+          <li><a class="chip-link" href="#esenciales-decorativas">Decorativas</a></li>
+          <li><a class="chip-link" href="#esenciales-wax-melts">Wax melts</a></li> -->
         </ul>
       </nav>
     </aside>
 
     <div class="collections-list">
 
-    <!-- CÓMO AÑADIR UNA COLECCIÓN: duplica una <section class="collection"> completa, cambia su id
-         (primavera, verano, invierno, navidad…) y añade su enlace al menú de arriba. Alterna la clase
-         "collection--alt" para que los fondos se intercalen. Si la enlazas desde el inicio,
-         el botón "Ver colección" debe apuntar a coleccion.html#ese-id.
-         CÓMO AÑADIR UNA VELA: duplica un <li class="card"> dentro de su colección.
+    <!-- ORGANIZACIÓN: la página se ordena por colecciones, no por tipo de producto.
+         · De temporada: otoño, invierno, primavera, verano.
+         · Especiales: Halloween, Navidad, San Valentín, Semana Santa…
+         · Esenciales: lo que no es de ninguna temporada, separado por tipo en tres secciones
+           (ids esenciales-tarro, esenciales-decorativas, esenciales-wax-melts), p. ej. lavanda y vainilla.
+         Dentro de cada colección van juntos todos los tipos (vela en tarro, decorativa,
+         wax melt). Cada tarjeta dice su tipo en data-tipo y en su etiqueta (card__tag).
+
+         CÓMO AÑADIR UNA COLECCIÓN: duplica una <section class="collection"> completa, cambia su id
+         (primavera, verano, invierno, navidad…), su grupo (collection__grupo) y añade su enlace
+         al menú de arriba, en su grupo. Alterna la clase "collection--alt" para que los fondos se
+         intercalen. Si la enlazas desde el inicio, el botón "Ver colección" debe apuntar a
+         coleccion.html#ese-id. Añade solo colecciones que ya tengan algún producto.
+
+         CÓMO AÑADIR UN PRODUCTO: duplica un <li class="card"> dentro de su colección y pon su tipo:
+           data-tipo="tarro"      → etiqueta "Vela en tarro" (o "Vela en vaso" si es de cristal)
+           data-tipo="decorativa" → etiqueta "Vela decorativa"
+           data-tipo="wax-melt"   → etiqueta "Wax melt"
+         Cuando haya productos de dos tipos o más, main.js muestra solo el filtro
+         "Ver: Todo / Velas en tarro / Decorativas / Wax melts" (con los tipos que existan).
          Fotos de velas en assets/img/velas/ (nombre-apagada.webp y nombre-encendida.webp). -->
 
     <!-- Otoño (#otono es el destino del botón "Ver colección" del inicio) -->
     <section id="otono" class="collection" aria-labelledby="otono-titulo">
       <div class="collection__inner">
+        <p class="collection__grupo">De temporada</p>
         <h2 id="otono-titulo" class="section-title">Otoño</h2>
         <!-- PENDIENTE: <p class="collection__intro">descripción de la colección Otoño.</p> -->
         <ul class="catalog__grid">
-          <li class="card">
+          <li class="card" data-tipo="tarro">
             <article>
               <!-- Foto de Caramelo Cremoso: apagada en modo claro y encendida en modo oscuro (las cambia el CSS).
                    Originales en flores/Fotos_originales/velas/. Generadas a partir de una foto real de la vela. -->
@@ -138,6 +165,7 @@
                 <img class="vela--apagada" src="../assets/img/velas/caramelo-cremoso-600.webp" srcset="../assets/img/velas/caramelo-cremoso-600.webp 600w, ../assets/img/velas/caramelo-cremoso-1200.webp 1200w" sizes="(min-width: 64rem) 22rem, (min-width: 48rem) 45vw, 90vw" alt="Vela Caramelo Cremoso de Dos Flores: vaso de cristal con dos caramelos de cera naranja y mecha de madera" width="600" height="600" loading="lazy">
                 <img class="vela--encendida" src="../assets/img/velas/caramelo-cremoso-encendida-600.webp" srcset="../assets/img/velas/caramelo-cremoso-encendida-600.webp 600w, ../assets/img/velas/caramelo-cremoso-encendida-1200.webp 1200w" sizes="(min-width: 64rem) 22rem, (min-width: 48rem) 45vw, 90vw" alt="" width="600" height="600" loading="lazy">
               </div>
+              <p class="card__tag">Vela en vaso</p>
               <h3 class="card__title">Caramelo Cremoso</h3>
               <!-- PENDIENTE: <p class="card__text">aroma y descripción.</p> -->
               <a class="btn btn--outline" href="caramelo-cremoso.html">Ver vela<span class="visually-hidden"> Caramelo Cremoso</span></a>
@@ -147,50 +175,39 @@
       </div>
     </section>
 
-    <!-- Halloween (#halloween es el destino del botón "Ver colección" del inicio) -->
-    <section id="halloween" class="collection collection--alt" aria-labelledby="halloween-titulo">
+    <!-- Navidad (#navidad es el destino del botón "Ver colección" del inicio) -->
+    <section id="navidad" class="collection collection--alt" aria-labelledby="navidad-titulo">
       <div class="collection__inner">
-        <h2 id="halloween-titulo" class="section-title">Halloween</h2>
-        <!-- PENDIENTE: <p class="collection__intro">descripción de la colección Halloween.</p> -->
+        <p class="collection__grupo">Especial</p>
+        <h2 id="navidad-titulo" class="section-title">Navidad</h2>
+        <!-- PENDIENTE: <p class="collection__intro">descripción de la colección Navidad.</p> -->
         <ul class="catalog__grid">
-          <li class="card">
+          <li class="card" data-tipo="tarro">
             <article>
-              <!-- PENDIENTE: foto (truco-o-trato-apagada.webp / truco-o-trato-encendida.webp en assets/img/velas/) -->
+              <!-- Nombre provisional: Hohoho. Fragancia: Gingerbread de Naturcocó (galleta de jengibre).
+                   PENDIENTE: foto (la vela aún no está hecha). Cuando la tengáis, copiad
+                   caramelo-cremoso.html como ficha, cambiad esta tarjeta por una normal y quitad "Próximamente". -->
               <div class="card__media candle-photo foto-pendiente">
                 <img class="foto-pendiente__marca" src="../assets/img/logo.svg" alt="" width="64" height="64">
                 <span class="foto-pendiente__aviso">Fotografía próximamente</span>
               </div>
-              <p class="card__tag">Edición limitada</p>
-              <h3 class="card__title">Truco o Trato</h3>
-              <!-- PENDIENTE: <p class="card__text">aroma y descripción.</p> -->
-              <a class="btn btn--outline" href="truco-o-trato.html">Ver vela<span class="visually-hidden"> Truco o Trato</span></a>
+              <p class="card__tag">Vela en tarro · Próximamente</p>
+              <h3 class="card__title">Hohoho</h3>
+              <p class="card__text">Aroma a galleta de jengibre, en tarro de metal. Si quieres que te avisemos cuando esté lista, escríbenos.</p>
+              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" data-ig-dm target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
             </article>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- Wax melts: no es una colección, sino otro tipo de producto, por eso va al final.
-         Cuando tengáis los primeros, sustituid la tarjeta "Próximamente" por una tarjeta
-         normal por producto (igual que las velas de arriba) y quitad el aviso. -->
-    <section id="wax-melts" class="collection" aria-labelledby="wax-melts-titulo">
+    <!-- Próximamente: tipos de producto que aún no tienen ninguno a la venta.
+         Cuando tengáis el primero, ponedlo como tarjeta en su colección (con su data-tipo)
+         y quitad su nombre de esta frase. Si ya no queda ninguno, borrad esta sección.
+         Las velas decorativas se encienden sobre una base resistente al calor (ver uso-y-seguridad.html). -->
+    <section class="collection collection--proximamente" aria-label="Próximamente">
       <div class="collection__inner">
-        <h2 id="wax-melts-titulo" class="section-title">Wax melts</h2>
-        <p class="collection__intro">Porciones de cera aromática sin mecha que se derriten en un quemador adecuado para perfumar la estancia.</p>
-        <ul class="catalog__grid">
-          <li class="card">
-            <article>
-              <div class="card__media candle-photo foto-pendiente">
-                <img class="foto-pendiente__marca" src="../assets/img/logo.svg" alt="" width="64" height="64">
-                <span class="foto-pendiente__aviso">Fotografía próximamente</span>
-              </div>
-              <p class="card__tag">Próximamente</p>
-              <h3 class="card__title">Nuestros wax melts</h3>
-              <p class="card__text">Si quieres que te avisemos cuando estén listos, escríbenos.</p>
-              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" data-ig-dm target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
-            </article>
-          </li>
-        </ul>
+        <p class="collection__intro"><strong>Próximamente:</strong> velas decorativas hechas a mano en molde y wax melts. Si quieres que te avisemos, <a href="https://www.instagram.com/dosfloresaromas/" data-ig-dm target="_blank" rel="noopener noreferrer">escríbenos por Instagram</a>.</p>
       </div>
     </section>
 

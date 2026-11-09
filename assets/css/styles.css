@@ -1063,6 +1063,52 @@ a {
 }
 .collection .catalog__grid { text-align: left; }
 
+/* Grupo de cada colección ("De temporada", "Especial"), encima de su título */
+.collection__grupo {
+  margin: 0 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted, var(--heading));
+}
+/* Títulos de grupo del menú de colecciones. En la barra del móvil van pequeños entre las
+   píldoras ("ESENCIALES  Velas en tarro  Decorativas…"); en escritorio, ver sección 10. */
+.collection-nav__grupo {
+  display: flex;
+  align-items: center;
+  padding-left: 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--heading);
+  white-space: nowrap;
+}
+.collection-nav__grupo:first-child { padding-left: 0; }
+/* Aviso final "Próximamente" (tipos de producto que aún no están a la venta) */
+.collection--proximamente { padding-block: var(--espacio-m); }
+
+/* Filtro por tipo de producto (lo crea main.js solo si hay 2 tipos o más) */
+.tipo-filtro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: var(--espacio-s);
+}
+.tipo-filtro__label { font-size: 0.85rem; }
+.tipo-filtro .chip-link {
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+.tipo-filtro .chip-link[aria-pressed="true"] {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+}
+
 /* Ficha de producto (pages/caramelo-cremoso.html y las que se copien de ella)
    Móvil: galería arriba y datos debajo · Escritorio: dos columnas (ver sección 10). */
 .producto {
@@ -1585,6 +1631,18 @@ a {
     font-weight: 600;
     border-left-color: var(--heading);
   }
+  /* Títulos de grupo del índice ("De temporada", "Especiales") */
+  .collection-nav__grupo {
+    display: block;
+    padding: 0.9rem 0 0.2rem 1rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--heading);
+  }
+  .collection-nav__grupo:first-child { padding-top: 0; padding-left: 1rem; }
+  .tipo-filtro { justify-content: flex-start; max-width: calc(var(--ancho-max) - 2 * var(--espacio-s)); margin-inline: auto; }
 
   /* Contenido de cada colección: a la derecha del índice y alineado a la izquierda */
   .collections-list .collection__inner {

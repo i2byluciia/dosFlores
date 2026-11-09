@@ -348,6 +348,71 @@
 
 
   /* ---------------------------------------------------------
+     4b. FILTRO POR TIPO DE PRODUCTO (pages/coleccion.html)
+     Cada tarjeta lleva data-tipo="tarro" | "decorativa" | "wax-melt".
+     El filtro solo aparece si hay productos de 2 tipos o más; si no,
+     no sirve de nada. Al filtrar se ocultan las tarjetas de otros
+     tipos, las colecciones que se quedan vacías y sus enlaces del menú.
+     --------------------------------------------------------- */
+  var filtro = document.querySelector('[data-tipo-filtro]');
+  if (filtro) {
+    var NOMBRES_TIPO = { 'tarro': 'Velas en tarro', 'decorativa': 'Decorativas', 'wax-melt': 'Wax melts' };
+    var tarjetas = Array.prototype.slice.call(document.querySelectorAll('.collections-list .card[data-tipo]'));
+    var tipos = Object.keys(NOMBRES_TIPO).filter(function (tipo) {
+      return tarjetas.some(function (t) { return t.getAttribute('data-tipo') === tipo; });
+    });
+
+    if (tipos.length > 1) {
+      var aplicarFiltro = function (elegido) {
+        tarjetas.forEach(function (t) {
+          t.hidden = elegido !== 'todo' && t.getAttribute('data-tipo') !== elegido;
+        });
+        // Colecciones sin tarjetas visibles, y sus enlaces del menú
+        document.querySelectorAll('.collections-list .collection[id]').forEach(function (seccion) {
+          var vacia = !seccion.querySelector('.card:not([hidden])');
+          seccion.hidden = vacia;
+          var enlace = document.querySelector('.collection-nav a[href="#' + seccion.id + '"]');
+          if (enlace) enlace.parentNode.hidden = vacia;
+        });
+        // Títulos de grupo del menú sin ninguna colección visible debajo
+        var grupo = null, grupoConAlgo = false;
+        Array.prototype.forEach.call(document.querySelectorAll('.collection-nav li'), function (li) {
+          if (li.classList.contains('collection-nav__grupo')) {
+            if (grupo) grupo.hidden = !grupoConAlgo;
+            grupo = li; grupoConAlgo = false;
+          } else if (!li.hidden) {
+            grupoConAlgo = true;
+          }
+        });
+        if (grupo) grupo.hidden = !grupoConAlgo;
+
+        filtro.querySelectorAll('button').forEach(function (b) {
+          b.setAttribute('aria-pressed', b.getAttribute('data-valor') === elegido ? 'true' : 'false');
+        });
+      };
+
+      var etiqueta = document.createElement('span');
+      etiqueta.className = 'tipo-filtro__label';
+      etiqueta.textContent = 'Ver:';
+      filtro.appendChild(etiqueta);
+      ['todo'].concat(tipos).forEach(function (tipo) {
+        var boton = document.createElement('button');
+        boton.type = 'button';
+        boton.className = 'chip-link';
+        boton.setAttribute('data-valor', tipo);
+        boton.textContent = tipo === 'todo' ? 'Todo' : NOMBRES_TIPO[tipo];
+        boton.addEventListener('click', function () { aplicarFiltro(tipo); });
+        filtro.appendChild(boton);
+      });
+      filtro.setAttribute('role', 'group');
+      filtro.setAttribute('aria-label', 'Filtrar por tipo de producto');
+      filtro.hidden = false;
+      aplicarFiltro('todo');
+    }
+  }
+
+
+  /* ---------------------------------------------------------
      5. AÑO AUTOMÁTICO DEL FOOTER
      --------------------------------------------------------- */
   var year = document.getElementById('anio');

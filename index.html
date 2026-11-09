@@ -170,16 +170,17 @@
           </article>
 
           <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 2">
-            <!-- PENDIENTE: foto (truco-o-trato-apagada.webp / truco-o-trato-encendida.webp en assets/img/velas/) -->
+            <!-- Vela Hohoho (nombre provisional). PENDIENTE: foto. Cuando tenga ficha propia,
+                 el botón debe ir a su página (como Caramelo Cremoso). -->
             <div class="slide__media candle-photo foto-pendiente">
               <img class="foto-pendiente__marca" src="assets/img/logo.svg" alt="" width="64" height="64">
               <span class="foto-pendiente__aviso">Fotografía próximamente</span>
             </div>
             <div class="slide__body">
-              <p class="slide__tag">Colección Halloween</p>
-              <h3 class="slide__title">Truco o Trato</h3>
-              <!-- PENDIENTE: <p class="slide__text">descripción del aroma</p> -->
-              <a class="btn btn--outline" href="pages/truco-o-trato.html">Ver vela<span class="visually-hidden"> Truco o Trato</span></a>
+              <p class="slide__tag">Colección Navidad · Próximamente</p>
+              <h3 class="slide__title">Hohoho</h3>
+              <p class="slide__text">Aroma a galleta de jengibre.</p>
+              <a class="btn btn--outline" href="pages/coleccion.html#navidad">Ver colección<span class="visually-hidden"> Navidad</span></a>
             </div>
           </article>
 
@@ -290,7 +291,7 @@
 
     <!-- =====================================================
          5. COLECCIONES (Explorar colecciones)
-         Dos grupos: Estacionales y Limitadas. Cada botón "Ver colección" lleva a
+         Dos grupos: De temporada y Especiales (los mismos que en pages/coleccion.html). Cada botón "Ver colección" lleva a
          pages/coleccion.html#id, y ese id debe existir en pages/coleccion.html.
          Para añadir una colección, duplica un bloque <li class="card"> dentro de su grupo.
          Fotos de portada en assets/img/colecciones/ (nombre-apagada.webp y nombre-encendida.webp).
@@ -298,9 +299,9 @@
     <section id="colecciones" class="catalog" aria-labelledby="catalogo-titulo">
       <h2 id="catalogo-titulo" class="section-title">Explorar colecciones</h2>
 
-      <!-- Colecciones estacionales (primavera, verano, otoño, invierno) -->
+      <!-- Colecciones de temporada (primavera, verano, otoño, invierno) -->
       <div id="estacionales" class="catalog__group">
-        <h3 class="catalog__group-title">Estacionales</h3>
+        <h3 class="catalog__group-title">De temporada</h3>
         <ul class="catalog__grid">
 
         <li class="card">
@@ -320,22 +321,22 @@
         </ul>
       </div>
 
-      <!-- Colecciones limitadas (Halloween, Navidad, San Valentín…) -->
+      <!-- Colecciones especiales (Halloween, Navidad, San Valentín, Semana Santa…) -->
       <div id="limitadas" class="catalog__group">
-        <h3 class="catalog__group-title">Limitadas</h3>
+        <h3 class="catalog__group-title">Especiales</h3>
         <ul class="catalog__grid">
 
         <li class="card">
           <article>
-            <!-- PENDIENTE: foto de portada (halloween-apagada.webp / halloween-encendida.webp) -->
+            <!-- PENDIENTE: foto de portada (navidad-apagada.webp / navidad-encendida.webp) -->
             <div class="card__media candle-photo foto-pendiente">
               <img class="foto-pendiente__marca" src="assets/img/logo.svg" alt="" width="64" height="64">
               <span class="foto-pendiente__aviso">Fotografía próximamente</span>
             </div>
-            <p class="card__tag">Edición limitada</p>
-            <h4 class="card__title">Halloween</h4>
+            <p class="card__tag">Próximamente</p>
+            <h4 class="card__title">Navidad</h4>
             <!-- PENDIENTE: <p class="card__text">descripción breve de la colección</p> -->
-            <a class="btn btn--outline" href="pages/coleccion.html#halloween">Ver colección<span class="visually-hidden"> Halloween</span></a>
+            <a class="btn btn--outline" href="pages/coleccion.html#navidad">Ver colección<span class="visually-hidden"> Navidad</span></a>
           </article>
         </li>
 
