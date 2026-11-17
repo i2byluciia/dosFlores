@@ -176,25 +176,23 @@
     </section>
 
     <!-- Navidad (#navidad es el destino del botón "Ver colección" del inicio) -->
-    <section id="navidad" class="collection collection--alt" aria-labelledby="navidad-titulo">
+    <section id="navidad" class="collection" aria-labelledby="navidad-titulo">
       <div class="collection__inner">
         <p class="collection__grupo">Especial</p>
         <h2 id="navidad-titulo" class="section-title">Navidad</h2>
-        <!-- PENDIENTE: <p class="collection__intro">descripción de la colección Navidad.</p> -->
         <ul class="catalog__grid">
           <li class="card" data-tipo="tarro">
             <article>
-              <!-- Nombre provisional: Hohoho. Fragancia: Gingerbread de Naturcocó (galleta de jengibre).
-                   PENDIENTE: foto (la vela aún no está hecha). Cuando la tengáis, copiad
-                   caramelo-cremoso.html como ficha, cambiad esta tarjeta por una normal y quitad "Próximamente". -->
-              <div class="card__media candle-photo foto-pendiente">
-                <img class="foto-pendiente__marca" src="../assets/img/logo.svg" alt="" width="64" height="64">
-                <span class="foto-pendiente__aviso">Fotografía próximamente</span>
+              <!-- Foto de Galleta de Jengibre: apagada en modo claro y encendida en modo oscuro (las cambia el CSS).
+                   Originales en flores/Fotos_originales/velas/. Generadas a partir de una foto real de la vela. -->
+              <div class="card__media candle-photo">
+                <img class="vela--apagada" src="../assets/img/velas/galleta-jengibre.webp" srcset="../assets/img/velas/galleta-jengibre-600.webp 600w, ../assets/img/velas/galleta-jengibre-1200.webp 1200w" sizes="(min-width: 64rem) 22rem, (min-width: 48rem) 45vw, 90vw" alt="Vela Galleta de Jengibre de Dos Flores: tarro metálico con ramitas de pino y mecha de madera" width="600" height="600" loading="lazy">
+                <img class="vela--encendida" src="../assets/img/velas/galleta-jengibre-encendida-600.webp" srcset="../assets/img/velas/galleta-jengibre-encendida-600.webp 600w, ../assets/img/velas/galleta-jengibre-encendida-1200.webp 1200w" sizes="(min-width: 64rem) 22rem, (min-width: 48rem) 45vw, 90vw" alt="" width="600" height="600" loading="lazy">
               </div>
-              <p class="card__tag">Vela en tarro · Próximamente</p>
-              <h3 class="card__title">Hohoho</h3>
-              <p class="card__text">Aroma a galleta de jengibre, en tarro de metal. Si quieres que te avisemos cuando esté lista, escríbenos.</p>
-              <a class="btn btn--outline" href="https://www.instagram.com/dosfloresaromas/" data-ig-dm target="_blank" rel="noopener noreferrer">Consultar por Instagram</a>
+              <p class="card__tag">Vela en tarro</p>
+              <h3 class="card__title">Galleta de Jengibre</h3>
+              <!-- PENDIENTE: <p class="card__text">aroma y descripción.</p> -->
+              <a class="btn btn--outline" href="galleta-jengibre.html">Ver vela<span class="visually-hidden"> Galleta de Jengibre</span></a>
             </article>
           </li>
         </ul>
