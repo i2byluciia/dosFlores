@@ -2,26 +2,26 @@
 <!-- Lista de páginas para Google. Solo van las páginas SIN "noindex".
      Cuando completéis una página legal o una ficha y le quitéis el noindex, añadidla aquí
      (copiando un bloque <url>) y actualizad <lastmod> con la fecha del cambio.
-     Si pasáis a dominio propio, cambiad https://i2byluciia.github.io/dosFlores por el dominio nuevo. -->
+     Si pasáis a dominio propio, cambiad https://dosfloresaromas.es por el dominio nuevo. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://i2byluciia.github.io/dosFlores/</loc>
+    <loc>https://dosfloresaromas.es</loc>
     <lastmod>2026-10-14</lastmod>
   </url>
   <url>
-    <loc>https://i2byluciia.github.io/dosFlores/pages/coleccion.html</loc>
+    <loc>https://dosfloresaromas.es/pages/coleccion.html</loc>
     <lastmod>2026-10-14</lastmod>
   </url>
   <url>
-    <loc>https://i2byluciia.github.io/dosFlores/pages/como-pedir.html</loc>
+    <loc>https://dosfloresaromas.es/pages/como-pedir.html</loc>
     <lastmod>2026-10-14</lastmod>
   </url>
   <url>
-    <loc>https://i2byluciia.github.io/dosFlores/pages/historia.html</loc>
+    <loc>https://dosfloresaromas.es/pages/historia.html</loc>
     <lastmod>2026-10-14</lastmod>
   </url>
   <url>
-    <loc>https://i2byluciia.github.io/dosFlores/pages/preguntas-frecuentes.html</loc>
+    <loc>https://dosfloresaromas.es/pages/preguntas-frecuentes.html</loc>
     <lastmod>2026-10-16</lastmod>
   </url>
 </urlset>

@@ -5,4 +5,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://i2byluciia.github.io/dosFlores/sitemap.xml
+Sitemap: https://dosfloresaromas.es/sitemap.xml
